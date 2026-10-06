@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Softaware\DataFeed\Api\Data\FeedInterface" type="Softaware\DataFeed\Model\Feed"/>
+    <preference for="Softaware\DataFeed\Api\FeedRepositoryInterface" type="Softaware\DataFeed\Model\FeedRepository"/>
+    <preference for="Softaware\DataFeed\Api\FeedGeneratorInterface" type="Softaware\DataFeed\Model\Generator\Generator"/>
+
+    <type name="Softaware\DataFeed\Model\Template\Parser" shared="false"/>
+    <type name="Softaware\DataFeed\Model\Template\Runtime" shared="false"/>
+
+    <!-- Option lists -->
+    <virtualType name="Softaware\DataFeed\Model\Source\Format" type="Softaware\DataFeed\Model\Source\StaticOptions">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="xml" xsi:type="string" translate="true">XML</item>
+                <item name="json" xsi:type="string" translate="true">JSON</item>
+                <item name="csv" xsi:type="string" translate="true">CSV</item>
+                <item name="txt" xsi:type="string" translate="true">TXT (delimited)</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Softaware\DataFeed\Model\Source\Delimiter" type="Softaware\DataFeed\Model\Source\StaticOptions">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="," xsi:type="string" translate="true">Comma (,)</item>
+                <item name=";" xsi:type="string" translate="true">Semicolon (;)</item>
+                <item name="tab" xsi:type="string" translate="true">Tab</item>
+                <item name="|" xsi:type="string" translate="true">Pipe (|)</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Softaware\DataFeed\Model\Source\Enclosure" type="Softaware\DataFeed\Model\Source\StaticOptions">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="&quot;" xsi:type="string" translate="true">Double quote (&quot;)</item>
+                <item name="'" xsi:type="string" translate="true">Single quote (')</item>
+                <item name="none" xsi:type="string" translate="true">None (values are cleaned of delimiters and line breaks)</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Softaware\DataFeed\Model\Source\Encoding" type="Softaware\DataFeed\Model\Source\StaticOptions">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="UTF-8" xsi:type="string" translate="true">UTF-8</item>
+                <item name="UTF-8-BOM" xsi:type="string" translate="true">UTF-8 with BOM (for Excel)</item>
+                <item name="ISO-8859-1" xsi:type="string" translate="true">ISO-8859-1 (Latin-1)</item>
+                <item name="Windows-1252" xsi:type="string" translate="true">Windows-1252</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Softaware\DataFeed\Model\Source\LineEnding" type="Softaware\DataFeed\Model\Source\StaticOptions">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="lf" xsi:type="string" translate="true">LF (Unix)</item>
+                <item name="crlf" xsi:type="string" translate="true">CRLF (Windows)</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Softaware\DataFeed\Model\Source\ScheduleType" type="Softaware\DataFeed\Model\Source\StaticOptions">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="manual" xsi:type="string" translate="true">Manual only (admin or CLI)</item>
+                <item name="times" xsi:type="string" translate="true">Daily at set times</item>
+                <item name="cron" xsi:type="string" translate="true">Cron expression</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Softaware\DataFeed\Model\Source\ParentChildMode" type="Softaware\DataFeed\Model\Source\StaticOptions">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="parent" xsi:type="string" translate="true">Parents only (configurable products as one item)</item>
+                <item name="child" xsi:type="string" translate="true">Variants only (each child with item_group_id, no parent row)</item>
+                <item name="both" xsi:type="string" translate="true">Parents and variants</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Softaware\DataFeed\Model\Source\CategoryMode" type="Softaware\DataFeed\Model\Source\StaticOptions">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="include" xsi:type="string" translate="true">Only products in these categories</item>
+                <item name="exclude" xsi:type="string" translate="true">Products not in these categories</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Softaware\DataFeed\Model\Source\Operator" type="Softaware\DataFeed\Model\Source\StaticOptions">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="eq" xsi:type="string" translate="true">=</item>
+                <item name="neq" xsi:type="string" translate="true">!=</item>
+                <item name="gt" xsi:type="string" translate="true">&gt;</item>
+                <item name="lt" xsi:type="string" translate="true">&lt;</item>
+                <item name="gteq" xsi:type="string" translate="true">&gt;=</item>
+                <item name="lteq" xsi:type="string" translate="true">&lt;=</item>
+                <item name="like" xsi:type="string" translate="true">contains</item>
+                <item name="nlike" xsi:type="string" translate="true">does not contain</item>
+                <item name="in" xsi:type="string" translate="true">is one of (comma separated)</item>
+                <item name="nin" xsi:type="string" translate="true">is not one of (comma separated)</item>
+                <item name="null" xsi:type="string" translate="true">is empty</item>
+                <item name="notnull" xsi:type="string" translate="true">is not empty</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Softaware\DataFeed\Model\Source\FtpProtocol" type="Softaware\DataFeed\Model\Source\StaticOptions">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="sftp" xsi:type="string" translate="true">SFTP</item>
+                <item name="ftp" xsi:type="string" translate="true">FTP</item>
+                <item name="ftps" xsi:type="string" translate="true">FTPS (explicit TLS)</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Softaware\DataFeed\Model\Source\LogStatus" type="Softaware\DataFeed\Model\Source\StaticOptions">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="running" xsi:type="string" translate="true">Running</item>
+                <item name="success" xsi:type="string" translate="true">Success</item>
+                <item name="warning" xsi:type="string" translate="true">Warning</item>
+                <item name="error" xsi:type="string" translate="true">Error</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Softaware\DataFeed\Model\Source\Trigger" type="Softaware\DataFeed\Model\Source\StaticOptions">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="admin" xsi:type="string" translate="true">Admin</item>
+                <item name="cron" xsi:type="string" translate="true">Cron</item>
+                <item name="cli" xsi:type="string" translate="true">CLI</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Admin grids -->
+    <virtualType name="Softaware\DataFeed\Model\ResourceModel\Feed\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">softaware_datafeed_feed</argument>
+            <argument name="resourceModel" xsi:type="string">Softaware\DataFeed\Model\ResourceModel\Feed</argument>
+        </arguments>
+    </virtualType>
+    <type name="Softaware\DataFeed\Model\ResourceModel\Log\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">softaware_datafeed_log</argument>
+            <argument name="resourceModel" xsi:type="string">Softaware\DataFeed\Model\ResourceModel\Log</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="softaware_datafeed_feed_listing_data_source" xsi:type="string">Softaware\DataFeed\Model\ResourceModel\Feed\Grid\Collection</item>
+                <item name="softaware_datafeed_log_listing_data_source" xsi:type="string">Softaware\DataFeed\Model\ResourceModel\Log\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- CLI -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="softaware_feed_generate" xsi:type="object">Softaware\DataFeed\Console\Command\GenerateCommand</item>
+                <item name="softaware_feed_list" xsi:type="object">Softaware\DataFeed\Console\Command\ListCommand</item>
+                <item name="softaware_feed_preview" xsi:type="object">Softaware\DataFeed\Console\Command\PreviewCommand</item>
+                <item name="softaware_feed_taxonomy_import" xsi:type="object">Softaware\DataFeed\Console\Command\TaxonomyImportCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Softaware\DataFeed\Console\Command\GenerateCommand">
+        <arguments>
+            <argument name="generator" xsi:type="object">Softaware\DataFeed\Api\FeedGeneratorInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Softaware\DataFeed\Console\Command\PreviewCommand">
+        <arguments>
+            <argument name="preview" xsi:type="object">Softaware\DataFeed\Model\Generator\Preview\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Softaware\DataFeed\Console\Command\TaxonomyImportCommand">
+        <arguments>
+            <argument name="importer" xsi:type="object">Softaware\DataFeed\Model\Taxonomy\Importer\Proxy</argument>
+        </arguments>
+    </type>
+</config>

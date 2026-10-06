@@ -1,0 +1,11 @@
+<div class="admin__field softaware-datafeed-connection" data-bind="visible: visible">
+    <div class="admin__field-label"></div>
+    <div class="admin__field-control">
+        <button type="button" class="action-secondary" data-bind="click: run, disable: loading">
+            <span data-bind="i18n: 'Test Connection'"></span>
+        </button>
+        <div data-bind="visible: message, attr: {class: 'message message-' + messageType()}">
+            <div data-bind="text: message"></div>
+        </div>
+    </div>
+</div>

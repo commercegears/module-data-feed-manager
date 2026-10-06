@@ -1,0 +1,19 @@
+<div class="softaware-datafeed-preview">
+    <div class="softaware-datafeed-preview-actions">
+        <button type="button" class="action-secondary" data-bind="click: run, disable: loading">
+            <span data-bind="i18n: 'Preview First Items'"></span>
+        </button>
+        <span class="softaware-datafeed-muted" data-bind="i18n: 'Uses the values in this form, including unsaved changes. Nothing is written.'"></span>
+    </div>
+    <div class="softaware-datafeed-spinner" data-bind="visible: loading">
+        <span data-bind="i18n: 'Rendering…'"></span>
+    </div>
+    <div data-bind="visible: message, attr: {class: 'message message-' + messageType()}">
+        <div data-bind="text: message"></div>
+    </div>
+    <p data-bind="visible: summary, text: summary"></p>
+    <ul class="softaware-datafeed-messages" data-bind="visible: errors().length, foreach: errors">
+        <li data-bind="text: $data"></li>
+    </ul>
+    <pre class="softaware-datafeed-output" data-bind="visible: output, text: output"></pre>
+</div>

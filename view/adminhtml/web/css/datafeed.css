@@ -1,0 +1,189 @@
+/* Softaware Data Feed Manager: admin styles */
+.softaware-datafeed-code textarea,
+.softaware-datafeed-code input,
+textarea.softaware-datafeed-code,
+.softaware-datafeed-code .admin__control-textarea,
+.softaware-datafeed-code .admin__control-text {
+    font-family: Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+.softaware-datafeed-code .admin__control-textarea {
+    min-height: 40rem;
+    white-space: pre;
+    tab-size: 4;
+}
+.softaware-datafeed-columns .admin__control-table td {
+    vertical-align: top;
+}
+.softaware-datafeed-facts {
+    margin: 0 0 1.5rem;
+}
+.softaware-datafeed-facts th,
+.softaware-datafeed-facts td {
+    padding: .4rem 1.5rem .4rem 0;
+    text-align: left;
+    vertical-align: top;
+}
+.softaware-datafeed-facts th {
+    font-weight: 600;
+    white-space: nowrap;
+}
+.softaware-datafeed-info {
+    margin: 0 0 2rem;
+    padding: 1.2rem 1.5rem;
+    background: #f8f8f8;
+    border: 1px solid #e3e3e3;
+}
+.softaware-datafeed-info .softaware-datafeed-facts {
+    margin: 0;
+}
+.softaware-datafeed-status-success { color: #185b00; }
+.softaware-datafeed-status-warning { color: #8a5300; }
+.softaware-datafeed-status-error { color: #a4000f; }
+.softaware-datafeed-muted {
+    color: #6f6f6f;
+}
+.softaware-datafeed-note {
+    margin: -1rem 0 2rem calc(25% + 1.5rem);
+    color: #6f6f6f;
+}
+.softaware-datafeed-preview-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+.softaware-datafeed-output {
+    max-height: 60rem;
+    overflow: auto;
+    padding: 1.5rem;
+    background: #1f2328;
+    color: #e6edf3;
+    font-family: Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    white-space: pre;
+    border-radius: 3px;
+}
+.softaware-datafeed-messages {
+    margin: 0 0 1.5rem 2rem;
+    color: #8a5300;
+}
+.softaware-datafeed-connection .message {
+    margin-top: 1rem;
+}
+.softaware-datafeed-ref-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+@media (max-width: 1200px) {
+    .softaware-datafeed-ref-columns {
+        grid-template-columns: 1fr;
+    }
+}
+.softaware-datafeed-ref td {
+    padding: .5rem 1rem;
+    vertical-align: top;
+}
+.softaware-datafeed-ref td:first-child {
+    width: 40%;
+    overflow-wrap: anywhere;
+}
+.softaware-datafeed-ref code {
+    font-size: 1.2rem;
+}
+
+/* Generate page */
+.softaware-datafeed-generate {
+    max-width: 90rem;
+}
+.softaware-datafeed-progress {
+    height: 1.6rem;
+    background: #e3e3e3;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.softaware-datafeed-progress-bar {
+    width: 0;
+    height: 100%;
+    background: #1979c3;
+    transition: width .3s ease;
+}
+.softaware-datafeed-progress-bar.is-error {
+    background: #e22626;
+}
+.softaware-datafeed-progress-text {
+    margin: 1rem 0 2rem;
+}
+.softaware-datafeed-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+/* Category mapping */
+.softaware-datafeed-intro {
+    max-width: 100rem;
+    margin-bottom: 2rem;
+}
+.softaware-datafeed-filter {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.softaware-datafeed-filter input {
+    max-width: 40rem;
+}
+.softaware-datafeed-mapping-table td {
+    vertical-align: middle;
+}
+.softaware-datafeed-mapping-table td:first-child {
+    width: 40%;
+}
+.softaware-datafeed-mapping-table td.level-1 {
+    font-weight: 600;
+    background: #f1f1f1;
+}
+.softaware-datafeed-mapping-table input::placeholder {
+    color: #8a8a8a;
+}
+.softaware-datafeed-import {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e3e3e3;
+    max-width: 100rem;
+}
+.ui-autocomplete {
+    max-height: 30rem;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+/* Wider editors */
+.admin__field.softaware-datafeed-columns > .admin__field-control,
+.admin__field.softaware-datafeed-code > .admin__field-control {
+    width: 75%;
+    max-width: 120rem;
+}
+.softaware-datafeed-columns .admin__control-table {
+    width: 100%;
+}
+.softaware-datafeed-columns .admin__control-table .admin__control-text {
+    width: 100%;
+}
+.softaware-datafeed-columns .admin__control-table th:nth-child(2),
+.softaware-datafeed-columns .admin__control-table td:nth-child(2) {
+    width: 18%;
+}
+.softaware-datafeed-columns .admin__control-table th:nth-child(4),
+.softaware-datafeed-columns .admin__control-table td:nth-child(4) {
+    width: 20%;
+}
+.softaware-datafeed-mapping-table input.admin__control-text {
+    width: 100%;
+}

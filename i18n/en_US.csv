@@ -1,0 +1,334 @@
+"From template: %1","From template: %1"
+"Blank feed","Blank feed"
+"Add Feed","Add Feed"
+Back,Back
+Delete,Delete
+"Delete this feed? The generated file stays on the server.","Delete this feed? The generated file stays on the server."
+"Generate Now","Generate Now"
+"Save &amp; Close","Save &amp; Close"
+"Save &amp; Generate Now","Save &amp; Generate Now"
+Save,Save
+"The feed ""%1"" has been deleted.","The feed ""%1"" has been deleted."
+"%1 (copy)","%1 (copy)"
+"The feed was copied. The copy is disabled until you enable it.","The feed was copied. The copy is disabled until you enable it."
+"Feed: %1","Feed: %1"
+"Generate Feed: %1","Generate Feed: %1"
+"The generation was interrupted. Start it again.","The generation was interrupted. Start it again."
+"Generation failed: %1","Generation failed: %1"
+"Data Feeds","Data Feeds"
+"%1 feed(s) deleted.","%1 feed(s) deleted."
+"%1 feed(s) enabled.","%1 feed(s) enabled."
+"%1 feed(s) disabled.","%1 feed(s) disabled."
+"New Feed: %1","New Feed: %1"
+"New Feed","New Feed"
+"No feed data received.","No feed data received."
+"Preview failed: %1","Preview failed: %1"
+"The feed ""%1"" has been saved.","The feed ""%1"" has been saved."
+"Something went wrong while saving the feed.","Something went wrong while saving the feed."
+"Connection failed: %1","Connection failed: %1"
+"Feed Generation Log","Feed Generation Log"
+"The taxonomy file is larger than 10 MB.","The taxonomy file is larger than 10 MB."
+"%1 Google product categories imported.","%1 Google product categories imported."
+"Google Category Mapping","Google Category Mapping"
+"The category mapping has been saved.","The category mapping has been saved."
+"Not saved (choose a suggestion from the list): %1","Not saved (choose a suggestion from the list): %1"
+"The mapping could not be saved.","The mapping could not be saved."
+"The feed with ID ""%1"" does not exist.","The feed with ID ""%1"" does not exist."
+"Could not save the feed: %1","Could not save the feed: %1"
+"Could not delete the feed: %1","Could not delete the feed: %1"
+"Enter a name.","Enter a name."
+"Choose a store view (not ""All Store Views"").","Choose a store view (not ""All Store Views"")."
+"Choose a store view.","Choose a store view."
+"Choose a format.","Choose a format."
+"Template: %1","Template: %1"
+"Choose how configurable products are exported.","Choose how configurable products are exported."
+"Condition %1: choose an operator.","Condition %1: choose an operator."
+"Schedule: %1","Schedule: %1"
+"Enter the FTP/SFTP host or switch the upload off.","Enter the FTP/SFTP host or switch the upload off."
+"The feed ""%1"" already writes to this file. Choose another file name.","The feed ""%1"" already writes to this file. Choose another file name."
+"The path ""%1"" may contain only letters, digits, ""-"", ""_"" and ""/"" and no "".."".","The path ""%1"" may contain only letters, digits, ""-"", ""_"" and ""/"" and no ""..""."
+"The path must be inside pub/ (public, e.g. pub/media/feeds/) or var/ (not public).","The path must be inside pub/ (public, e.g. pub/media/feeds/) or var/ (not public)."
+"Feeds cannot be written to %1.","Feeds cannot be written to %1."
+"The file name may contain only letters, digits, ""."", ""-"" and ""_"".","The file name may contain only letters, digits, ""."", ""-"" and ""_""."
+"The file name must end in .%1 for this format.","The file name must end in .%1 for this format."
+"Data Feed Manager is disabled (Stores > Configuration > Softaware > Data Feed Manager).","Data Feed Manager is disabled (Stores > Configuration > Softaware > Data Feed Manager)."
+"Feed ""%1"" is already being generated. Try again in a few minutes.","Feed ""%1"" is already being generated. Try again in a few minutes."
+"The feed could not be started: %1","The feed could not be started: %1"
+"The partial feed file %1 cannot be written.","The partial feed file %1 cannot be written."
+"… and %1 more errors.","… and %1 more errors."
+"The file was not published because it is invalid. %1","The file was not published because it is invalid. %1"
+"Upload failed: %1","Upload failed: %1"
+"The feed could not be completed: %1","The feed could not be completed: %1"
+"Generation failed.","Generation failed."
+"%1 items, %2 errors.","%1 items, %2 errors."
+"The feed file could not be written to %1.","The feed file could not be written to %1."
+"XML error on line %1: %2","XML error on line %1: %2"
+"The XML file could not be opened.","The XML file could not be opened."
+"JSON error: %1","JSON error: %1"
+"Row %1 has %2 columns, the first row has %3.","Row %1 has %2 columns, the first row has %3."
+"Add at least one column.","Add at least one column."
+"Column %1 (%2): %3","Column %1 (%2): %3"
+"The feed template is empty.","The feed template is empty."
+"Unknown feed format ""%1"".","Unknown feed format ""%1""."
+"The file could not be written to %1.","The file could not be written to %1."
+"The uploaded file could not be renamed to %1.","The uploaded file could not be renamed to %1."
+"Uploaded to %1://%2/%3","Uploaded to %1://%2/%3"
+"Connected, but the remote directory ""%1"" does not exist.","Connected, but the remote directory ""%1"" does not exist."
+"Connection successful. Remote directory: %1","Connection successful. Remote directory: %1"
+"Choose FTP, FTPS or SFTP.","Choose FTP, FTPS or SFTP."
+"Enter a valid host name.","Enter a valid host name."
+"The PHP ftp extension is not installed on this server.","The PHP ftp extension is not installed on this server."
+"Google Shopping (XML)","Google Shopping (XML)"
+"Meta / Facebook catalogue (CSV)","Meta / Facebook catalogue (CSV)"
+"Pinterest catalogue (CSV)","Pinterest catalogue (CSV)"
+"Microsoft / Bing Shopping (TXT)","Microsoft / Bing Shopping (TXT)"
+"Generic JSON","Generic JSON"
+"Condition %1: unknown operator ""%2"".","Condition %1: unknown operator ""%2""."
+"Condition %1: the attribute ""%2"" does not exist.","Condition %1: the attribute ""%2"" does not exist."
+"Condition %1: ""%2"" needs a number or a date (YYYY-MM-DD).","Condition %1: ""%2"" needs a number or a date (YYYY-MM-DD)."
+"The store view of feed ""%1"" no longer exists.","The store view of feed ""%1"" no longer exists."
+"There is no currency rate from %1 to %2. Add it in Stores > Currency Rates.","There is no currency rate from %1 to %2. Add it in Stores > Currency Rates."
+"A cron expression has five fields: minute hour day-of-month month day-of-week, e.g. ""0 */6 * * *"".","A cron expression has five fields: minute hour day-of-month month day-of-week, e.g. ""0 */6 * * *""."
+"Cron expression: ""%1"" is not valid for the %2 field.","Cron expression: ""%1"" is not valid for the %2 field."
+"Cron expression: the step in ""%1"" must be at least 1.","Cron expression: the step in ""%1"" must be at least 1."
+"Cron expression: the range ""%1"" is reversed.","Cron expression: the range ""%1"" is reversed."
+"Cron expression: %1 must be between %2 and %3, ""%4"" given.","Cron expression: %1 must be between %2 and %3, ""%4"" given."
+"""%1"" is not a valid time. Use HH:MM, e.g. 06:30.","""%1"" is not a valid time. Use HH:MM, e.g. 06:30."
+"Enter at least one time, e.g. 06:00, 18:00.","Enter at least one time, e.g. 06:00, 18:00."
+"Store view default","Store view default"
+"The taxonomy file %1 cannot be read.","The taxonomy file %1 cannot be read."
+"The taxonomy file must be UTF-8 encoded.","The taxonomy file must be UTF-8 encoded."
+"No categories found. Use the file with IDs (""taxonomy-with-ids""), lines look like ""1604 - Apparel & Accessories > Clothing"".","No categories found. Use the file with IDs (""taxonomy-with-ids""), lines look like ""1604 - Apparel & Accessories > Clothing""."
+"Line %1: the template may contain only one ""for ... in products"" loop.","Line %1: the template may contain only one ""for ... in products"" loop."
+"The template needs a top-level loop over the products: {% for product in products %} … {% endfor %}","The template needs a top-level loop over the products: {% for product in products %} … {% endfor %}"
+"Line %1: unexpected ""%2"".","Line %1: unexpected ""%2""."
+"The template could not be read (invalid UTF-8?).","The template could not be read (invalid UTF-8?)."
+"Line %1: ""%2"" is not closed.","Line %1: ""%2"" is not closed."
+"Line %1: empty {{ }}.","Line %1: empty {{ }}."
+"A ""{% %1 %}"" tag is missing at the end of the template.","A ""{% %1 %}"" tag is missing at the end of the template."
+"Line %1: use {% for item in list %}.","Line %1: use {% for item in list %}."
+"Line %1: use {% set name = value %}.","Line %1: use {% set name = value %}."
+"Line %1: ""%2"" without a matching opening tag.","Line %1: ""%2"" without a matching opening tag."
+"Line %1: unknown tag ""%2"".","Line %1: unknown tag ""%2""."
+"Line %1: an expression is missing.","Line %1: an expression is missing."
+"Line %1: unexpected ""%2"" in ""%3"".","Line %1: unexpected ""%2"" in ""%3""."
+"Line %1: cannot read ""%2"".","Line %1: cannot read ""%2""."
+"Line %1: expected ""%2"" but found ""%3"".","Line %1: expected ""%2"" but found ""%3""."
+"Line %1: a property name must follow ""."".","Line %1: a property name must follow "".""."
+"Line %1: a filter name must follow ""|"".","Line %1: a filter name must follow ""|""."
+"Line %1: unknown filter ""%2"".","Line %1: unknown filter ""%2""."
+Edit,Edit
+"View Log","View Log"
+Duplicate,Duplicate
+"Delete feed","Delete feed"
+"Delete the feed ""%1""? The generated file stays on the server.","Delete the feed ""%1""? The generated file stays on the server."
+"not public","not public"
+"%1 more","%1 more"
+"Daily %1","Daily %1"
+"Cron %1","Cron %1"
+Manual,Manual
+"Not generated","Not generated"
+(deleted),(deleted)
+"Save the feed, then use ""Generate Now"" or the preview below.","Save the feed, then use ""Generate Now"" or the preview below."
+"not generated yet","not generated yet"
+"Feed URL","Feed URL"
+File,File
+"Last generated","Last generated"
+"Generation log","Generation log"
+"Next run: %1","Next run: %1"
+"Scheduled feeds are generated by the Magento cron (group softaware_datafeed). The next run is calculated when you save.","Scheduled feeds are generated by the Magento cron (group softaware_datafeed). The next run is calculated when you save."
+"Product variables","Product variables"
+"Use as product.<name>, e.g. {{ product.final_price_incl_tax | price }}. In loops over variants or children the same names are available on the loop variable.","Use as product.<name>, e.g. {{ product.final_price_incl_tax | price }}. In loops over variants or children the same names are available on the loop variable."
+"Other variables","Other variables"
+Filters,Filters
+"Chain with |, e.g. {{ product.description | strip_tags | clean | truncate(500) }}. Operators: and, or, not, ==, !=, <, >, <=, >=, in, ~ (join text), ?? (fallback), a ? b : c.","Chain with |, e.g. {{ product.description | strip_tags | clean | truncate(500) }}. Operators: and, or, not, ==, !=, <, >, <=, >=, in, ~ (join text), ?? (fallback), a ? b : c."
+Preparing…,Preparing…
+"%1 of %2 products processed, %3 items written","%1 of %2 products processed, %3 items written"
+"Writing and checking the file…","Writing and checking the file…"
+"Feed generated","Feed generated"
+"Feed generated with warnings","Feed generated with warnings"
+"Feed not generated","Feed not generated"
+Items,Items
+Errors,Errors
+"File size","File size"
+Duration,Duration
+"%1 s","%1 s"
+"Open feed","Open feed"
+Messages,Messages
+"This feed is already being generated (by cron, the CLI or another browser tab).","This feed is already being generated (by cron, the CLI or another browser tab)."
+"Start anyway","Start anyway"
+"The request failed (%1). The generation stopped; start it again.","The request failed (%1). The generation stopped; start it again."
+Feed,Feed
+"Back to Feed","Back to Feed"
+"Generation Log","Generation Log"
+"Generate Again","Generate Again"
+"JavaScript is required. Alternatively run: bin/magento softaware:feed:generate %1","JavaScript is required. Alternatively run: bin/magento softaware:feed:generate %1"
+"Map your categories to the Google product taxonomy. Feeds use the mapping of a product's deepest category; categories without a mapping inherit the nearest mapped parent (shown in grey). The mapping applies to all feeds and store views: {{ product.google_category_id }} and {{ product.google_category }}.","Map your categories to the Google product taxonomy. Feeds use the mapping of a product's deepest category; categories without a mapping inherit the nearest mapped parent (shown in grey). The mapping applies to all feeds and store views: {{ product.google_category_id }} and {{ product.google_category }}."
+"%1 Google categories loaded, %2 store categories mapped.","%1 Google categories loaded, %2 store categories mapped."
+"The Google taxonomy is not loaded yet. Import it below first.","The Google taxonomy is not loaded yet. Import it below first."
+"Find category","Find category"
+"Type to filter the list","Type to filter the list"
+"Save Mapping","Save Mapping"
+"Store category","Store category"
+"Google product category","Google product category"
+disabled,disabled
+"Google category for %1","Google category for %1"
+"Inherited: %1","Inherited: %1"
+"Search, e.g. hoodies","Search, e.g. hoodies"
+"Google taxonomy","Google taxonomy"
+"The module ships with the English (en-GB) list. For another language upload taxonomy-with-ids.<locale>.txt from Google (e.g. taxonomy-with-ids.de-DE.txt). Category IDs are the same in every language, so existing mappings stay valid.","The module ships with the English (en-GB) list. For another language upload taxonomy-with-ids.<locale>.txt from Google (e.g. taxonomy-with-ids.de-DE.txt). Category IDs are the same in every language, so existing mappings stay valid."
+"Import (no file = bundled en-GB list)","Import (no file = bundled en-GB list)"
+"Test Connection","Test Connection"
+"Preview First Items","Preview First Items"
+"Uses the values in this form, including unsaved changes. Nothing is written.","Uses the values in this form, including unsaved changes. Nothing is written."
+Rendering…,Rendering…
+"The test could not be run.","The test could not be run."
+"%1 items shown, %2 products match the filters.","%1 items shown, %2 products match the filters."
+"Valid: the preview parses without errors.","Valid: the preview parses without errors."
+"The preview could not be loaded.","The preview could not be loaded."
+"Data Feed Manager","Data Feed Manager"
+"Manage Feeds","Manage Feeds"
+"Generate Feeds","Generate Feeds"
+"Delete Feeds","Delete Feeds"
+"Data Feed Manager Settings","Data Feed Manager Settings"
+Feeds,Feeds
+Settings,Settings
+General,General
+"Feeds are managed in Softaware &gt; Data Feed Manager &gt; Feeds. Store view, currency and schedule are set per feed.","Feeds are managed in Softaware &gt; Data Feed Manager &gt; Feeds. Store view, currency and schedule are set per feed."
+Enabled,Enabled
+"When disabled, no feeds are generated (cron, admin and CLI). Existing feed files stay in place.","When disabled, no feeds are generated (cron, admin and CLI). Existing feed files stay in place."
+"Batch Size","Batch Size"
+"Products loaded per batch (10-5000). Lower it if generation runs out of memory; configurable variants are loaded on top of this number.","Products loaded per batch (10-5000). Lower it if generation runs out of memory; configurable variants are loaded on top of this number."
+"Preview Items","Preview Items"
+"Number of items shown by the preview in the feed form (1-100).","Number of items shown by the preview in the feed form (1-100)."
+"Keep Generation Log For (Days)","Keep Generation Log For (Days)"
+"0 keeps the log for ever.","0 keeps the log for ever."
+XML,XML
+JSON,JSON
+CSV,CSV
+"TXT (delimited)","TXT (delimited)"
+"Comma (,)","Comma (,)"
+"Semicolon (;)","Semicolon (;)"
+Tab,Tab
+"Pipe (|)","Pipe (|)"
+"Double quote ("")","Double quote ("")"
+"Single quote (')","Single quote (')"
+"None (values are cleaned of delimiters and line breaks)","None (values are cleaned of delimiters and line breaks)"
+UTF-8,UTF-8
+"UTF-8 with BOM (for Excel)","UTF-8 with BOM (for Excel)"
+"ISO-8859-1 (Latin-1)","ISO-8859-1 (Latin-1)"
+Windows-1252,Windows-1252
+"LF (Unix)","LF (Unix)"
+"CRLF (Windows)","CRLF (Windows)"
+"Manual only (admin or CLI)","Manual only (admin or CLI)"
+"Daily at set times","Daily at set times"
+"Cron expression","Cron expression"
+"Parents only (configurable products as one item)","Parents only (configurable products as one item)"
+"Variants only (each child with item_group_id, no parent row)","Variants only (each child with item_group_id, no parent row)"
+"Parents and variants","Parents and variants"
+"Only products in these categories","Only products in these categories"
+"Products not in these categories","Products not in these categories"
+=,=
+!=,!=
+>,>
+<,<
+>=,>=
+<=,<=
+contains,contains
+"does not contain","does not contain"
+"is one of (comma separated)","is one of (comma separated)"
+"is not one of (comma separated)","is not one of (comma separated)"
+"is empty","is empty"
+"is not empty","is not empty"
+SFTP,SFTP
+FTP,FTP
+"FTPS (explicit TLS)","FTPS (explicit TLS)"
+Running,Running
+Success,Success
+Warning,Warning
+Error,Error
+Admin,Admin
+Cron,Cron
+CLI,CLI
+"Disabled feeds are not generated by cron.","Disabled feeds are not generated by cron."
+Name,Name
+"Store View","Store View"
+"Product values, prices, URLs and stock are taken from this store view and its website.","Product values, prices, URLs and stock are taken from this store view and its website."
+Format,Format
+"File Name","File Name"
+"For example google_shopping.xml. Extension: .xml, .json, .csv, .txt or .tsv to match the format.","For example google_shopping.xml. Extension: .xml, .json, .csv, .txt or .tsv to match the format."
+Directory,Directory
+"Relative to the Magento root. Below pub/media/ the file gets a public URL; below var/ it stays private (use FTP upload).","Relative to the Magento root. Below pub/media/ the file gets a public URL; below var/ it stays private (use FTP upload)."
+Currency,Currency
+"Prices are converted from the base currency with the rates in Stores > Currency Rates.","Prices are converted from the base currency with the rates in Stores > Currency Rates."
+"Template (XML / JSON)","Template (XML / JSON)"
+Template,Template
+"{{ product.name | truncate(150) }} prints a value (escaped for XML/JSON automatically). {% for product in products %} … {% endfor %} repeats for every product; {% if … %} {% else %} {% endif %} and {% for image in product.images %} work inside it. See ""Variables and filters"" below.","{{ product.name | truncate(150) }} prints a value (escaped for XML/JSON automatically). {% for product in products %} … {% endfor %} repeats for every product; {% if … %} {% else %} {% endif %} and {% for image in product.images %} work inside it. See ""Variables and filters"" below."
+"Columns and File Options (CSV / TXT)","Columns and File Options (CSV / TXT)"
+"Add Column","Add Column"
+Header,Header
+Value,Value
+"Default (when empty)","Default (when empty)"
+Actions,Actions
+Delimiter,Delimiter
+Enclosure,Enclosure
+Encoding,Encoding
+"Line Ending","Line Ending"
+"Header Row","Header Row"
+Preview,Preview
+"Variables and Filters","Variables and Filters"
+"Product Filters","Product Filters"
+"Enabled Products Only","Enabled Products Only"
+"In-Stock Products Only","In-Stock Products Only"
+"Google, Meta and Pinterest accept out-of-stock items (availability ""out of stock""), so this is usually off.","Google, Meta and Pinterest accept out-of-stock items (availability ""out of stock""), so this is usually off."
+"Product Types","Product Types"
+"None selected = all types.","None selected = all types."
+"Attribute Sets","Attribute Sets"
+"None selected = all attribute sets.","None selected = all attribute sets."
+Visibility,Visibility
+"None selected = all. Variants of configurable products are added through ""Configurable Products"" below, whatever their visibility.","None selected = all. Variants of configurable products are added through ""Configurable Products"" below, whatever their visibility."
+"Configurable Products","Configurable Products"
+"Variants get item_group_id = parent SKU and fall back to the parent URL and image.","Variants get item_group_id = parent SKU and fall back to the parent URL and image."
+Categories,Categories
+"Subcategories are included. None selected = all categories.","Subcategories are included. None selected = all categories."
+"Category Filter","Category Filter"
+"Attribute Conditions","Attribute Conditions"
+"Add Condition","Add Condition"
+Attribute,Attribute
+Operator,Operator
+"All conditions must match. For dropdown attributes enter the option label (e.g. Red) or its ID. Dates as YYYY-MM-DD.","All conditions must match. For dropdown attributes enter the option label (e.g. Red) or its ID. Dates as YYYY-MM-DD."
+"Exclude SKUs","Exclude SKUs"
+"One per line or comma separated.","One per line or comma separated."
+Schedule,Schedule
+Generate,Generate
+Times,Times
+"24-hour times in the store view's timezone, comma separated, e.g. 03:00, 15:00.","24-hour times in the store view's timezone, comma separated, e.g. 03:00, 15:00."
+"Cron Expression","Cron Expression"
+"minute hour day-of-month month day-of-week in the store view's timezone, e.g. ""0 */4 * * *"" (every 4 hours) or ""30 2 * * 1-5"" (weekdays 02:30).","minute hour day-of-month month day-of-week in the store view's timezone, e.g. ""0 */4 * * *"" (every 4 hours) or ""30 2 * * 1-5"" (weekdays 02:30)."
+"Delivery (FTP / SFTP)","Delivery (FTP / SFTP)"
+"Upload After Generation","Upload After Generation"
+"The local file is always written; this also uploads it.","The local file is always written; this also uploads it."
+Protocol,Protocol
+Host,Host
+Port,Port
+"Empty = 22 for SFTP, 21 for FTP/FTPS.","Empty = 22 for SFTP, 21 for FTP/FTPS."
+Username,Username
+Password,Password
+"Stored encrypted. Leave unchanged to keep the saved password.","Stored encrypted. Leave unchanged to keep the saved password."
+"Remote Directory","Remote Directory"
+"Must exist on the server. Empty = login directory.","Must exist on the server. Empty = login directory."
+"Passive Mode (FTP)","Passive Mode (FTP)"
+Enable,Enable
+Disable,Disable
+"Delete the selected feeds? Generated files stay on the server.","Delete the selected feeds? Generated files stay on the server."
+"Delete feeds","Delete feeds"
+ID,ID
+Status,Status
+"Next Run","Next Run"
+"Last Generated","Last Generated"
+Size,Size
+Result,Result
+Started,Started
+"Started By","Started By"
+Seconds,Seconds
+"File Size","File Size"

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+<channel>
+<title>{{ store.name }}</title>
+<link>{{ store.url }}</link>
+<description>{{ feed.name }}</description>
+{% for product in products %}
+<item>
+<g:id>{{ product.sku }}</g:id>
+<g:title>{{ product.name | strip_tags | clean | truncate(150, '') }}</g:title>
+<g:description>{{ (product.description ?? product.short_description ?? product.parent.description ?? product.name) | strip_tags | clean | truncate(5000, '') }}</g:description>
+<g:link>{{ product.url }}</g:link>
+<g:image_link>{{ product.image }}</g:image_link>
+{% for image in product.images | slice(0, 10) %}
+<g:additional_image_link>{{ image }}</g:additional_image_link>
+{% endfor %}
+<g:availability>{{ product.availability }}</g:availability>
+<g:price>{{ product.regular_price_incl_tax | price }}</g:price>
+{% if product.on_sale %}
+<g:sale_price>{{ product.final_price_incl_tax | price }}</g:sale_price>
+{% endif %}
+<g:condition>new</g:condition>
+<g:brand>{{ product.manufacturer ?? product.parent.manufacturer ?? store.name }}</g:brand>
+{% if product.gtin %}
+<g:gtin>{{ product.gtin }}</g:gtin>
+{% endif %}
+{% if product.mpn %}
+<g:mpn>{{ product.mpn }}</g:mpn>
+{% endif %}
+{% if not product.gtin and not product.mpn %}
+<g:identifier_exists>no</g:identifier_exists>
+{% endif %}
+{% if product.google_category_id %}
+<g:google_product_category>{{ product.google_category_id }}</g:google_product_category>
+{% endif %}
+{% if product.category_path %}
+<g:product_type>{{ product.category_path }}</g:product_type>
+{% endif %}
+{% if product.item_group_id %}
+<g:item_group_id>{{ product.item_group_id }}</g:item_group_id>
+{% endif %}
+{% if product.color %}
+<g:color>{{ product.color }}</g:color>
+{% endif %}
+{% if product.size %}
+<g:size>{{ product.size }}</g:size>
+{% endif %}
+{% if product.weight %}
+<g:shipping_weight>{{ product.weight | number_format(2) }} {{ store.weight_unit }}</g:shipping_weight>
+{% endif %}
+</item>
+{% endfor %}
+</channel>
+</rss>

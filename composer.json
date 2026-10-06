@@ -1,0 +1,38 @@
+{
+    "name": "softaware/module-data-feed-manager",
+    "description": "Data Feed Manager: export product data as XML, JSON, CSV or delimited TXT feeds for Google Shopping, Meta, Pinterest, Bing, price comparison sites and ERPs.",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.2.0||~8.3.0||~8.4.0||~8.5.0",
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-libxml": "*",
+        "ext-mbstring": "*",
+        "ext-xmlreader": "*",
+        "magento/framework": "~103.0.7",
+        "softaware/module-base": "^1.2",
+        "magento/module-backend": "*",
+        "magento/module-catalog": "*",
+        "magento/module-catalog-inventory": "*",
+        "magento/module-config": "*",
+        "magento/module-cron": "*",
+        "magento/module-directory": "*",
+        "magento/module-eav": "*",
+        "magento/module-review": "*",
+        "magento/module-store": "*",
+        "magento/module-tax": "*",
+        "magento/module-ui": "*"
+    },
+    "suggest": {
+        "ext-ftp": "Required for FTP upload of generated feeds"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Softaware\\DataFeed\\": ""
+        }
+    }
+}

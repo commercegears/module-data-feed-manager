@@ -1,0 +1,33 @@
+{
+  "store": "{{ store.name }}",
+  "currency": "{{ feed.currency }}",
+  "generated_at": "{{ now }}",
+  "products": [
+{% for product in products %}
+    {
+      "id": {{ product.id | json }},
+      "sku": "{{ product.sku }}",
+      "type": "{{ product.type }}",
+      "name": "{{ product.name }}",
+      "description": "{{ (product.short_description ?? product.description) | strip_tags | clean | truncate(500) }}",
+      "url": "{{ product.url }}",
+      "image": "{{ product.image }}",
+      "images": {{ product.images | json }},
+      "price": {{ product.regular_price | json }},
+      "final_price": {{ product.final_price | json }},
+      "price_incl_tax": {{ product.final_price_incl_tax | json }},
+      "tier_prices": {{ product.tier_prices | json }},
+      "qty": {{ product.qty | json }},
+      "in_stock": {{ (product.is_in_stock == 1) | json }},
+      "categories": {{ product.category_paths | json }},
+      "google_category_id": {{ product.google_category_id | json }},
+      "reviews": {"count": {{ product.reviews_count | json }}, "rating": {{ product.rating_5 | json }}},
+      "variants": [
+{% for variant in product.variants %}
+        {"sku": "{{ variant.sku }}", "name": "{{ variant.name }}", "color": "{{ variant.color }}", "size": "{{ variant.size }}", "price": {{ variant.final_price | json }}, "qty": {{ variant.qty | json }}, "in_stock": {{ (variant.is_in_stock == 1) | json }}}{% if not loop.last %},{% endif %}
+{% endfor %}
+      ]
+    }
+{% endfor %}
+  ]
+}

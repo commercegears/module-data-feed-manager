@@ -1,0 +1,74 @@
+<?php
+/**
+ * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ */
+/** @var \Softaware\DataFeed\Block\Adminhtml\Mapping\Tree $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$taxonomyCount = $block->getTaxonomyCount();
+$rows = $block->getRows();
+?>
+<div class="softaware-datafeed-mapping"
+     data-mage-init='<?= $escaper->escapeHtmlAttr(json_encode(['Softaware_DataFeed/js/mapping' => [
+         'searchUrl' => $block->getSearchUrl(),
+     ]])) ?>'>
+    <div class="softaware-datafeed-intro">
+        <p><?= $escaper->escapeHtml(__('Map your categories to the Google product taxonomy. Feeds use the mapping of a product\'s deepest category; categories without a mapping inherit the nearest mapped parent (shown in grey). The mapping applies to all feeds and store views: {{ product.google_category_id }} and {{ product.google_category }}.')) ?></p>
+        <p>
+            <?= $escaper->escapeHtml(__('%1 Google categories loaded, %2 store categories mapped.', $taxonomyCount, $block->getMappedCount())) ?>
+        </p>
+    </div>
+
+    <?php if ($taxonomyCount === 0): ?>
+        <div class="message message-warning"><div><?= $escaper->escapeHtml(__('The Google taxonomy is not loaded yet. Import it below first.')) ?></div></div>
+    <?php else: ?>
+    <form action="<?= $escaper->escapeUrl($block->getSaveUrl()) ?>" method="post" class="softaware-datafeed-mapping-form">
+        <?= $block->getBlockHtml('formkey') ?>
+        <div class="softaware-datafeed-filter">
+            <label for="softaware-datafeed-mapping-filter"><?= $escaper->escapeHtml(__('Find category')) ?></label>
+            <input type="search" id="softaware-datafeed-mapping-filter" class="admin__control-text" data-role="filter"
+                   placeholder="<?= $escaper->escapeHtmlAttr(__('Type to filter the list')) ?>"/>
+            <button type="submit" class="action-primary"><?= $escaper->escapeHtml(__('Save Mapping')) ?></button>
+        </div>
+        <table class="data-grid softaware-datafeed-mapping-table">
+            <thead>
+            <tr>
+                <th class="data-grid-th"><?= $escaper->escapeHtml(__('Store category')) ?></th>
+                <th class="data-grid-th"><?= $escaper->escapeHtml(__('Google product category')) ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($rows as $row): ?>
+                <tr data-role="row" data-name="<?= $escaper->escapeHtmlAttr(mb_strtolower($row['name'])) ?>">
+                    <td class="level-<?= (int)$row['level'] ?>">
+                        <span style="padding-left: <?= max(0, ((int)$row['level'] - 1) * 20) ?>px"
+                              class="<?= $row['active'] ? '' : 'softaware-datafeed-muted' ?>">
+                            <?= $escaper->escapeHtml($row['name']) ?>
+                        </span>
+                        <small class="softaware-datafeed-muted">#<?= (int)$row['id'] ?><?= $row['active'] ? '' : ', ' . $escaper->escapeHtml(__('disabled')) ?></small>
+                    </td>
+                    <td>
+                        <input type="text" class="admin__control-text" data-role="taxonomy"
+                               name="mapping[<?= (int)$row['id'] ?>]"
+                               value="<?= $escaper->escapeHtmlAttr($row['value']) ?>"
+                               aria-label="<?= $escaper->escapeHtmlAttr(__('Google category for %1', $row['name'])) ?>"
+                               placeholder="<?= $escaper->escapeHtmlAttr($row['inherited'] !== '' ? __('Inherited: %1', $row['inherited']) : __('Search, e.g. hoodies')) ?>"/>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <div class="softaware-datafeed-actions">
+            <button type="submit" class="action-primary"><?= $escaper->escapeHtml(__('Save Mapping')) ?></button>
+        </div>
+    </form>
+    <?php endif; ?>
+
+    <form action="<?= $escaper->escapeUrl($block->getImportUrl()) ?>" method="post" enctype="multipart/form-data"
+          class="softaware-datafeed-import">
+        <?= $block->getBlockHtml('formkey') ?>
+        <h3><?= $escaper->escapeHtml(__('Google taxonomy')) ?></h3>
+        <p><?= $escaper->escapeHtml(__('The module ships with the English (en-GB) list. For another language upload taxonomy-with-ids.<locale>.txt from Google (e.g. taxonomy-with-ids.de-DE.txt). Category IDs are the same in every language, so existing mappings stay valid.')) ?></p>
+        <input type="file" name="taxonomy_file" accept=".txt,text/plain"/>
+        <button type="submit" class="action-secondary"><?= $escaper->escapeHtml(__('Import (no file = bundled en-GB list)')) ?></button>
+    </form>
+</div>

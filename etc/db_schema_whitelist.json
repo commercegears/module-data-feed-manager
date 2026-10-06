@@ -1,0 +1,98 @@
+{
+    "softaware_datafeed_feed": {
+        "column": {
+            "feed_id": true,
+            "name": true,
+            "is_active": true,
+            "store_id": true,
+            "format": true,
+            "filename": true,
+            "path": true,
+            "currency_code": true,
+            "template": true,
+            "columns": true,
+            "csv_delimiter": true,
+            "csv_enclosure": true,
+            "csv_encoding": true,
+            "csv_include_header": true,
+            "csv_line_ending": true,
+            "filter_types": true,
+            "filter_attribute_sets": true,
+            "filter_visibility": true,
+            "filter_enabled_only": true,
+            "filter_in_stock_only": true,
+            "filter_categories": true,
+            "filter_category_mode": true,
+            "filter_conditions": true,
+            "exclude_skus": true,
+            "parent_child_mode": true,
+            "schedule_type": true,
+            "schedule_times": true,
+            "schedule_cron": true,
+            "next_run_at": true,
+            "ftp_enabled": true,
+            "ftp_protocol": true,
+            "ftp_host": true,
+            "ftp_port": true,
+            "ftp_username": true,
+            "ftp_password": true,
+            "ftp_path": true,
+            "ftp_passive": true,
+            "generated_at": true,
+            "generated_items": true,
+            "generated_size": true,
+            "generated_status": true,
+            "generated_message": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "SOFTAWARE_DATAFEED_FEED_IS_ACTIVE_NEXT_RUN_AT": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_DATAFEED_FEED_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "softaware_datafeed_log": {
+        "column": {
+            "log_id": true,
+            "feed_id": true,
+            "trigger_source": true,
+            "status": true,
+            "started_at": true,
+            "finished_at": true,
+            "duration": true,
+            "items": true,
+            "error_count": true,
+            "file_size": true,
+            "messages": true
+        },
+        "index": {
+            "SOFTAWARE_DATAFEED_LOG_FEED_ID_STARTED_AT": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_DATAFEED_LOG_FEED_ID_SOFTAWARE_DATAFEED_FEED_FEED_ID": true
+        }
+    },
+    "softaware_datafeed_taxonomy": {
+        "column": {
+            "taxonomy_id": true,
+            "name": true,
+            "path": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "softaware_datafeed_category_map": {
+        "column": {
+            "category_id": true,
+            "taxonomy_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

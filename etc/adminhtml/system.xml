@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="softaware_datafeed" translate="label" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+            <class>separator-top</class>
+            <label>Data Feed Manager</label>
+            <tab>softaware</tab>
+            <resource>Softaware_DataFeed::config</resource>
+            <group id="general" translate="label comment" sortOrder="10" showInDefault="1">
+                <label>General</label>
+                <comment><![CDATA[Feeds are managed in Softaware &gt; Data Feed Manager &gt; Feeds. Store view, currency and schedule are set per feed.]]></comment>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When disabled, no feeds are generated (cron, admin and CLI). Existing feed files stay in place.</comment>
+                </field>
+                <field id="batch_size" translate="label comment" type="text" sortOrder="20" showInDefault="1">
+                    <label>Batch Size</label>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-10-5000</validate>
+                    <comment>Products loaded per batch (10-5000). Lower it if generation runs out of memory; configurable variants are loaded on top of this number.</comment>
+                </field>
+                <field id="preview_limit" translate="label comment" type="text" sortOrder="30" showInDefault="1">
+                    <label>Preview Items</label>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-1-100</validate>
+                    <comment>Number of items shown by the preview in the feed form (1-100).</comment>
+                </field>
+                <field id="log_retention_days" translate="label comment" type="text" sortOrder="40" showInDefault="1">
+                    <label>Keep Generation Log For (Days)</label>
+                    <validate>required-entry validate-digits</validate>
+                    <comment>0 keeps the log for ever.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

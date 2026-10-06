@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Softaware_DataFeed::datafeed" title="Data Feed Manager" translate="title" module="Softaware_DataFeed"
+             sortOrder="40" parent="Softaware_Base::base" resource="Softaware_DataFeed::datafeed"/>
+        <add id="Softaware_DataFeed::feeds" title="Feeds" translate="title" module="Softaware_DataFeed"
+             sortOrder="10" parent="Softaware_DataFeed::datafeed" action="softaware_datafeed/feed/index"
+             resource="Softaware_DataFeed::feeds"/>
+        <add id="Softaware_DataFeed::mapping" title="Google Category Mapping" translate="title" module="Softaware_DataFeed"
+             sortOrder="20" parent="Softaware_DataFeed::datafeed" action="softaware_datafeed/mapping/index"
+             resource="Softaware_DataFeed::mapping"/>
+        <add id="Softaware_DataFeed::log" title="Generation Log" translate="title" module="Softaware_DataFeed"
+             sortOrder="30" parent="Softaware_DataFeed::datafeed" action="softaware_datafeed/log/index"
+             resource="Softaware_DataFeed::log"/>
+        <add id="Softaware_DataFeed::config" title="Settings" translate="title" module="Softaware_DataFeed"
+             sortOrder="40" parent="Softaware_DataFeed::datafeed"
+             action="adminhtml/system_config/edit/section/softaware_datafeed" resource="Softaware_DataFeed::config"/>
+    </menu>
+</config>

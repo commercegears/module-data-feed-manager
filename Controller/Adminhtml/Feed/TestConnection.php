@@ -44,6 +44,7 @@ class TestConnection extends Action implements HttpPostActionInterface
             }
             $id = (int)($data['feed_id'] ?? 0);
             $feed = $id ? $this->feedRepository->getById($id) : $this->feedFactory->create();
+            $this->mapper->assertSavedPasswordReusable($feed, $data);
             $this->mapper->apply($feed, $data);
             $message = $this->uploader->test($this->uploader->getSettings($feed));
             return $result->setData(['ok' => true, 'message' => $message]);

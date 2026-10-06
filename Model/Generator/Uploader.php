@@ -9,7 +9,7 @@ namespace Softaware\DataFeed\Model\Generator;
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Filesystem\Io\FtpFactory;
-use Magento\Framework\Filesystem\Io\SftpFactory;
+use phpseclib3\Net\SFTP;
 use Softaware\DataFeed\Api\Data\FeedInterface;
 
 /**
@@ -21,9 +21,10 @@ class Uploader
 
     private const TIMEOUT = 20;
 
+    private ?string $lastHostKey = null;
+
     public function __construct(
         private readonly FtpFactory $ftpFactory,
-        private readonly SftpFactory $sftpFactory,
         private readonly EncryptorInterface $encryptor
     ) {
     }
@@ -31,7 +32,7 @@ class Uploader
     /**
      * Connection settings of a feed, with the password decrypted.
      *
-     * @return array{protocol: string, host: string, port: int, username: string, password: string, path: string, passive: bool}
+     * @return array{protocol: string, host: string, port: int, username: string, password: string, path: string, passive: bool, host_key: string}
      */
     public function getSettings(FeedInterface $feed): array
     {
@@ -44,11 +45,12 @@ class Uploader
             'password' => $password !== '' ? $this->encryptor->decrypt($password) : '',
             'path' => trim((string)$feed->getData(FeedInterface::FTP_PATH)),
             'passive' => $feed->getData(FeedInterface::FTP_PASSIVE) === null || (bool)$feed->getData(FeedInterface::FTP_PASSIVE),
+            'host_key' => trim((string)$feed->getData(FeedInterface::FTP_HOST_KEY)),
         ];
     }
 
     /**
-     * @param array{protocol: string, host: string, port: int, username: string, password: string, path: string, passive: bool} $settings
+     * @param array{protocol: string, host: string, port: int, username: string, password: string, path: string, passive: bool, host_key?: string} $settings
      * @throws LocalizedException
      */
     public function upload(array $settings, string $localFile, string $remoteName): string
@@ -61,15 +63,15 @@ class Uploader
                 try {
                     $target = $this->remotePath($settings['path'], $remoteName);
                     $tmpTarget = $this->remotePath($settings['path'], $temporary);
-                    if (!$connection->write($tmpTarget, $localFile)) {
+                    if (!$connection->put($tmpTarget, $localFile, SFTP::SOURCE_LOCAL_FILE)) {
                         throw new LocalizedException(__('The file could not be written to %1.', $tmpTarget));
                     }
-                    $connection->rm($target);
-                    if (!$connection->mv($tmpTarget, $target)) {
+                    $connection->delete($target, false);
+                    if (!$connection->rename($tmpTarget, $target)) {
                         throw new LocalizedException(__('The uploaded file could not be renamed to %1.', $target));
                     }
                 } finally {
-                    $connection->close();
+                    $connection->disconnect();
                 }
             } else {
                 $connection = $this->openFtp($settings);
@@ -101,7 +103,7 @@ class Uploader
     /**
      * Opens and closes a connection (and changes to the remote directory) to check the settings.
      *
-     * @param array{protocol: string, host: string, port: int, username: string, password: string, path: string, passive: bool} $settings
+     * @param array{protocol: string, host: string, port: int, username: string, password: string, path: string, passive: bool, host_key?: string} $settings
      * @throws LocalizedException
      */
     public function test(array $settings): string
@@ -111,12 +113,12 @@ class Uploader
             if ($settings['protocol'] === 'sftp') {
                 $connection = $this->openSftp($settings);
                 try {
-                    if ($settings['path'] !== '' && !$connection->cd($settings['path'])) {
+                    if ($settings['path'] !== '' && !$connection->chdir($settings['path'])) {
                         throw new LocalizedException(__('Connected, but the remote directory "%1" does not exist.', $settings['path']));
                     }
                     $directory = (string)$connection->pwd();
                 } finally {
-                    $connection->close();
+                    $connection->disconnect();
                 }
             } else {
                 $connection = $this->openFtp($settings);
@@ -131,7 +133,43 @@ class Uploader
         } catch (\Throwable $e) {
             throw new LocalizedException(__('Connection failed: %1', $e->getMessage()), $e);
         }
-        return (string)__('Connection successful. Remote directory: %1', $directory ?: '/');
+        $message = (string)__('Connection successful. Remote directory: %1', $directory ?: '/');
+        if ($settings['protocol'] === 'sftp' && $this->lastHostKey !== null) {
+            $message .= ' ' . (($settings['host_key'] ?? '') !== ''
+                ? __('The host key matches the saved fingerprint.')
+                : __('Host key: %1 (saved with the feed on the first upload).', $this->lastHostKey));
+        }
+        return $message;
+    }
+
+    /**
+     * SHA256 fingerprint of the SFTP host key seen on the last connection, as "SHA256:…" (OpenSSH format).
+     */
+    public function getLastHostKey(): ?string
+    {
+        return $this->lastHostKey;
+    }
+
+    /**
+     * OpenSSH-style fingerprint of a public key line ("ssh-ed25519 AAAA…").
+     */
+    public static function fingerprint(string $publicKey): string
+    {
+        $parts = preg_split('/\s+/', trim($publicKey));
+        $blob = base64_decode((string)($parts[1] ?? $parts[0] ?? ''), true);
+        return 'SHA256:' . rtrim(base64_encode(hash('sha256', $blob === false ? '' : $blob, true)), '=');
+    }
+
+    /**
+     * Accepts "SHA256:abc…", "abc…" or the output of ssh-keygen -l ("256 SHA256:abc… host (ED25519)").
+     */
+    public static function normaliseFingerprint(string $value): string
+    {
+        if (preg_match('/SHA256:([A-Za-z0-9+\/]+)=*/', $value, $m)) {
+            return 'SHA256:' . $m[1];
+        }
+        $value = trim($value);
+        return $value === '' ? '' : 'SHA256:' . rtrim($value, '=');
     }
 
     /**
@@ -154,16 +192,38 @@ class Uploader
     /**
      * @param array<string, mixed> $settings
      */
-    private function openSftp(array $settings): \Magento\Framework\Filesystem\Io\Sftp
+    private function openSftp(array $settings): SFTP
     {
-        $connection = $this->sftpFactory->create();
-        $port = $settings['port'] ?: 22;
-        $connection->open([
-            'host' => $settings['host'] . ':' . $port,
-            'username' => $settings['username'],
-            'password' => $settings['password'],
-            'timeout' => self::TIMEOUT,
-        ]);
+        $this->lastHostKey = null;
+        $host = trim($settings['host'], '[]');
+        $connection = new SFTP($host, $settings['port'] ?: 22, self::TIMEOUT);
+        // Check the server before the password is sent: the key must be signed correctly and, when a fingerprint
+        // is saved with the feed, match it.
+        $publicKey = $connection->getServerPublicHostKey();
+        if (!is_string($publicKey) || $publicKey === '') {
+            $connection->disconnect();
+            throw new LocalizedException(
+                __('Could not connect to %1 or verify its SFTP host key. %2', $host, (string)$connection->getLastError())
+            );
+        }
+        $this->lastHostKey = self::fingerprint($publicKey);
+        $expected = self::normaliseFingerprint((string)($settings['host_key'] ?? ''));
+        if ($expected !== '' && !hash_equals($expected, $this->lastHostKey)) {
+            $connection->disconnect();
+            throw new LocalizedException(__(
+                'The SFTP host key of %1 has changed (now %2, saved %3), so the password was not sent. '
+                . 'If the server was really replaced, clear "SFTP Host Key" in the feed and save.',
+                $host,
+                $this->lastHostKey,
+                $expected
+            ));
+        }
+        if (!$connection->login($settings['username'], $settings['password'])) {
+            $connection->disconnect();
+            throw new LocalizedException(
+                __('Unable to log in to %1 as %2.', $host, $settings['username'])
+            );
+        }
         return $connection;
     }
 

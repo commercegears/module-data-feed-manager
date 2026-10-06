@@ -839,6 +839,18 @@
                 </imports>
             </settings>
         </field>
+        <field name="ftp_host_key" formElement="input" sortOrder="75">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">SFTP Host Key</label>
+                <notice translate="true">SHA256 fingerprint of the server's key. Saved automatically on the first upload; later uploads stop before the password is sent if the server's key changes. Clear it if the server was really replaced.</notice>
+                <placeholder translate="true">Saved on the first upload</placeholder>
+                <dataScope>ftp_host_key</dataScope>
+                <imports>
+                    <link name="visible">${ $.parentName }.ftp_enabled:checked</link>
+                </imports>
+            </settings>
+        </field>
         <field name="ftp_passive" formElement="checkbox" sortOrder="80">
             <settings>
                 <dataType>boolean</dataType>

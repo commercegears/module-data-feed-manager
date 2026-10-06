@@ -22,7 +22,8 @@
         "magento/module-review": "*",
         "magento/module-store": "*",
         "magento/module-tax": "*",
-        "magento/module-ui": "*"
+        "magento/module-ui": "*",
+        "phpseclib/phpseclib": "^3.0"
     },
     "suggest": {
         "ext-ftp": "Required for FTP upload of generated feeds"

@@ -45,6 +45,7 @@ class Save extends Action implements HttpPostActionInterface
         $id = (int)($data[FeedInterface::FEED_ID] ?? 0);
         try {
             $feed = $id ? $this->feedRepository->getById($id) : $this->feedFactory->create();
+            $this->mapper->assertSavedPasswordReusable($feed, $data);
             $this->mapper->apply($feed, $data);
             $errors = $this->validator->validate($feed);
             if ($errors) {

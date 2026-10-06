@@ -38,6 +38,7 @@
         <column xsi:type="text" name="ftp_password" nullable="true" comment="Password (encrypted)"/>
         <column xsi:type="varchar" name="ftp_path" nullable="true" length="255" comment="Remote directory"/>
         <column xsi:type="smallint" name="ftp_passive" unsigned="true" nullable="false" default="1" comment="Passive mode"/>
+        <column xsi:type="varchar" name="ftp_host_key" nullable="true" length="128" comment="SFTP host key fingerprint (SHA256)"/>
         <column xsi:type="datetime" name="generated_at" nullable="true" comment="Last generation (UTC)"/>
         <column xsi:type="int" name="generated_items" unsigned="true" nullable="true" comment="Items in last generation"/>
         <column xsi:type="bigint" name="generated_size" unsigned="true" nullable="true" comment="File size in bytes"/>

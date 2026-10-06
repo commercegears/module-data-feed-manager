@@ -44,7 +44,8 @@
             "generated_status": true,
             "generated_message": true,
             "created_at": true,
-            "updated_at": true
+            "updated_at": true,
+            "ftp_host_key": true
         },
         "index": {
             "SOFTAWARE_DATAFEED_FEED_IS_ACTIVE_NEXT_RUN_AT": true

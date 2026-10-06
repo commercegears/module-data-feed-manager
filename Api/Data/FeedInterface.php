@@ -48,6 +48,7 @@ interface FeedInterface
     public const FTP_PASSWORD = 'ftp_password';
     public const FTP_PATH = 'ftp_path';
     public const FTP_PASSIVE = 'ftp_passive';
+    public const FTP_HOST_KEY = 'ftp_host_key';
     public const GENERATED_AT = 'generated_at';
     public const GENERATED_ITEMS = 'generated_items';
     public const GENERATED_SIZE = 'generated_size';

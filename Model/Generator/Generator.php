@@ -178,11 +178,14 @@ class Generator implements FeedGeneratorInterface
                 $size = (int)filesize($target);
                 if ($feed->isFtpEnabled()) {
                     try {
-                        $messages[] = $this->uploader->upload(
-                            $this->uploader->getSettings($feed),
-                            $target,
-                            $feed->getFilename()
-                        );
+                        $settings = $this->uploader->getSettings($feed);
+                        $messages[] = $this->uploader->upload($settings, $target, $feed->getFilename());
+                        $hostKey = $this->uploader->getLastHostKey();
+                        if ($settings['protocol'] === 'sftp' && $settings['host_key'] === '' && $hostKey !== null) {
+                            // Trust on first use: later uploads stop if the server's key changes.
+                            $this->feedResource->updateFields($job->feedId, [FeedInterface::FTP_HOST_KEY => $hostKey]);
+                            $messages[] = (string)__('SFTP host key %1 saved with the feed.', $hostKey);
+                        }
                     } catch (LocalizedException $e) {
                         $status = Log::STATUS_WARNING;
                         array_unshift($messages, (string)__('Upload failed: %1', $e->getMessage()));

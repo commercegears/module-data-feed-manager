@@ -7,8 +7,10 @@ declare(strict_types=1);
 namespace Softaware\DataFeed\Model;
 
 use Magento\Framework\Encryption\EncryptorInterface;
+use Magento\Framework\Exception\LocalizedException;
 use Softaware\DataFeed\Api\Data\FeedInterface;
 use Softaware\DataFeed\Model\Generator\FileLocator;
+use Softaware\DataFeed\Model\Generator\Uploader;
 
 /**
  * Converts between admin form data and the feed model.
@@ -23,7 +25,7 @@ class FeedDataMapper
         FeedInterface::CSV_LINE_ENDING, FeedInterface::FILTER_CATEGORY_MODE, FeedInterface::EXCLUDE_SKUS,
         FeedInterface::PARENT_CHILD_MODE, FeedInterface::SCHEDULE_TYPE, FeedInterface::SCHEDULE_TIMES,
         FeedInterface::SCHEDULE_CRON, FeedInterface::FTP_PROTOCOL, FeedInterface::FTP_HOST, FeedInterface::FTP_USERNAME,
-        FeedInterface::FTP_PATH,
+        FeedInterface::FTP_PATH, FeedInterface::FTP_HOST_KEY,
     ];
 
     private const FLAG_FIELDS = [
@@ -84,6 +86,19 @@ class FeedDataMapper
         if (array_key_exists(FeedInterface::CURRENCY_CODE, $data)) {
             $feed->setData(FeedInterface::CURRENCY_CODE, ((string)$data[FeedInterface::CURRENCY_CODE]) ?: null);
         }
+        if (array_key_exists(FeedInterface::FTP_HOST_KEY, $data)) {
+            $hostKey = trim((string)$feed->getData(FeedInterface::FTP_HOST_KEY));
+            $feed->setData(FeedInterface::FTP_HOST_KEY, $hostKey === '' ? null : Uploader::normaliseFingerprint($hostKey));
+        }
+        // A saved fingerprint belongs to the server it was seen on: a new host or port starts afresh.
+        $origin = $feed->getOrigData();
+        if ($feed->getId() && is_array($origin)
+            && (strtolower((string)$feed->getData(FeedInterface::FTP_HOST)) !== strtolower((string)($origin[FeedInterface::FTP_HOST] ?? ''))
+                || (int)$feed->getData(FeedInterface::FTP_PORT) !== (int)($origin[FeedInterface::FTP_PORT] ?? 0))
+            && (string)$feed->getData(FeedInterface::FTP_HOST_KEY) === (string)($origin[FeedInterface::FTP_HOST_KEY] ?? '')
+        ) {
+            $feed->setData(FeedInterface::FTP_HOST_KEY, null);
+        }
         if (array_key_exists(FeedInterface::FTP_PASSWORD, $data)) {
             $password = (string)$data[FeedInterface::FTP_PASSWORD];
             if ($password === '') {
@@ -100,6 +115,39 @@ class FeedDataMapper
         }
         if ($isFullForm || array_key_exists('conditions', $data)) {
             $feed->setConditions($this->rows($data['conditions'] ?? [], ['attribute', 'operator', 'value'], 'attribute'));
+        }
+    }
+
+    /**
+     * The saved FTP/SFTP password is only kept ("******" posted) while the host and protocol stay the same.
+     * Otherwise it could be sent to another server, or in clear text after a switch from SFTP to FTP.
+     *
+     * @param array<string, mixed> $data posted form data
+     * @throws LocalizedException
+     */
+    public function assertSavedPasswordReusable(FeedInterface $feed, array $data): void
+    {
+        /** @var Feed $feed */
+        if (!$feed->getId() || !$feed->getData(FeedInterface::FTP_PASSWORD)
+            || !array_key_exists(FeedInterface::FTP_PASSWORD, $data)
+            || (string)$data[FeedInterface::FTP_PASSWORD] !== self::PASSWORD_PLACEHOLDER
+        ) {
+            return;
+        }
+        $changed = false;
+        if (array_key_exists(FeedInterface::FTP_HOST, $data)) {
+            $host = strtolower(trim(is_scalar($data[FeedInterface::FTP_HOST]) ? (string)$data[FeedInterface::FTP_HOST] : ''));
+            $changed = $host !== '' && $host !== strtolower(trim((string)$feed->getData(FeedInterface::FTP_HOST)));
+        }
+        if (array_key_exists(FeedInterface::FTP_PROTOCOL, $data)) {
+            $protocol = is_scalar($data[FeedInterface::FTP_PROTOCOL]) ? (string)$data[FeedInterface::FTP_PROTOCOL] : '';
+            $changed = $changed
+                || ($protocol ?: 'sftp') !== ((string)$feed->getData(FeedInterface::FTP_PROTOCOL) ?: 'sftp');
+        }
+        if ($changed) {
+            throw new LocalizedException(__(
+                'Enter the password again: a saved password is only used with the host and protocol it was entered for.'
+            ));
         }
     }
 

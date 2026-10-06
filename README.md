@@ -53,6 +53,10 @@ CLI), written to a local file with a public URL and can be uploaded by FTP, FTPS
     errors with messages, file size
 - **Delivery**: local file (public URL when below `pub/`), optional upload by SFTP, FTP or FTPS (password stored
   encrypted, "Test Connection" button). Upload failures mark the run as a warning; the local file is still updated.
+  - **SFTP host key check**: the server's key fingerprint (`SHA256:…`) is saved with the feed on the first upload
+    (or entered in "SFTP Host Key"). If the server presents another key later, the upload stops before the password
+    is sent. Clear the field when the server was really replaced. Changing the host or port clears it too.
+  - The saved password is only reused for the same host and protocol; after changing either, enter it again.
 
 ## Configuration
 
@@ -83,9 +87,18 @@ bin/magento softaware:feed:taxonomy-import [path/to/taxonomy-with-ids.de-DE.txt]
 ## File locations
 
 Feeds may be written below `pub/` (public; below `pub/media/` the URL is the media URL) or below `var/` (not public,
-use FTP upload). `pub/static/` and `pub/errors/` are not allowed. File names may only contain letters, digits,
-`.`, `-` and `_` and must end in `.xml`, `.json`, `.csv`, `.txt` or `.tsv` to match the format. Partial files and job
-state are kept in `var/softaware_datafeed/` while a feed is generated.
+use FTP upload). `pub/static/`, `pub/errors/` and hidden folders such as `pub/.well-known/` are not allowed. File names
+may only contain letters, digits, `.`, `-` and `_` and must end in `.xml`, `.json`, `.csv`, `.txt` or `.tsv` to match
+the format. Partial files and job state are kept in `var/softaware_datafeed/` while a feed is generated.
+
+- New feeds get a file name with a random part (e.g. `google_shopping_k3v9q2xa.xml`), so the URL cannot be guessed.
+  Public feed files can still be read by anyone who has the URL; put feeds with private data (cost, stock levels)
+  below `var/` and upload them by SFTP.
+- Outside `pub/media/feeds/` a feed can only write a new file: a location where another file already exists (for
+  example `pub/robots.txt` or `pub/sitemap.xml`) is refused when the feed is saved.
+- XML feeds may not contain XHTML, SVG, MathML, XSLT or XLink content or an `xml-stylesheet` instruction, because
+  browsers would run such a file as a web page on the store's domain. Items with such content are skipped and logged;
+  a header or footer with it stops the file from being published.
 
 ## Compatibility
 
@@ -105,3 +118,6 @@ state are kept in `var/softaware_datafeed/` while a feed is generated.
 - The Google category mapping is global (not per store view or feed).
 - The template language is deliberately small; there are no custom PHP functions in templates.
 - `{{`, `{%` and `}}` cannot appear inside string literals of a template expression.
+- CSV values are written as they are (no protection against spreadsheet formulas such as `=…`), because channels
+  read the file, not a spreadsheet program. Do not open feeds built from untrusted text in a spreadsheet.
+- FTPS uses PHP's FTP extension, which does not verify the server's TLS certificate. Prefer SFTP.

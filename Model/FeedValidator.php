@@ -51,6 +51,14 @@ class FeedValidator
         } else {
             try {
                 $this->fileLocator->validate($feed->getPath(), $feed->getFilename(), $feed->getFormat());
+                $existing = $this->findForeignFile($feed);
+                if ($existing !== null) {
+                    $errors[] = (string)__(
+                        '%1 already exists. To protect other files, a feed outside %2 can only write a new file: choose another file name or folder.',
+                        $existing,
+                        FileLocator::DEFAULT_PATH
+                    );
+                }
             } catch (LocalizedException $e) {
                 $errors[] = $e->getMessage();
             }
@@ -81,6 +89,29 @@ class FeedValidator
             $errors[] = (string)__('The feed "%1" already writes to this file. Choose another file name.', $duplicate);
         }
         return $errors;
+    }
+
+    /**
+     * A file at a new feed location that the feed did not write itself (e.g. pub/robots.txt or pub/sitemap.xml).
+     * Feeds may replace files in their own folder pub/media/feeds/ (e.g. a deleted feed's file), nowhere else.
+     *
+     * @return string|null the relative path of the existing file
+     */
+    private function findForeignFile(FeedInterface $feed): ?string
+    {
+        /** @var Feed $feed */
+        $path = $this->fileLocator->normalisePath($feed->getPath());
+        if (str_starts_with($path, FileLocator::DEFAULT_PATH)) {
+            return null;
+        }
+        if ($feed->getId()
+            && $this->fileLocator->normalisePath((string)$feed->getOrigData(FeedInterface::PATH)) === $path
+            && (string)$feed->getOrigData(FeedInterface::FILENAME) === $feed->getFilename()
+        ) {
+            return null;
+        }
+        $absolute = $this->fileLocator->getAbsolutePath($feed);
+        return file_exists($absolute) || is_link($absolute) ? $path . $feed->getFilename() : null;
     }
 
     private function findFeedWithSameFile(FeedInterface $feed): ?string

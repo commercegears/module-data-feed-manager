@@ -52,9 +52,11 @@ class FileLocator
     public function validate(string $path, string $filename, string $format): void
     {
         $path = $this->normalisePath($path);
-        if (!preg_match('#^[A-Za-z0-9_\-./]+$#', $path) || preg_match('#(^|/)\.{1,2}(/|$)#', $path)) {
+        // No ".", ".." or hidden folders such as .well-known (files there have a special meaning for browsers,
+        // apps and certificate authorities).
+        if (!preg_match('#^[A-Za-z0-9_\-./]+$#', $path) || preg_match('#(^|/)\.#', $path)) {
             throw new LocalizedException(
-                __('The path "%1" may contain only letters, digits, "-", "_" and "/" and no "..".', $path)
+                __('The path "%1" may contain only letters, digits, "-", "_" and "/", and no folder may start with ".".', $path)
             );
         }
         if (!str_starts_with($path, 'pub/') && !str_starts_with($path, 'var/')) {

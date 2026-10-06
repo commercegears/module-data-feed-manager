@@ -16,6 +16,10 @@ class OutputValidator
     /** JSON files above this size are not decoded as a whole; every item was already checked. */
     private const JSON_FULL_CHECK_LIMIT = 64 * 1024 * 1024;
 
+    public function __construct(private readonly ActiveContentGuard $activeContentGuard)
+    {
+    }
+
     /**
      * @return string|null error message, or null when valid
      */
@@ -40,7 +44,10 @@ class OutputValidator
                 $error = libxml_get_last_error();
                 libxml_clear_errors();
                 libxml_use_internal_errors($previous);
-                return $ok ? null : (string)__('XML error on line %1: %2', $error ? $error->line : 0, trim($error ? $error->message : ''));
+                if (!$ok) {
+                    return (string)__('XML error on line %1: %2', $error ? $error->line : 0, trim($error ? $error->message : ''));
+                }
+                return $this->activeContentGuard->checkDocument($document);
             case FeedInterface::FORMAT_JSON:
                 return $this->validateJson($content);
             default:
@@ -57,11 +64,12 @@ class OutputValidator
             return (string)__('The XML file could not be opened.');
         }
         $message = null;
-        while (@$reader->read()) {
-            // Streaming parse: only well-formedness is checked.
+        while ($message === null && @$reader->read()) {
+            // Streaming parse: well-formedness, and no content that browsers would run as a web page.
+            $message = $this->activeContentGuard->checkReaderNode($reader);
         }
         $error = libxml_get_last_error();
-        if ($error) {
+        if ($message === null && $error) {
             $message = (string)__('XML error on line %1: %2', $error->line, trim($error->message));
         }
         $reader->close();

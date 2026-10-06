@@ -8,6 +8,7 @@ namespace Softaware\DataFeed\Model\Generator\Renderer;
 
 use Magento\Framework\Exception\LocalizedException;
 use Softaware\DataFeed\Api\Data\FeedInterface;
+use Softaware\DataFeed\Model\Generator\ActiveContentGuard;
 use Softaware\DataFeed\Model\Product\ProductContext;
 use Softaware\DataFeed\Model\Product\StoreContext;
 use Softaware\DataFeed\Model\Template\CompiledTemplate;
@@ -29,7 +30,8 @@ class TemplateRenderer implements RendererInterface
 
     public function __construct(
         private readonly Parser $parser,
-        private readonly RuntimeFactory $runtimeFactory
+        private readonly RuntimeFactory $runtimeFactory,
+        private readonly ActiveContentGuard $activeContentGuard
     ) {
     }
 
@@ -108,7 +110,7 @@ class TemplateRenderer implements RendererInterface
             return;
         }
         if ($this->namespaceDeclarations === null) {
-            preg_match_all('/\sxmlns(?::[A-Za-z_][\w.-]*)?="[^"]*"/', $this->renderHeader(), $m);
+            preg_match_all('/\sxmlns(?::[A-Za-z_][\w.-]*)?\s*=\s*(?:"[^"]*"|\'[^\']*\')/', $this->renderHeader(), $m);
             $this->namespaceDeclarations = implode('', array_unique($m[0]));
         }
         $previous = libxml_use_internal_errors(true);
@@ -119,6 +121,10 @@ class TemplateRenderer implements RendererInterface
         libxml_use_internal_errors($previous);
         if (!$ok) {
             throw new \RuntimeException('invalid XML: ' . trim($error ? $error->message : 'unknown error'));
+        }
+        $unsafe = $this->activeContentGuard->checkDocument($document, true);
+        if ($unsafe !== null) {
+            throw new \RuntimeException($unsafe);
         }
     }
 }

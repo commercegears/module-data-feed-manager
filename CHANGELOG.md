@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0 (2026-10-06)
+
+### Changed
+
+- Requires `softaware/module-core` instead of `softaware/module-base`. The admin menu and ACL now sit under `Softaware_Core::core` ("Softaware"); roles that had access keep it (migrated by module-core). After updating all SoftAware modules, `softaware/module-base` can be removed.
+
 ## 1.1.0 (2026-10-06)
 
 ### Added

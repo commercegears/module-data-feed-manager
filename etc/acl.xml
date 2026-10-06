@@ -3,7 +3,7 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Softaware_Base::base">
+                <resource id="Softaware_Core::core">
                     <resource id="Softaware_DataFeed::datafeed" title="Data Feed Manager" translate="title" sortOrder="40">
                         <resource id="Softaware_DataFeed::feeds" title="Manage Feeds" translate="title" sortOrder="10">
                             <resource id="Softaware_DataFeed::feed_generate" title="Generate Feeds" translate="title" sortOrder="10"/>

@@ -9,6 +9,7 @@ namespace Softaware\DataFeed\Ui\DataProvider;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Escaper;
+use Magento\Framework\Math\Random;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
@@ -51,6 +52,7 @@ class FeedFormDataProvider extends AbstractDataProvider
         private readonly TimezoneInterface $timezone,
         private readonly UrlInterface $urlBuilder,
         private readonly Escaper $escaper,
+        private readonly Random $random,
         array $meta = [],
         array $data = []
     ) {
@@ -74,6 +76,9 @@ class FeedFormDataProvider extends AbstractDataProvider
         } else {
             $preset = $this->presetProvider->get((string)$this->request->getParam('preset')) ?? $this->getDefaults();
             $preset[FeedInterface::STORE_ID] = (string)$this->getDefaultStoreId();
+            if (!empty($preset[FeedInterface::FILENAME])) {
+                $preset[FeedInterface::FILENAME] = $this->withRandomSuffix((string)$preset[FeedInterface::FILENAME]);
+            }
             $this->loadedData[''] = $this->mapper->presetToFormData($preset);
         }
 
@@ -139,6 +144,17 @@ class FeedFormDataProvider extends AbstractDataProvider
                 ['header' => 'price', 'value' => '{{ product.final_price | number_format(2) }}', 'default' => ''],
             ],
         ];
+    }
+
+    /**
+     * New feeds get a file name that cannot be guessed (google_shopping_k3v9q2xa.xml), so only the channels
+     * the merchant gives the URL to find the feed. The name can be changed in the form.
+     */
+    private function withRandomSuffix(string $filename): string
+    {
+        $info = pathinfo($filename);
+        $suffix = $this->random->getRandomString(8, Random::CHARS_LOWERS . Random::CHARS_DIGITS);
+        return ($info['filename'] ?? 'feed') . '_' . $suffix . (isset($info['extension']) ? '.' . $info['extension'] : '');
     }
 
     private function getDefaultStoreId(): int

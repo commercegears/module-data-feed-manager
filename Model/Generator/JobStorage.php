@@ -18,6 +18,9 @@ class JobStorage
     /** Seconds after which an unfinished job is considered abandoned. */
     public const STALE_AFTER = 900;
 
+    /** A generation that wrote its state more recently than this is still active and cannot be replaced. */
+    public const ACTIVE_WITHIN = 120;
+
     public function __construct(
         private readonly FileLocator $fileLocator,
         private readonly File $file
@@ -74,6 +77,23 @@ class JobStorage
             return false;
         }
         return time() - (int)$stat['mtime'] < self::STALE_AFTER;
+    }
+
+    /**
+     * Seconds since the running generation of this feed last wrote its state, or null when none is running.
+     */
+    public function getSecondsSinceUpdate(int $feedId): ?int
+    {
+        $path = $this->getStatePath($feedId);
+        try {
+            if (!$this->file->isExists($path)) {
+                return null;
+            }
+            $stat = $this->file->stat($path);
+        } catch (FileSystemException) {
+            return null;
+        }
+        return max(0, time() - (int)$stat['mtime']);
     }
 
     public function delete(int $feedId): void

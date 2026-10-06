@@ -82,6 +82,15 @@ class Generator implements FeedGeneratorInterface
                 __('Feed "%1" is already being generated. Try again in a few minutes.', $feed->getName())
             );
         }
+        $sinceUpdate = $this->jobStorage->getSecondsSinceUpdate($feedId);
+        if ($force && $sinceUpdate !== null && $sinceUpdate < JobStorage::ACTIVE_WITHIN) {
+            // Replacing a run that is still writing (cron, CLI or another tab) would mix two files.
+            throw new LocalizedException(__(
+                'Feed "%1" is being generated right now (last progress %2 seconds ago). Wait until it has finished.',
+                $feed->getName(),
+                $sinceUpdate
+            ));
+        }
         $this->jobStorage->delete($feedId);
         $this->fileLocator->validate($feed->getPath(), $feed->getFilename(), $feed->getFormat());
 

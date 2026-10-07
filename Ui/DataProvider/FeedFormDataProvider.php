@@ -96,20 +96,17 @@ class FeedFormDataProvider extends AbstractDataProvider
     public function getMeta(): array
     {
         $meta = parent::getMeta();
-        $data = $this->getData();
+        $this->getData();
         $id = (int)$this->request->getParam($this->getRequestFieldName());
-        $feedData = $data[$id ?: ''] ?? [];
 
         $meta['general']['children']['file_info']['arguments']['data']['config']['content']
             = $this->fileInfo($id, $this->savedData);
         $meta['schedule_section']['children']['schedule_info']['arguments']['data']['config']['content']
             = $this->scheduleInfo($this->savedData);
-        $meta['reference_section']['children']['reference']['arguments']['data']['config']['content'] = $this->reference();
-
-        $format = (string)($feedData[FeedInterface::FORMAT] ?? FeedInterface::FORMAT_XML);
-        $delimited = in_array($format, [FeedInterface::FORMAT_CSV, FeedInterface::FORMAT_TXT], true);
-        $meta['template_section']['arguments']['data']['config']['visible'] = !$delimited;
-        $meta['columns_section']['arguments']['data']['config']['visible'] = $delimited;
+        // Template and Columns both stay in the (tabbed) layout; the "Format" field's switcher shows the one that
+        // matches the format.
+        $meta['content_section']['children']['reference_section']['children']['reference']['arguments']['data']
+            ['config']['content'] = $this->reference();
         return $meta;
     }
 
@@ -169,7 +166,7 @@ class FeedFormDataProvider extends AbstractDataProvider
     private function fileInfo(int $id, array $data): string
     {
         if (!$id) {
-            return '<p>' . $this->escaper->escapeHtml(__('Save the feed, then use "Generate Now" or the preview below.')) . '</p>';
+            return '<p>' . $this->escaper->escapeHtml(__('Save the feed, then use "Generate Now" or the Preview tab.')) . '</p>';
         }
         /** @var Feed $feed */
         $feed = $this->collection->getNewEmptyItem();
@@ -194,7 +191,7 @@ class FeedFormDataProvider extends AbstractDataProvider
         if (!empty($data[FeedInterface::GENERATED_AT])) {
             $status = (string)($data[FeedInterface::GENERATED_STATUS] ?? '');
             $rows[] = [
-                __('Last generated'),
+                __('Last Generated'),
                 $this->escaper->escapeHtml($this->timezone->formatDateTime(
                     (string)$data[FeedInterface::GENERATED_AT],
                     \IntlDateFormatter::MEDIUM,
@@ -202,12 +199,12 @@ class FeedFormDataProvider extends AbstractDataProvider
                 ))
                 . ' &middot; <strong class="softaware-datafeed-status-' . $this->escaper->escapeHtmlAttr($status) . '">'
                 . $this->escaper->escapeHtml(ucfirst($status)) . '</strong>'
-                . ' &middot; ' . $this->escaper->escapeHtml((string)($data[FeedInterface::GENERATED_MESSAGE] ?? ''))
+                . ' &middot; ' . $this->escaper->escapeHtml(rtrim((string)($data[FeedInterface::GENERATED_MESSAGE] ?? ''), '. '))
                 . (isset($data[FeedInterface::GENERATED_SIZE]) && $data[FeedInterface::GENERATED_SIZE] !== null
                     ? ' &middot; ' . $this->escaper->escapeHtml(FileSize::format((int)$data[FeedInterface::GENERATED_SIZE]))
                     : '')
                 . ' &middot; <a href="' . $this->escaper->escapeUrl($this->urlBuilder->getUrl('softaware_datafeed/log/index', ['feed_id' => $id])) . '">'
-                . $this->escaper->escapeHtml(__('Generation log')) . '</a>',
+                . $this->escaper->escapeHtml(__('View Log')) . '</a>',
             ];
         }
         $html = '<table class="softaware-datafeed-facts">';

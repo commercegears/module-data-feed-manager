@@ -4,8 +4,7 @@
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">softaware_datafeed_feed_form.softaware_datafeed_feed_form_data_source</item>
         </item>
-        <item name="label" xsi:type="string" translate="true">Feed</item>
-        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="label" xsi:type="string" translate="true">Feed Information</item>
     </argument>
     <settings>
         <buttons>
@@ -15,7 +14,10 @@
             <button name="save" class="Softaware\DataFeed\Block\Adminhtml\Feed\Edit\SaveButton"/>
         </buttons>
         <namespace>softaware_datafeed_feed_form</namespace>
-        <dataScope>data</dataScope>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
         <deps>
             <dep>softaware_datafeed_feed_form.softaware_datafeed_feed_form_data_source</dep>
         </deps>
@@ -40,7 +42,7 @@
     <fieldset name="general" sortOrder="10">
         <settings>
             <label translate="true">General</label>
-            <collapsible>false</collapsible>
+            <dataScope>data</dataScope>
         </settings>
         <field name="feed_id" formElement="input">
             <settings>
@@ -118,12 +120,12 @@
                             <value>xml</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.template_section</target>
+                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.template_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">true</param></params>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.columns_section</target>
+                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.columns_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">false</param></params>
                                 </action>
@@ -133,12 +135,12 @@
                             <value>json</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.template_section</target>
+                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.template_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">true</param></params>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.columns_section</target>
+                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.columns_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">false</param></params>
                                 </action>
@@ -148,12 +150,12 @@
                             <value>csv</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.template_section</target>
+                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.template_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">false</param></params>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.columns_section</target>
+                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.columns_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">true</param></params>
                                 </action>
@@ -163,12 +165,12 @@
                             <value>txt</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.template_section</target>
+                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.template_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">false</param></params>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.columns_section</target>
+                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.columns_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">true</param></params>
                                 </action>
@@ -222,208 +224,201 @@
         </field>
     </fieldset>
 
-    <fieldset name="template_section" sortOrder="20">
+    <fieldset name="content_section" sortOrder="20">
         <settings>
-            <label translate="true">Template (XML / JSON)</label>
-            <collapsible>true</collapsible>
-            <opened>true</opened>
+            <label translate="true">Content</label>
+            <dataScope>data</dataScope>
         </settings>
-        <field name="template" formElement="textarea" sortOrder="10">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="rows" xsi:type="number">28</item>
-                    <item name="additionalClasses" xsi:type="string">softaware-datafeed-code</item>
-                </item>
-            </argument>
+        <fieldset name="template_section" sortOrder="10">
             <settings>
-                <dataType>text</dataType>
-                <label translate="true">Template</label>
-                <notice translate="true">{{ product.name | truncate(150) }} prints a value (escaped for XML/JSON automatically). {% for product in products %} … {% endfor %} repeats for every product; {% if … %} {% else %} {% endif %} and {% for image in product.images %} work inside it. See "Variables and filters" below.</notice>
-                <dataScope>template</dataScope>
-            </settings>
-        </field>
-    </fieldset>
-
-    <fieldset name="columns_section" sortOrder="30">
-        <settings>
-            <label translate="true">Columns and File Options (CSV / TXT)</label>
-            <collapsible>true</collapsible>
-            <opened>true</opened>
-            <visible>false</visible>
-        </settings>
-        <dynamicRows name="columns" sortOrder="10">
-            <settings>
-                <addButtonLabel translate="true">Add Column</addButtonLabel>
-                <dndConfig>
-                    <param name="enabled" xsi:type="boolean">true</param>
-                </dndConfig>
+                <label/>
+                <dataScope/>
                 <additionalClasses>
-                    <class name="softaware-datafeed-columns">true</class>
+                    <class name="softaware-datafeed-plain">true</class>
                 </additionalClasses>
-                <componentType>dynamicRows</componentType>
             </settings>
-            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+            <field name="template" formElement="textarea" sortOrder="10">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
-                        <item name="isTemplate" xsi:type="boolean">true</item>
-                        <item name="is_collection" xsi:type="boolean">true</item>
-                        <item name="componentType" xsi:type="string">container</item>
+                        <item name="rows" xsi:type="number">28</item>
+                        <item name="additionalClasses" xsi:type="string">softaware-datafeed-code</item>
                     </item>
                 </argument>
-                <field name="header" formElement="input" sortOrder="10">
-                    <settings>
-                        <dataType>text</dataType>
-                        <label translate="true">Header</label>
-                        <dataScope>header</dataScope>
-                    </settings>
-                </field>
-                <field name="value" formElement="input" sortOrder="20">
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Template</label>
+                    <notice translate="true">{{ product.name }} prints a value (escaped for XML/JSON automatically); {% for product in products %} … {% endfor %} repeats for every product; {% if … %} … {% endif %} adds conditions. All variables and filters are listed under "Variables and Filters" below.</notice>
+                    <dataScope>template</dataScope>
+                </settings>
+            </field>
+        </fieldset>
+        <fieldset name="columns_section" sortOrder="20">
+            <settings>
+                <label/>
+                <dataScope/>
+                <additionalClasses>
+                    <class name="softaware-datafeed-plain">true</class>
+                </additionalClasses>
+            </settings>
+            <dynamicRows name="columns" sortOrder="10">
+                <settings>
+                    <addButtonLabel translate="true">Add Column</addButtonLabel>
+                    <dndConfig>
+                        <param name="enabled" xsi:type="boolean">true</param>
+                    </dndConfig>
+                    <additionalClasses>
+                        <class name="softaware-datafeed-columns">true</class>
+                    </additionalClasses>
+                    <componentType>dynamicRows</componentType>
+                    <!-- Empty: the rows live at data.<name>.<n>; the default would add the name twice inside the tab. -->
+                    <dataScope/>
+                </settings>
+                <container name="record" component="Magento_Ui/js/dynamic-rows/record">
                     <argument name="data" xsi:type="array">
                         <item name="config" xsi:type="array">
-                            <item name="additionalClasses" xsi:type="string">softaware-datafeed-code</item>
-                            <item name="placeholder" xsi:type="string">{{ product.sku }}</item>
+                            <item name="isTemplate" xsi:type="boolean">true</item>
+                            <item name="is_collection" xsi:type="boolean">true</item>
+                            <item name="componentType" xsi:type="string">container</item>
                         </item>
                     </argument>
-                    <settings>
-                        <dataType>text</dataType>
-                        <label translate="true">Value</label>
-                        <dataScope>value</dataScope>
-                    </settings>
-                </field>
-                <field name="default" formElement="input" sortOrder="30">
-                    <argument name="data" xsi:type="array">
-                        <item name="config" xsi:type="array">
-                            <item name="additionalClasses" xsi:type="string">softaware-datafeed-code</item>
-                        </item>
-                    </argument>
-                    <settings>
-                        <dataType>text</dataType>
-                        <label translate="true">Default (when empty)</label>
-                        <dataScope>default</dataScope>
-                    </settings>
-                </field>
-                <actionDelete template="Magento_Backend/dynamic-rows/cells/action-delete" sortOrder="40">
-                    <settings>
-                        <dataType>text</dataType>
-                        <label translate="true">Actions</label>
-                        <componentType>actionDelete</componentType>
-                    </settings>
-                </actionDelete>
+                    <field name="header" formElement="input" sortOrder="10">
+                        <settings>
+                            <dataType>text</dataType>
+                            <label translate="true">Header</label>
+                            <dataScope>header</dataScope>
+                        </settings>
+                    </field>
+                    <field name="value" formElement="input" sortOrder="20">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="additionalClasses" xsi:type="string">softaware-datafeed-code</item>
+                                <item name="placeholder" xsi:type="string">{{ product.sku }}</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <label translate="true">Value</label>
+                            <dataScope>value</dataScope>
+                        </settings>
+                    </field>
+                    <field name="default" formElement="input" sortOrder="30">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="additionalClasses" xsi:type="string">softaware-datafeed-code</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <label translate="true">Default (when empty)</label>
+                            <dataScope>default</dataScope>
+                        </settings>
+                    </field>
+                    <actionDelete template="Magento_Backend/dynamic-rows/cells/action-delete" sortOrder="40">
+                        <settings>
+                            <dataType>text</dataType>
+                            <label translate="true">Actions</label>
+                            <componentType>actionDelete</componentType>
+                        </settings>
+                    </actionDelete>
+                </container>
+            </dynamicRows>
+            <field name="csv_delimiter" formElement="select" sortOrder="20">
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Delimiter</label>
+                    <dataScope>csv_delimiter</dataScope>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Softaware\DataFeed\Model\Source\Delimiter"/>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="csv_enclosure" formElement="select" sortOrder="30">
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Enclosure</label>
+                    <dataScope>csv_enclosure</dataScope>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Softaware\DataFeed\Model\Source\Enclosure"/>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="csv_encoding" formElement="select" sortOrder="40">
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Encoding</label>
+                    <dataScope>csv_encoding</dataScope>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Softaware\DataFeed\Model\Source\Encoding"/>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="csv_line_ending" formElement="select" sortOrder="50">
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Line Ending</label>
+                    <dataScope>csv_line_ending</dataScope>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Softaware\DataFeed\Model\Source\LineEnding"/>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="csv_include_header" formElement="checkbox" sortOrder="60">
+                <settings>
+                    <dataType>boolean</dataType>
+                    <label translate="true">Header Row</label>
+                    <dataScope>csv_include_header</dataScope>
+                </settings>
+                <formElements>
+                    <checkbox>
+                        <settings>
+                            <valueMap>
+                                <map name="false" xsi:type="number">0</map>
+                                <map name="true" xsi:type="number">1</map>
+                            </valueMap>
+                            <prefer>toggle</prefer>
+                        </settings>
+                    </checkbox>
+                </formElements>
+            </field>
+        </fieldset>
+        <fieldset name="reference_section" sortOrder="30">
+            <settings>
+                <label translate="true">Variables and Filters</label>
+                <collapsible>true</collapsible>
+                <opened>false</opened>
+                <dataScope/>
+            </settings>
+            <container name="reference" component="Magento_Ui/js/form/components/html" sortOrder="10">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="additionalClasses" xsi:type="string">softaware-datafeed-reference</item>
+                        <item name="content" xsi:type="string"/>
+                    </item>
+                </argument>
             </container>
-        </dynamicRows>
-        <field name="csv_delimiter" formElement="select" sortOrder="20">
-            <settings>
-                <dataType>text</dataType>
-                <label translate="true">Delimiter</label>
-                <dataScope>csv_delimiter</dataScope>
-            </settings>
-            <formElements>
-                <select>
-                    <settings>
-                        <options class="Softaware\DataFeed\Model\Source\Delimiter"/>
-                    </settings>
-                </select>
-            </formElements>
-        </field>
-        <field name="csv_enclosure" formElement="select" sortOrder="30">
-            <settings>
-                <dataType>text</dataType>
-                <label translate="true">Enclosure</label>
-                <dataScope>csv_enclosure</dataScope>
-            </settings>
-            <formElements>
-                <select>
-                    <settings>
-                        <options class="Softaware\DataFeed\Model\Source\Enclosure"/>
-                    </settings>
-                </select>
-            </formElements>
-        </field>
-        <field name="csv_encoding" formElement="select" sortOrder="40">
-            <settings>
-                <dataType>text</dataType>
-                <label translate="true">Encoding</label>
-                <dataScope>csv_encoding</dataScope>
-            </settings>
-            <formElements>
-                <select>
-                    <settings>
-                        <options class="Softaware\DataFeed\Model\Source\Encoding"/>
-                    </settings>
-                </select>
-            </formElements>
-        </field>
-        <field name="csv_line_ending" formElement="select" sortOrder="50">
-            <settings>
-                <dataType>text</dataType>
-                <label translate="true">Line Ending</label>
-                <dataScope>csv_line_ending</dataScope>
-            </settings>
-            <formElements>
-                <select>
-                    <settings>
-                        <options class="Softaware\DataFeed\Model\Source\LineEnding"/>
-                    </settings>
-                </select>
-            </formElements>
-        </field>
-        <field name="csv_include_header" formElement="checkbox" sortOrder="60">
-            <settings>
-                <dataType>boolean</dataType>
-                <label translate="true">Header Row</label>
-                <dataScope>csv_include_header</dataScope>
-            </settings>
-            <formElements>
-                <checkbox>
-                    <settings>
-                        <valueMap>
-                            <map name="false" xsi:type="number">0</map>
-                            <map name="true" xsi:type="number">1</map>
-                        </valueMap>
-                        <prefer>toggle</prefer>
-                    </settings>
-                </checkbox>
-            </formElements>
-        </field>
-    </fieldset>
-
-    <fieldset name="preview_section" sortOrder="40">
-        <settings>
-            <label translate="true">Preview</label>
-            <collapsible>true</collapsible>
-            <opened>true</opened>
-        </settings>
-        <container name="preview" component="Softaware_DataFeed/js/form/preview" sortOrder="10">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="url" xsi:type="url" path="softaware_datafeed/feed/preview"/>
-                    <item name="provider" xsi:type="string">softaware_datafeed_feed_form.softaware_datafeed_feed_form_data_source</item>
-                </item>
-            </argument>
-        </container>
-    </fieldset>
-
-    <fieldset name="reference_section" sortOrder="50">
-        <settings>
-            <label translate="true">Variables and Filters</label>
-            <collapsible>true</collapsible>
-            <opened>false</opened>
-        </settings>
-        <container name="reference" component="Magento_Ui/js/form/components/html" sortOrder="10">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="additionalClasses" xsi:type="string">softaware-datafeed-reference</item>
-                    <item name="content" xsi:type="string"/>
-                </item>
-            </argument>
-        </container>
+        </fieldset>
     </fieldset>
 
     <fieldset name="filter_section" sortOrder="60">
         <settings>
             <label translate="true">Product Filters</label>
-            <collapsible>true</collapsible>
-            <opened>false</opened>
+            <dataScope>data</dataScope>
         </settings>
         <field name="filter_enabled_only" formElement="checkbox" sortOrder="10">
             <settings>
@@ -570,6 +565,8 @@
                     <param name="enabled" xsi:type="boolean">false</param>
                 </dndConfig>
                 <componentType>dynamicRows</componentType>
+                <!-- Empty: the rows live at data.<name>.<n>; the default would add the name twice inside the tab. -->
+                <dataScope/>
             </settings>
             <container name="record" component="Magento_Ui/js/dynamic-rows/record">
                 <argument name="data" xsi:type="array">
@@ -649,8 +646,7 @@
     <fieldset name="schedule_section" sortOrder="70">
         <settings>
             <label translate="true">Schedule</label>
-            <collapsible>true</collapsible>
-            <opened>false</opened>
+            <dataScope>data</dataScope>
         </settings>
         <field name="schedule_type" formElement="select" sortOrder="10">
             <settings>
@@ -663,11 +659,11 @@
                             <value>manual</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.schedule_section.schedule_times</target>
+                                    <target>softaware_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_times</target>
                                     <callback>hide</callback>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.schedule_section.schedule_cron</target>
+                                    <target>softaware_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_cron</target>
                                     <callback>hide</callback>
                                 </action>
                             </actions>
@@ -676,11 +672,11 @@
                             <value>times</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.schedule_section.schedule_times</target>
+                                    <target>softaware_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_times</target>
                                     <callback>show</callback>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.schedule_section.schedule_cron</target>
+                                    <target>softaware_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_cron</target>
                                     <callback>hide</callback>
                                 </action>
                             </actions>
@@ -689,11 +685,11 @@
                             <value>cron</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.schedule_section.schedule_times</target>
+                                    <target>softaware_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_times</target>
                                     <callback>hide</callback>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.softaware_datafeed_feed_form.schedule_section.schedule_cron</target>
+                                    <target>softaware_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_cron</target>
                                     <callback>show</callback>
                                 </action>
                             </actions>
@@ -739,8 +735,7 @@
     <fieldset name="delivery_section" sortOrder="80">
         <settings>
             <label translate="true">Delivery (FTP / SFTP)</label>
-            <collapsible>true</collapsible>
-            <opened>false</opened>
+            <dataScope>data</dataScope>
         </settings>
         <field name="ftp_enabled" formElement="checkbox" sortOrder="10">
             <settings>
@@ -880,6 +875,20 @@
                     <item name="imports" xsi:type="array">
                         <item name="visible" xsi:type="string">${ $.parentName }.ftp_enabled:checked</item>
                     </item>
+                </item>
+            </argument>
+        </container>
+    </fieldset>
+    <fieldset name="preview_section" sortOrder="90">
+        <settings>
+            <label translate="true">Preview</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <container name="preview" component="Softaware_DataFeed/js/form/preview" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="url" xsi:type="url" path="softaware_datafeed/feed/preview"/>
+                    <item name="provider" xsi:type="string">softaware_datafeed_feed_form.softaware_datafeed_feed_form_data_source</item>
                 </item>
             </argument>
         </container>

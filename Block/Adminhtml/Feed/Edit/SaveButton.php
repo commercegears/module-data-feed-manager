@@ -14,7 +14,7 @@ use Magento\Ui\Component\Control\Container;
  */
 class SaveButton extends GenericButton implements ButtonProviderInterface
 {
-    private const FORM = 'softaware_datafeed_feed_form.softaware_datafeed_feed_form';
+    private const FORM = 'softaware_datafeed_feed_form.areas';
 
     public function getButtonData(): array
     {

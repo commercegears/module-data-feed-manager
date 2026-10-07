@@ -7,27 +7,34 @@
             <tab>softaware</tab>
             <resource>Softaware_DataFeed::config</resource>
             <group id="general" translate="label comment" sortOrder="10" showInDefault="1">
+                <attribute type="expanded">1</attribute>
                 <label>General</label>
-                <comment><![CDATA[Feeds are managed in Softaware &gt; Data Feed Manager &gt; Feeds. Store view, currency and schedule are set per feed.]]></comment>
-                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1">
+                <comment><![CDATA[Feeds are created in Softaware &gt; Data Feed Manager &gt; Feeds; store view, currency and schedule are set per feed. The settings here apply to all feeds.]]></comment>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" canRestore="1">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>When disabled, no feeds are generated (cron, admin and CLI). Existing feed files stay in place.</comment>
+                    <comment>When set to No, no feeds are generated (cron, admin or command line). Existing feed files stay in place. Default: Yes.</comment>
                 </field>
-                <field id="batch_size" translate="label comment" type="text" sortOrder="20" showInDefault="1">
+            </group>
+            <group id="generation" translate="label" sortOrder="20" showInDefault="1">
+                <label>Generation</label>
+                <field id="batch_size" translate="label comment" type="text" sortOrder="20" showInDefault="1" canRestore="1">
                     <label>Batch Size</label>
+                    <config_path>softaware_datafeed/general/batch_size</config_path>
                     <validate>required-entry validate-digits validate-digits-range digits-range-10-5000</validate>
-                    <comment>Products loaded per batch (10-5000). Lower it if generation runs out of memory; configurable variants are loaded on top of this number.</comment>
+                    <comment>Products loaded at a time, 10–5000. Default: 250. Lower it if generation runs out of memory (variants of configurable products come on top).</comment>
                 </field>
-                <field id="preview_limit" translate="label comment" type="text" sortOrder="30" showInDefault="1">
+                <field id="preview_limit" translate="label comment" type="text" sortOrder="30" showInDefault="1" canRestore="1">
                     <label>Preview Items</label>
+                    <config_path>softaware_datafeed/general/preview_limit</config_path>
                     <validate>required-entry validate-digits validate-digits-range digits-range-1-100</validate>
-                    <comment>Number of items shown by the preview in the feed form (1-100).</comment>
+                    <comment>Items shown on the feed's Preview tab, 1–100. Default: 10.</comment>
                 </field>
-                <field id="log_retention_days" translate="label comment" type="text" sortOrder="40" showInDefault="1">
+                <field id="log_retention_days" translate="label comment" type="text" sortOrder="40" showInDefault="1" canRestore="1">
                     <label>Keep Generation Log For (Days)</label>
+                    <config_path>softaware_datafeed/general/log_retention_days</config_path>
                     <validate>required-entry validate-digits</validate>
-                    <comment>0 keeps the log for ever.</comment>
+                    <comment>Older log entries are deleted daily. Default: 30; 0 keeps the log for ever.</comment>
                 </field>
             </group>
         </section>

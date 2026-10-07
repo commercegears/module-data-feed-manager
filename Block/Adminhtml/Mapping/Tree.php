@@ -7,6 +7,7 @@ declare(strict_types=1);
 namespace Softaware\DataFeed\Block\Adminhtml\Mapping;
 
 use Magento\Backend\Block\Template;
+use Magento\Backend\Block\Widget\Button;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory;
 use Softaware\DataFeed\Model\ResourceModel\CategoryMap;
 use Softaware\DataFeed\Model\ResourceModel\Taxonomy;
@@ -30,6 +31,24 @@ class Tree extends Template
         array $data = []
     ) {
         parent::__construct($context, $data);
+    }
+
+    /**
+     * "Save Mapping" in the page actions bar, like other admin forms (the form also has one below the table).
+     */
+    protected function _prepareLayout()
+    {
+        $toolbar = $this->getLayout()->getBlock('page.actions.toolbar');
+        if ($toolbar && $this->getTaxonomyCount() > 0) {
+            $toolbar->addChild('softaware_datafeed_mapping_save', Button::class, [
+                'label' => __('Save Mapping'),
+                'class' => 'save primary',
+                'data_attribute' => [
+                    'mage-init' => ['button' => ['event' => 'submit', 'target' => '#softaware-datafeed-mapping-form']],
+                ],
+            ]);
+        }
+        return parent::_prepareLayout();
     }
 
     /**

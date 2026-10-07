@@ -30,7 +30,7 @@ CLI), written to a local file with a public URL and can be uploaded by FTP, FTPS
   `small_image`, `thumbnail`, `placeholder`), categories (`category`, `category_path`, `categories`,
   `category_paths`, `google_category_id`, `google_category`), `parent.*` and `item_group_id` for variants,
   `variants` (configurable) and `children` (configurable, bundle, grouped), reviews (`reviews_count`, `rating`,
-  `rating_5`), `store.*`, `feed.*`, `now`. The full list with descriptions is in the feed form under
+  `rating_5`), `store.*`, `feed.*`, `now`. The full list with descriptions is in the feed form (Content tab) under
   "Variables and Filters".
 - **Filters** (template): strip_tags, truncate, upper, lower, capitalize, title, trim, clean, number_format, round,
   price, default, if, replace, regex_replace, prepend, append, join, split, first, last, slice, count, unique,
@@ -48,7 +48,7 @@ CLI), written to a local file with a public URL and can be uploaded by FTP, FTPS
   - cron: per feed daily times or a cron expression (store view timezone), own cron group `softaware_datafeed`
   - admin: "Generate Now" runs batch by batch in the browser with a progress bar
   - CLI: see below
-  - **preview** in the feed form renders the first items of the unsaved form values and validates them
+  - **preview** (Preview tab of the feed form) renders the first items of the unsaved form values and validates them
   - **generation log** (Softaware > Data Feed Manager > Generation Log): start time, trigger, status, duration, items,
     errors with messages, file size
 - **Delivery**: local file (public URL when below `pub/`), optional upload by SFTP, FTP or FTPS (password stored
@@ -58,9 +58,14 @@ CLI), written to a local file with a public URL and can be uploaded by FTP, FTPS
     is sent. Clear the field when the server was really replaced. Changing the host or port clears it too.
   - The saved password is only reused for the same host and protocol; after changing either, enter it again.
 
+The feed form (Softaware > Data Feed Manager > Feeds) has tabs on the left: General, Content (the template for XML
+and JSON or the columns for CSV and TXT, depending on the format), Product Filters, Schedule, Delivery (FTP / SFTP)
+and Preview. The feed grid has a keyword search (name and file name).
+
 ## Configuration
 
-Stores > Configuration > Softaware > Data Feed Manager (`softaware_datafeed/general/*`):
+Stores > Configuration > Softaware > Data Feed Manager (groups General and Generation; all paths
+`softaware_datafeed/general/*`):
 
 | Setting | Path | Default |
 |---|---|---|

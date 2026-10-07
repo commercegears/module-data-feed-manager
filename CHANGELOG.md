@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.3.0 (2026-10-07)
+
+### Added
+
+- Keyword search in the feed grid (name and file name; new full-text index on the feed table).
+- Empty states: the feed grid and the generation log explain what they are for and link to the next step
+  ("Create your first feed", "Go to Feeds") instead of showing an empty table.
+
+### Changed
+
+- The feed form uses proper vertical tabs on the left (General, Content, Product Filters, Schedule, Delivery,
+  Preview) instead of a long page of sections that opened downwards. The Content tab shows the template (XML, JSON)
+  or the columns (CSV, TXT) for the selected format, with the variables reference below it.
+- Feed grid: the Status column says Enabled / Disabled; long file paths wrap and Items / Size are hidden by default (still under Columns), so the grid fits narrower
+  screens.
+- Google Category Mapping: "Save Mapping" is in the page action bar, the intro is shorter, category indentation
+  uses the module stylesheet instead of inline styles, and the taxonomy import has a labelled file field and an
+  "Import Taxonomy" button.
+- Generation log: "Back to Feeds" button.
+- Settings: split into General (always open) and Generation groups, every field shows its default and can be reset
+  to it (config paths unchanged).
+- Shorter, clearer help texts in the feed form.
+
 ## 1.2.0 (2026-10-06)
 
 ### Changed

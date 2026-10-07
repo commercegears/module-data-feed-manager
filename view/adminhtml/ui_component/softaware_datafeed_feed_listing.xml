@@ -35,6 +35,7 @@
         </settings>
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
         <filters name="listing_filters"/>
         <massaction name="listing_massaction">
             <action name="enable">
@@ -59,7 +60,7 @@
                 <settings>
                     <confirm>
                         <message translate="true">Delete the selected feeds? Generated files stay on the server.</message>
-                        <title translate="true">Delete feeds</title>
+                        <title translate="true">Delete Feeds</title>
                     </confirm>
                     <url path="softaware_datafeed/feed/massDelete"/>
                     <type>delete</type>
@@ -69,7 +70,17 @@
         </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="softaware_datafeed_feed_columns">
+    <columns name="softaware_datafeed_feed_columns" component="Softaware_DataFeed/js/grid/listing">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="emptyTitle" xsi:type="string" translate="true">No feeds yet</item>
+                <item name="emptyText" xsi:type="string" translate="true">A feed is a product file (XML, JSON, CSV or TXT) for Google Shopping, Meta, Pinterest or any other channel, generated on a schedule or on demand.</item>
+                <item name="emptyActionLabel" xsi:type="string" translate="true">Create your first feed</item>
+                <item name="emptyActionUrl" xsi:type="url" path="softaware_datafeed/feed/new">
+                    <param name="preset">google_shopping</param>
+                </item>
+            </item>
+        </argument>
         <settings>
             <childDefaults>
                 <param name="fieldAction" xsi:type="array">
@@ -119,11 +130,14 @@
                 <filter>text</filter>
                 <bodyTmpl>ui/grid/cells/html</bodyTmpl>
                 <label translate="true">File</label>
+                <fieldClass>
+                    <class name="softaware-datafeed-col-file">true</class>
+                </fieldClass>
             </settings>
         </column>
         <column name="is_active" component="Magento_Ui/js/grid/columns/select" sortOrder="60">
             <settings>
-                <options class="Magento\Config\Model\Config\Source\Enabledisable"/>
+                <options class="Softaware\DataFeed\Model\Source\Status"/>
                 <filter>select</filter>
                 <dataType>select</dataType>
                 <label translate="true">Status</label>
@@ -153,11 +167,13 @@
             <settings>
                 <filter>textRange</filter>
                 <label translate="true">Items</label>
+                <visible>false</visible>
             </settings>
         </column>
         <column name="generated_size" class="Softaware\DataFeed\Ui\Component\Listing\Column\FileSize" sortOrder="110">
             <settings>
                 <label translate="true">Size</label>
+                <visible>false</visible>
             </settings>
         </column>
         <column name="generated_status" class="Softaware\DataFeed\Ui\Component\Listing\Column\Status" sortOrder="120">

@@ -9,8 +9,8 @@
         <buttons>
             <button name="feeds">
                 <url path="softaware_datafeed/feed/index"/>
-                <class>secondary</class>
-                <label translate="true">Feeds</label>
+                <class>back</class>
+                <label translate="true">Back to Feeds</label>
             </button>
         </buttons>
         <spinner>softaware_datafeed_log_columns</spinner>
@@ -49,7 +49,15 @@
         <filters name="listing_filters"/>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="softaware_datafeed_log_columns">
+    <columns name="softaware_datafeed_log_columns" component="Softaware_DataFeed/js/grid/listing">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="emptyTitle" xsi:type="string" translate="true">No feeds generated yet</item>
+                <item name="emptyText" xsi:type="string" translate="true">Every generation (by cron, Generate Now or the command line) is listed here with its result, item count, file size and any errors.</item>
+                <item name="emptyActionLabel" xsi:type="string" translate="true">Go to Feeds</item>
+                <item name="emptyActionUrl" xsi:type="url" path="softaware_datafeed/feed/index"/>
+            </item>
+        </argument>
         <column name="log_id" sortOrder="10">
             <settings>
                 <filter>textRange</filter>

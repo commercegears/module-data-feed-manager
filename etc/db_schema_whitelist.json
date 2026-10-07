@@ -48,7 +48,8 @@
             "ftp_host_key": true
         },
         "index": {
-            "SOFTAWARE_DATAFEED_FEED_IS_ACTIVE_NEXT_RUN_AT": true
+            "SOFTAWARE_DATAFEED_FEED_IS_ACTIVE_NEXT_RUN_AT": true,
+            "SOFTAWARE_DATAFEED_FEED_NAME_FILENAME": true
         },
         "constraint": {
             "PRIMARY": true,

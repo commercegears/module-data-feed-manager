@@ -71,7 +71,7 @@ class FeedActions extends Column
                     'href' => $this->urlBuilder->getUrl('softaware_datafeed/feed/delete', ['id' => $id]),
                     'label' => __('Delete'),
                     'confirm' => [
-                        'title' => __('Delete feed'),
+                        'title' => __('Delete Feed'),
                         'message' => __(
                             'Delete the feed "%1"? The generated file stays on the server.',
                             $this->escaper->escapeHtml((string)($item['name'] ?? ''))

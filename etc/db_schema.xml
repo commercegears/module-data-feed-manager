@@ -51,6 +51,10 @@
         </constraint>
         <constraint xsi:type="foreign" referenceId="SOFTAWARE_DATAFEED_FEED_STORE_ID_STORE_STORE_ID"
                     table="softaware_datafeed_feed" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="SOFTAWARE_DATAFEED_FEED_NAME_FILENAME" indexType="fulltext">
+            <column name="name"/>
+            <column name="filename"/>
+        </index>
         <index referenceId="SOFTAWARE_DATAFEED_FEED_IS_ACTIVE_NEXT_RUN_AT" indexType="btree">
             <column name="is_active"/>
             <column name="next_run_at"/>

@@ -1,0 +1,131 @@
+{
+    "tagline": "Product feeds for Google Shopping, Meta, Pinterest, Microsoft/Bing Shopping and other channels, as XML, JSON, CSV or TXT, generated on a schedule and checked before they go live.",
+    "key_features": [
+        "Ready templates for Google, Meta, Pinterest and Microsoft/Bing",
+        "XML, JSON, CSV and delimited TXT",
+        "Template editor and column mapper",
+        "Preview of unsaved changes",
+        "Product filters and attribute conditions",
+        "Google category mapping with autocomplete",
+        "Scheduled generation in batches, with a log",
+        "Optional SFTP, FTP or FTPS upload"
+    ],
+    "benefits": [
+        {
+            "icon": "globe",
+            "title": "One catalogue, every channel",
+            "text": "Start from a ready template for Google Shopping, Meta, Pinterest or Microsoft, or build your own feed for a price comparison site or an ERP."
+        },
+        {
+            "icon": "shield",
+            "title": "No broken files online",
+            "text": "Every item and the finished file are checked. An invalid file is never published, and the previous one stays in place."
+        },
+        {
+            "icon": "clock",
+            "title": "Fresh feeds without effort",
+            "text": "Feeds are rebuilt at the times you choose, in batches, so even large catalogues are generated without blocking the store."
+        }
+    ],
+    "showcase": [
+        {
+            "label": "Feeds",
+            "title": "All feeds at a glance",
+            "text": "File link, schedule, next run, last result, items and size for every feed. Generate, duplicate, enable or disable feeds from the grid.",
+            "image": "docs/images/feed-grid.png"
+        },
+        {
+            "label": "XML and JSON",
+            "title": "A template language made for feeds",
+            "text": "Print any product value with filters such as strip_tags, truncate or price. Output is escaped for XML or JSON automatically and the language has no access to PHP.",
+            "image": "docs/images/template-editor.png"
+        },
+        {
+            "label": "CSV and TXT",
+            "title": "Columns in a simple mapper",
+            "text": "Header, value and default per column, drag to reorder, with delimiter, enclosure, encoding, line ending and header row options.",
+            "image": "docs/images/column-mapper.png"
+        },
+        {
+            "label": "Preview",
+            "title": "Check before you save",
+            "text": "The Preview tab renders the first items from the values in the form, including unsaved changes, and validates them. Nothing is written.",
+            "image": "docs/images/preview.png"
+        },
+        {
+            "label": "Filters",
+            "title": "Only the products the channel needs",
+            "text": "Status, stock, product types, attribute sets, visibility, categories, attribute conditions and excluded SKUs. Configurable products as parents, variants or both.",
+            "image": "docs/images/product-filters.png"
+        },
+        {
+            "label": "Google categories",
+            "title": "Map your categories to Google's taxonomy",
+            "text": "Search Google's product categories by name. Subcategories inherit the nearest mapped parent, so a few mappings cover the whole tree.",
+            "image": "docs/images/category-mapping.png"
+        }
+    ],
+    "feature_groups": [
+        {
+            "title": "Feeds and formats",
+            "items": [
+                "XML, JSON, CSV and delimited TXT",
+                "Templates: Google Shopping, Meta, Pinterest, Microsoft/Bing, generic JSON",
+                "Store view and currency per feed",
+                "Public URL or a private folder below var/",
+                "Random file names, so URLs cannot be guessed"
+            ]
+        },
+        {
+            "title": "Product data",
+            "items": [
+                "Any attribute, with option labels",
+                "Prices with and without tax, special and tier prices",
+                "Stock, URLs, images and categories",
+                "Parent values and item_group_id for variants",
+                "Reviews count and rating"
+            ]
+        },
+        {
+            "title": "Generation",
+            "items": [
+                "Daily at set times or a cron expression",
+                "Generate Now in the admin with a progress bar",
+                "Batches by product ID",
+                "Items and file validated before publishing",
+                "Generation log with errors and file size"
+            ]
+        },
+        {
+            "title": "Delivery and admin",
+            "items": [
+                "SFTP, FTP or FTPS upload with Test Connection",
+                "Encrypted password and SFTP host key check",
+                "Separate permissions for feeds, generation, deletion, mapping and log",
+                "CLI: list, generate, preview, taxonomy import",
+                "Taxonomy in other languages can be imported"
+            ]
+        }
+    ],
+    "demo": {
+        "storefront": [
+            {
+                "label": "Sample Google Shopping feed (XML)",
+                "url": "https://demo.softawarecommerce.com/media/feeds/google_shopping.xml",
+                "image": "docs/images/preview.png"
+            },
+            {
+                "label": "Sample Meta catalogue feed (CSV)",
+                "url": "https://demo.softawarecommerce.com/media/feeds/meta_catalogue.csv",
+                "image": "docs/images/column-mapper.png"
+            }
+        ],
+        "admin": [
+            {
+                "label": "Admin panel",
+                "url": "https://demo.softawarecommerce.com/try-admin/data-feed-manager",
+                "image": "docs/images/feed-grid.png"
+            }
+        ]
+    }
+}

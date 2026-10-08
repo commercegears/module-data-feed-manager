@@ -6,6 +6,8 @@ Exports product data as XML, JSON, CSV or delimited TXT feeds for Google Shoppin
 Pinterest, Microsoft/Bing Shopping, price comparison sites and ERPs. Feeds are generated in batches (cron, admin or
 CLI), written to a local file with a public URL and can be uploaded by FTP, FTPS or SFTP.
 
+Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
+
 ## Features
 
 - **Feeds** (Softaware > Data Feed Manager > Feeds): name, store view, format, file name and directory, currency,

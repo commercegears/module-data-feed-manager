@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.1 (2026-10-08)
+
+### Added
+
+- Product listing, FAQ and user guide (docs/)
+
 ## 1.3.0 (2026-10-07)
 
 ### Added

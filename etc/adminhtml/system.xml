@@ -42,7 +42,7 @@
                 <field id="brand_attribute" translate="label comment" type="select" sortOrder="10" showInDefault="1" canRestore="1">
                     <label>Brand Attribute</label>
                     <source_model>Softaware\DataFeed\Model\Source\BrandAttribute</source_model>
-                    <comment>Read by {{ product.brand }} (g:brand in the Google Shopping template, brand in the Meta, Pinterest and Microsoft templates). A variant without a value uses its parent's value; the templates use the store name only when there is no brand at all. Default: Automatic (the attribute "brand" if your store has one, otherwise "manufacturer").</comment>
+                    <comment>Used by the template variable product.brand (g:brand in the Google Shopping template, brand in the Meta, Pinterest and Microsoft templates). A variant without a value uses its parent's value; the templates use the store name only when there is no brand at all. Default: Automatic (the attribute "brand" if your store has one, otherwise "manufacturer").</comment>
                 </field>
             </group>
         </section>

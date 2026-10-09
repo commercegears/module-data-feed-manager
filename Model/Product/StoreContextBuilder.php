@@ -40,7 +40,8 @@ class StoreContextBuilder
         private readonly TimezoneInterface $timezone,
         private readonly FileLocator $fileLocator,
         private readonly LoggerInterface $logger,
-        private readonly EavConfig $eavConfig
+        private readonly EavConfig $eavConfig,
+        private readonly BrandAttribute $brandAttribute
     ) {
     }
 
@@ -129,7 +130,8 @@ class StoreContextBuilder
             $attributeSets,
             $storeVariables,
             $feedVariables,
-            $now->format('Y-m-d')
+            $now->format('Y-m-d'),
+            $this->brandAttribute->getCode()
         );
     }
 

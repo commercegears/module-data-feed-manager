@@ -20,7 +20,7 @@
 <g:sale_price>{{ product.final_price_incl_tax | price }}</g:sale_price>
 {% endif %}
 <g:condition>new</g:condition>
-<g:brand>{{ product.manufacturer ?? product.parent.manufacturer ?? store.name }}</g:brand>
+<g:brand>{{ product.brand ?? store.name }}</g:brand>
 {% if product.gtin %}
 <g:gtin>{{ product.gtin }}</g:gtin>
 {% endif %}

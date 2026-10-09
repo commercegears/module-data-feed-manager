@@ -30,7 +30,8 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
   `_excl_tax`, `tier_prices`, `on_sale`) converted to the feed currency, stock (`qty`, `is_in_stock`,
   `is_salable`, `availability`, `availability_text`), `url`, images (`image`, `images`, `all_images`,
   `small_image`, `thumbnail`, `placeholder`), categories (`category`, `category_path`, `categories`,
-  `category_paths`, `google_category_id`, `google_category`), `parent.*` and `item_group_id` for variants,
+  `category_paths`, `google_category_id`, `google_category`), `brand` (the Brand Attribute setting, falls back to
+  the parent), `parent.*` and `item_group_id` for variants,
   `variants` (configurable) and `children` (configurable, bundle, grouped), reviews (`reviews_count`, `rating`,
   `rating_5`), `store.*`, `feed.*`, `now`. The full list with descriptions is in the feed form (Content tab) under
   "Variables and Filters".
@@ -66,8 +67,7 @@ and Preview. The feed grid has a keyword search (name and file name).
 
 ## Configuration
 
-Stores > Configuration > Softaware > Data Feed Manager (groups General and Generation; all paths
-`softaware_datafeed/general/*`):
+Stores > Configuration > Softaware > Data Feed Manager (groups General, Generation and Product Data):
 
 | Setting | Path | Default |
 |---|---|---|
@@ -75,6 +75,12 @@ Stores > Configuration > Softaware > Data Feed Manager (groups General and Gener
 | Batch Size | `softaware_datafeed/general/batch_size` | 250 |
 | Preview Items | `softaware_datafeed/general/preview_limit` | 10 |
 | Keep Generation Log For (Days) | `softaware_datafeed/general/log_retention_days` | 30 |
+| Brand Attribute | `softaware_datafeed/product_data/brand_attribute` | Automatic: `brand` if the store has it, otherwise `manufacturer` |
+
+**Brand**: `{{ product.brand }}` reads the Brand Attribute (option labels for dropdowns); a variant without a value
+uses its parent's. The Google Shopping, Meta, Pinterest and Microsoft presets send it as the brand and use the store
+name only when the product has no brand. Feeds created from these presets before 1.4.0 are updated on upgrade
+(only the unchanged preset expression is replaced; edited templates are left alone).
 
 When disabled, nothing is generated (cron, admin and CLI); existing files stay in place.
 

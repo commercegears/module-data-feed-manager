@@ -20,6 +20,7 @@ class StoreContext
      * @param array<int, string> $attributeSets attribute set ID => name
      * @param array<string, mixed> $storeVariables values for {{ store.* }}
      * @param array<string, mixed> $feedVariables values for {{ feed.* }}
+     * @param string|null $brandAttribute attribute code read by {{ product.brand }} (null: none found)
      */
     public function __construct(
         public readonly StoreInterface $store,
@@ -37,7 +38,8 @@ class StoreContext
         public readonly array $attributeSets,
         public readonly array $storeVariables,
         public readonly array $feedVariables,
-        public readonly string $today
+        public readonly string $today,
+        public readonly ?string $brandAttribute = null
     ) {
     }
 

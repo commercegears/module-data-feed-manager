@@ -52,6 +52,7 @@ Store view, currency and schedule are set per feed; these settings apply to all 
 | Generation > Batch Size | Products loaded at a time, 10 to 5000. Default: 250. Lower it if generation runs out of memory. |
 | Generation > Preview Items | Items shown on the feed's Preview tab, 1 to 100. Default: 10. |
 | Generation > Keep Generation Log For (Days) | Older log entries are deleted daily. Default: 30; 0 keeps the log for ever. |
+| Product Data > Brand Attribute | The product attribute read by `{{ product.brand }}`, which the Google Shopping (g:brand), Meta, Pinterest and Microsoft templates send as the brand. A variant without a value uses its parent's; the store name is used only when there is no brand at all. Default: Automatic (the attribute `brand` if your store has one, otherwise `manufacturer`). |
 
 ## 4. Creating a feed
 
@@ -100,7 +101,7 @@ The feed form has tabs on the left.
 values and option labels, `product.raw.<code>` for the stored value), prices (`regular_price`, `final_price`,
 `special_price`, `min_price`, `max_price`, each also `_incl_tax` and `_excl_tax`, `tier_prices`, `on_sale`), stock
 (`qty`, `is_in_stock`, `is_salable`, `availability`), `url`, images (`image`, `images`, `all_images` and more),
-categories (`category`, `category_path`, `google_category_id`, `google_category`), `parent.*` and `item_group_id`
+categories (`category`, `category_path`, `google_category_id`, `google_category`), `brand`, `parent.*` and `item_group_id`
 for variants, `variants` and `children`, reviews (`reviews_count`, `rating`), `store.*`, `feed.*` and `now`.
 
 The language is a sandbox: it has no access to PHP, files or configuration. For safety, XML feeds may not contain

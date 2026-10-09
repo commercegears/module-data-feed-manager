@@ -17,6 +17,7 @@ class Config
     private const XML_BATCH_SIZE = 'softaware_datafeed/general/batch_size';
     private const XML_PREVIEW_LIMIT = 'softaware_datafeed/general/preview_limit';
     private const XML_LOG_DAYS = 'softaware_datafeed/general/log_retention_days';
+    private const XML_BRAND_ATTRIBUTE = 'softaware_datafeed/product_data/brand_attribute';
 
     public function __construct(private readonly ScopeConfigInterface $scopeConfig)
     {
@@ -40,5 +41,13 @@ class Config
     public function getLogRetentionDays(): int
     {
         return max(0, (int)$this->scopeConfig->getValue(self::XML_LOG_DAYS));
+    }
+
+    /**
+     * Attribute code chosen for {{ product.brand }}; empty means automatic (brand, otherwise manufacturer).
+     */
+    public function getBrandAttribute(): string
+    {
+        return trim((string)$this->scopeConfig->getValue(self::XML_BRAND_ATTRIBUTE));
     }
 }

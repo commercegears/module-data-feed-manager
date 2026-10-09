@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.4.0 (2026-10-09)
+
+### Added
+
+- Settings > Product Data > **Brand Attribute** (`softaware_datafeed/product_data/brand_attribute`): the product
+  attribute used as the brand. Default: Automatic (the attribute `brand` if the store has one, otherwise
+  `manufacturer`).
+- Template variable `{{ product.brand }}`: the brand attribute's value (option label), falling back to the parent
+  product's value for variants.
+
+### Changed
+
+- The Google Shopping, Meta, Pinterest and Microsoft presets send `{{ product.brand }}` as the brand and use the store
+  name only when the product has no brand. Before, g:brand fell back to the store name whenever "manufacturer" was
+  empty, even when the store keeps the brand in another attribute.
+- Upgrade: existing feeds that still contain the unchanged preset expression for the brand are switched to
+  `{{ product.brand }}` (data patch `UseBrandVariable`); edited templates and columns are not touched. Existing config
+  paths are unchanged.
+
 ## 1.3.1 (2026-10-08)
 
 ### Added

@@ -23,6 +23,8 @@ class ProductContext implements VariableProviderInterface
         'sku' => 'SKU',
         'type' => 'Product type (simple, configurable, …)',
         'attribute_set' => 'Attribute set name',
+        'brand' => 'Brand: the brand attribute from the settings (default: brand, otherwise manufacturer), '
+            . 'falls back to the parent; empty when neither has a value',
         'url' => 'Product URL (children that are not visible use the parent URL)',
         'image' => 'Main image URL (falls back to the parent image, then the placeholder)',
         'small_image' => 'Small image URL',
@@ -210,6 +212,8 @@ class ProductContext implements VariableProviderInterface
                 return $this->store->currency;
             case 'raw':
                 return new RawValues($product);
+            case 'brand':
+                return $this->getBrand();
         }
 
         if (preg_match('/^(price|regular_price|final_price|special_price|min_price|max_price)(?:_(incl|excl)_tax)?$/', $key, $m)) {
@@ -221,6 +225,21 @@ class ProductContext implements VariableProviderInterface
             return $this->attributes->getDisplayValue($key, $value, $this->store->storeId);
         }
         return is_scalar($value) ? $value : null;
+    }
+
+    private function getBrand(): mixed
+    {
+        $code = $this->store->brandAttribute;
+        $value = $code === null
+            ? null
+            : $this->attributes->getDisplayValue($code, $this->product->getData($code), $this->store->storeId);
+        if (is_string($value)) {
+            $value = trim($value);
+        }
+        if ($value === null || $value === '' || !is_scalar($value)) {
+            return $this->parent ? $this->parent->get('brand') : null;
+        }
+        return $value;
     }
 
     private function getUrl(): string

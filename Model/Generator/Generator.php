@@ -284,8 +284,12 @@ class Generator implements FeedGeneratorInterface
         $renderer->compile($feed);
         $store = $this->storeContextBuilder->build($feed);
         $renderer->setStoreContext($store);
+        $keys = $renderer->getReferencedKeys();
+        if ($store->brandAttribute !== null && in_array('brand', $keys, true)) {
+            $keys[] = $store->brandAttribute;
+        }
         $needs = Needs::fromKeys(
-            $renderer->getReferencedKeys(),
+            $keys,
             $this->attributeResolver->getAllCodes(),
             $feed->getParentChildMode()
         );

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.5.1 (2026-10-10)
+
+### Fixed
+
+- Feed edit page: the Save button had no click action of its own, so Magento also gave it a link to the store's
+  base URL. Depending on timing, a click opened that page instead of saving. The button now only saves.
+- Feeds grid: the main part of the Add Feed button opened the store's base URL instead of a new Google Shopping
+  feed (its action was set under the key only the drop-down items read).
+
 ## 1.5.0 (2026-10-10)
 
 ### Added

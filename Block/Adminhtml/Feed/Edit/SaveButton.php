@@ -34,6 +34,8 @@ class SaveButton extends GenericButton implements ButtonProviderInterface
         }
         return [
             'label' => __('Save'),
+            // Empty on_click: without it Magento adds a link to the current route (location.href) that races the save.
+            'on_click' => '',
             'class' => 'save primary',
             'data_attribute' => $this->saveAction(['back' => 'continue']),
             'class_name' => Container::SPLIT_BUTTON,

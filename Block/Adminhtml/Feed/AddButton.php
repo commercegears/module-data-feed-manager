@@ -45,7 +45,8 @@ class AddButton implements ButtonProviderInterface
             'button_class' => '',
             'class_name' => Container::SPLIT_BUTTON,
             'options' => $options,
-            'onclick' => sprintf("setLocation('%s')", $this->urlBuilder->getUrl('*/*/new', ['preset' => 'google_shopping'])),
+            // The main button reads on_click (options read onclick); without it Magento links it to the base URL.
+            'on_click' => sprintf("setLocation('%s')", $this->urlBuilder->getUrl('*/*/new', ['preset' => 'google_shopping'])),
             'sort_order' => 10,
         ];
     }

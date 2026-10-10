@@ -50,7 +50,7 @@ Store view, currency and schedule are set per feed; these settings apply to all 
 | --- | --- |
 | General > Enabled | When set to No, no feeds are generated (cron, admin or command line). Existing feed files stay in place. Default: Yes. |
 | Generation > Batch Size | Products loaded at a time, 10 to 5000. Default: 250. Lower it if generation runs out of memory. |
-| Generation > Preview Items | Items shown on the feed's Preview tab, 1 to 100. Default: 10. |
+| Generation > Preview Items | Items rendered by the feed preview, 1 to 20. Default: 5. |
 | Generation > Keep Generation Log For (Days) | Older log entries are deleted daily. Default: 30; 0 keeps the log for ever. |
 | Product Data > Brand Attribute | The product attribute read by `{{ product.brand }}`, which the Google Shopping (g:brand), Meta, Pinterest and Microsoft templates send as the brand. A variant without a value uses its parent's; the store name is used only when there is no brand at all. Default: Automatic (the attribute `brand` if your store has one, otherwise `manufacturer`). |
 
@@ -75,6 +75,12 @@ The feed form has tabs on the left.
 ### Content: template (XML and JSON)
 
 ![Template editor](images/template-editor.png)
+
+The editor highlights the template so the parts are easy to tell apart: template tags and keywords, variables,
+filters, strings and comments, and the XML (or JSON) around them. Line numbers are on the left and the cursor's line
+and column below the field. An unclosed `{{`, `{%` or `{#` is marked in red. **Tab** indents (several selected lines
+at once), **Shift+Tab** outdents; to leave the field with the keyboard press **Esc**, then **Tab**. Undo (Ctrl+Z)
+works as usual, and the template is saved exactly as typed.
 
 ```
 {% for product in products %}
@@ -154,8 +160,19 @@ Mode (FTP)**. **Test Connection** checks the settings in the form.
 
 ![Preview of the first items](images/preview.png)
 
-**Preview First Items** renders the first items (Preview Items setting) from the values in the form, including
-unsaved changes, and validates them. Nothing is written. It also shows how many products match the filters.
+Click **Preview** in the page header (or **Preview Output** above the template or columns) at any time: a panel
+shows the feed for the first matching products, rendered from the values in the form, including unsaved changes,
+and validates it. The store view, product filters and attribute conditions of the feed apply. The output is
+highlighted (XML, JSON, or CSV/TXT with the delimiters marked) and has line numbers. Nothing is saved or written.
+The **Preview** tab of the form shows the same with **Preview First Items**.
+
+- How many items: the Preview Items setting (default 5, at most 20). The summary also says how many products match
+  the filters.
+- A template error names its line; **Show line N in the template** opens the Content tab with the cursor on it.
+- Items that fail (for example invalid XML) are listed with the SKU and the line of the item's output; a
+  validation error of the whole output marks that line in the output.
+- When the template prints nothing for most products, the preview stops after reading 500 products (or about
+  10 seconds) and says so.
 
 ### Saving
 

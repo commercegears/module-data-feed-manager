@@ -3,8 +3,8 @@
     "key_features": [
         "Ready templates for Google, Meta, Pinterest and Microsoft/Bing",
         "XML, JSON, CSV and delimited TXT",
-        "Template editor and column mapper",
-        "Preview of unsaved changes",
+        "Template editor with syntax highlighting, and column mapper",
+        "Highlighted preview of unsaved changes",
         "Product filters and attribute conditions",
         "Google category mapping with autocomplete",
         "Scheduled generation in batches, with a log",
@@ -37,7 +37,7 @@
         {
             "label": "XML and JSON",
             "title": "A template language made for feeds",
-            "text": "Print any product value with filters such as strip_tags, truncate or price. Output is escaped for XML or JSON automatically and the language has no access to PHP.",
+            "text": "Print any product value with filters such as strip_tags, truncate or price. The editor highlights template tags, filters, strings and the XML or JSON around them, with line numbers. Output is escaped automatically and the language has no access to PHP.",
             "image": "docs/images/template-editor.png"
         },
         {
@@ -49,7 +49,7 @@
         {
             "label": "Preview",
             "title": "Check before you save",
-            "text": "The Preview tab renders the first items from the values in the form, including unsaved changes, and validates them. Nothing is written.",
+            "text": "One click on Preview renders the feed for the first matching products from the values in the form, including unsaved changes, highlighted with line numbers and validated. Template errors name the line. Nothing is written.",
             "image": "docs/images/preview.png"
         },
         {

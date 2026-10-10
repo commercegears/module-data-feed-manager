@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.5.0 (2026-10-10)
+
+### Added
+
+- Template editor: syntax highlighting for template tags, expressions, filters, strings and comments, XML tags,
+  attributes and comments, and JSON keys and values; line numbers; cursor line and column. Tab indents and Shift+Tab
+  outdents (also for several selected lines); Esc then Tab moves to the next field. Unclosed `{{`, `{%` or `{#` are
+  marked. The textarea stays the form field (undo, selection and saving unchanged). No external libraries.
+- Preview from the page header (**Preview**) and the Content tab (**Preview Output**): renders the feed for the first
+  matching products from the unsaved form values in a panel, highlighted with line numbers. A template error names
+  its line and has a **Show line N in the template** button; an output validation error marks the line in the output.
+  The Preview tab shows the same highlighted output.
+
+### Changed
+
+- Preview Items (`softaware_datafeed/general/preview_limit`): default 5 (was 10), at most 20 (was 100). Higher saved
+  values are treated as 20.
+- The preview stops after reading 500 products or after about 10 seconds when the template prints nothing for most
+  products, and says so, instead of reading the whole catalogue.
+- Runtime errors in a template (for example an invalid `regex_replace` pattern) and invalid item XML name the line
+  (template line, or line of the item's output).
+
+### Security
+
+- A template could exhaust the server's memory or CPU (for example `{% set s = s ~ s %}` in a loop, `replace`,
+  `join` or `regex_replace` building huge values, or deeply nested loops), crashing the PHP worker or the cron run
+  and putting other sites on the server at risk. Template values are now limited to 1 MB, the output of one item,
+  header or footer to 8 MB and loops to 1,000,000 steps per item; the limit is checked before a large value is
+  built. Normal feeds are far below these limits.
+
 ## 1.4.0 (2026-10-09)
 
 ### Added

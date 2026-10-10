@@ -15,7 +15,10 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
   mass enable, disable and delete; duplicate.
 - **Ready templates** ("Add Feed" split button): Google Shopping (RSS 2.0 XML with the `g:` namespace),
   Meta catalogue (CSV), Pinterest catalogue (CSV), Microsoft/Bing Shopping (tab-delimited TXT), generic JSON.
-- **Template editor** for XML/JSON: a small, sandboxed template language (no PHP):
+- **Template editor** for XML/JSON with syntax highlighting (template tags, filters, strings, comments, XML tags and
+  attributes, JSON keys), line numbers and the cursor position; Tab indents, Shift+Tab outdents, Esc then Tab leaves
+  the field. Self-contained (no external libraries or CDN); the field is still a plain textarea, so saving is
+  unchanged. The template uses a small, sandboxed template language (no PHP):
   - `{{ product.name | strip_tags | truncate(150) }}` prints a value, escaped for XML or JSON automatically
   - `{% for product in products %} … {% endfor %}` marks the repeated item (exactly one, at top level)
   - `{% if … %} {% elseif … %} {% else %} {% endif %}`, `{% for image in product.images %}`, `{% set x = … %}`,
@@ -51,7 +54,11 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
   - cron: per feed daily times or a cron expression (store view timezone), own cron group `softaware_datafeed`
   - admin: "Generate Now" runs batch by batch in the browser with a progress bar
   - CLI: see below
-  - **preview** (Preview tab of the feed form) renders the first items of the unsaved form values and validates them
+  - **preview**: the **Preview** button (page header), **Preview Output** (Content tab) and the Preview tab render
+    the feed for the first matching products (store view, product filters and conditions applied) from the unsaved
+    form values, highlighted with line numbers, and validate it. Nothing is saved or written. Template errors name
+    the line, with a button that puts the cursor on it; output errors mark the line in the output. The work is
+    bounded: at most 20 items, 500 products read and about 10 seconds
   - **generation log** (Softaware > Data Feed Manager > Generation Log): start time, trigger, status, duration, items,
     errors with messages, file size
 - **Delivery**: local file (public URL when below `pub/`), optional upload by SFTP, FTP or FTPS (password stored
@@ -73,7 +80,7 @@ Stores > Configuration > Softaware > Data Feed Manager (groups General, Generati
 |---|---|---|
 | Enabled | `softaware_datafeed/general/enabled` | Yes |
 | Batch Size | `softaware_datafeed/general/batch_size` | 250 |
-| Preview Items | `softaware_datafeed/general/preview_limit` | 10 |
+| Preview Items | `softaware_datafeed/general/preview_limit` | 5 (1 to 20) |
 | Keep Generation Log For (Days) | `softaware_datafeed/general/log_retention_days` | 30 |
 | Brand Attribute | `softaware_datafeed/product_data/brand_attribute` | Automatic: `brand` if the store has it, otherwise `manufacturer` |
 
@@ -131,6 +138,10 @@ the format. Partial files and job state are kept in `var/softaware_datafeed/` wh
 - The Google category mapping is global (not per store view or feed).
 - The template language is deliberately small; there are no custom PHP functions in templates.
 - `{{`, `{%` and `}}` cannot appear inside string literals of a template expression.
+- Limits per template value and item, so a template cannot exhaust the server's memory: a value (for example built
+  with `~`, `replace` or `join`) may be up to 1 MB, one item, header or footer up to 8 MB, and loops may run up to
+  1,000,000 steps per item. An item over a limit is skipped and logged like any other broken item.
+- Templates larger than 2 MB are edited without highlighting.
 - CSV values are written as they are (no protection against spreadsheet formulas such as `=…`), because channels
   read the file, not a spreadsheet program. Do not open feeds built from untrusted text in a spreadsheet.
 - FTPS uses PHP's FTP extension, which does not verify the server's TLS certificate. Prefer SFTP.

@@ -5,7 +5,7 @@
             <general>
                 <enabled>1</enabled>
                 <batch_size>250</batch_size>
-                <preview_limit>10</preview_limit>
+                <preview_limit>5</preview_limit>
                 <log_retention_days>30</log_retention_days>
             </general>
         </softaware_datafeed>

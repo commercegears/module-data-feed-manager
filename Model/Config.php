@@ -35,7 +35,7 @@ class Config
 
     public function getPreviewLimit(): int
     {
-        return max(1, min(100, (int)$this->scopeConfig->getValue(self::XML_PREVIEW_LIMIT) ?: 10));
+        return max(1, min(20, (int)$this->scopeConfig->getValue(self::XML_PREVIEW_LIMIT) ?: 5));
     }
 
     public function getLogRetentionDays(): int

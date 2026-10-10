@@ -18,6 +18,15 @@ class Preview
 {
     private const MAX_ERRORS = 20;
 
+    /** Most items a preview renders, whatever the setting says. */
+    public const MAX_ITEMS = 20;
+
+    /** Products read at most while looking for items (templates that print nothing for most products). */
+    private const MAX_PRODUCTS = 500;
+
+    /** Seconds after which the preview stops reading products. */
+    private const TIME_BUDGET = 10.0;
+
     public function __construct(
         private readonly Generator $generator,
         private readonly ProductProvider $productProvider,
@@ -26,11 +35,14 @@ class Preview
     }
 
     /**
-     * @return array{output: string, items: int, total: int, errors: string[], valid: bool, validation: string|null}
+     * @return array{output: string, items: int, total: int, errors: string[], valid: bool, validation: string|null,
+     *     format: string, delimiter: string, truncated: bool}
      * @throws LocalizedException
      */
     public function render(FeedInterface $feed, int $limit): array
     {
+        $limit = max(1, min(self::MAX_ITEMS, $limit));
+        $started = microtime(true);
         $session = $this->generator->createSession($feed);
         $renderer = $session->renderer;
         $total = $this->productProvider->count($feed, $session->store);
@@ -39,6 +51,8 @@ class Preview
         $items = 0;
         $errors = [];
         $lastId = 0;
+        $read = 0;
+        $truncated = false;
         // Children modes can produce several items per product; read on until enough items are rendered.
         while ($items < $limit) {
             $batch = $this->productProvider->getBatch($feed, $session->store, $session->needs, $lastId, $limit);
@@ -58,8 +72,13 @@ class Preview
                 $output .= ($items > 0 ? $renderer->getSeparator() : '') . $text;
                 $items++;
             }
+            $read += $batch['processed'];
             // Stop early when items keep failing, so a broken template does not walk the whole catalogue.
             if ($batch['processed'] < $limit || count($errors) >= self::MAX_ERRORS) {
+                break;
+            }
+            if ($items < $limit && ($read >= self::MAX_PRODUCTS || microtime(true) - $started > self::TIME_BUDGET)) {
+                $truncated = true;
                 break;
             }
             $lastId = $batch['last_id'];
@@ -90,6 +109,9 @@ class Preview
             'errors' => $errors,
             'valid' => $validation === null,
             'validation' => $validation,
+            'format' => $feed->getFormat(),
+            'delimiter' => $feed->isDelimited() ? $delimiter : '',
+            'truncated' => $truncated,
         ];
     }
 }

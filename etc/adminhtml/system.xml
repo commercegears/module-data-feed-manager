@@ -27,8 +27,8 @@
                 <field id="preview_limit" translate="label comment" type="text" sortOrder="30" showInDefault="1" canRestore="1">
                     <label>Preview Items</label>
                     <config_path>softaware_datafeed/general/preview_limit</config_path>
-                    <validate>required-entry validate-digits validate-digits-range digits-range-1-100</validate>
-                    <comment>Items shown on the feed's Preview tab, 1–100. Default: 10.</comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-1-20</validate>
+                    <comment>Items rendered by the feed preview, 1 to 20. Default: 5.</comment>
                 </field>
                 <field id="log_retention_days" translate="label comment" type="text" sortOrder="40" showInDefault="1" canRestore="1">
                     <label>Keep Generation Log For (Days)</label>

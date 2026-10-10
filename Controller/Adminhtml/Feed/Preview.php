@@ -49,11 +49,30 @@ class Preview extends Action implements HttpPostActionInterface
             unset($data['ftp_password']);
             $this->mapper->apply($feed, $data);
             $output = $this->preview->render($feed, $this->config->getPreviewLimit());
+            $output['templateLine'] = $this->findLine((string)($output['errors'][0] ?? ''), '/\bLine (\d+):/');
+            $output['outputLine'] = $this->findLine((string)$output['validation'], '/\b(?:line|Row) (\d+)\b/');
             return $result->setData(['ok' => true] + $output);
         } catch (LocalizedException $e) {
-            return $result->setData(['ok' => false, 'message' => $e->getMessage()]);
+            return $result->setData(['ok' => false, 'message' => $e->getMessage()] + $this->lineOf($e->getMessage()));
         } catch (\Throwable $e) {
-            return $result->setData(['ok' => false, 'message' => (string)__('Preview failed: %1', $e->getMessage())]);
+            $message = (string)__('Preview failed: %1', $e->getMessage());
+            return $result->setData(['ok' => false, 'message' => $message] + $this->lineOf($e->getMessage()));
         }
+    }
+
+    /**
+     * Template line named in an error ("Line 12: …"), so the form can jump to it.
+     *
+     * @return array{templateLine?: int}
+     */
+    private function lineOf(string $message): array
+    {
+        $line = $this->findLine($message, '/\bLine (\d+):/');
+        return $line ? ['templateLine' => $line] : [];
+    }
+
+    private function findLine(string $message, string $pattern): ?int
+    {
+        return preg_match($pattern, $message, $m) ? (int)$m[1] : null;
     }
 }

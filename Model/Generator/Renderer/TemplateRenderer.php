@@ -120,7 +120,10 @@ class TemplateRenderer implements RendererInterface
         libxml_clear_errors();
         libxml_use_internal_errors($previous);
         if (!$ok) {
-            throw new \RuntimeException('invalid XML: ' . trim($error ? $error->message : 'unknown error'));
+            throw new \RuntimeException(
+                'invalid XML: ' . trim($error ? $error->message : 'unknown error')
+                . ($error ? sprintf(' (line %d of the item)', $error->line) : '')
+            );
         }
         $unsafe = $this->activeContentGuard->checkDocument($document, true);
         if ($unsafe !== null) {

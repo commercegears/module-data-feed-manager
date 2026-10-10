@@ -1,0 +1,33 @@
+<div class="softaware-datafeed-editor" data-bind="css: {'is-plain': plainMode}, afterRender: initEditor">
+    <div class="softaware-datafeed-editor-gutter" aria-hidden="true"><pre></pre></div>
+    <div class="softaware-datafeed-editor-body">
+        <pre class="softaware-datafeed-editor-highlight" aria-hidden="true"><code></code></pre>
+        <textarea class="admin__control-textarea softaware-datafeed-editor-input"
+                  spellcheck="false" autocomplete="off" autocapitalize="off" wrap="off"
+                  data-bind="
+                    value: value,
+                    valueUpdate: valueUpdate,
+                    hasFocus: focused,
+                    attr: {
+                        name: inputName,
+                        cols: cols,
+                        rows: rows,
+                        'aria-describedby': noticeId + ' ' + uid + '-keys',
+                        placeholder: placeholder,
+                        id: uid,
+                        disabled: disabled
+                    }"></textarea>
+    </div>
+</div>
+<div class="softaware-datafeed-editor-status">
+    <span data-bind="text: cursorText"></span>
+    <span data-bind="attr: {id: uid + '-keys'}">
+        <!-- ko ifnot: tabMovesFocus -->
+        <span data-bind="i18n: 'Tab indents, Shift+Tab outdents. Press Esc, then Tab, to leave the field.'"></span>
+        <!-- /ko -->
+        <!-- ko if: tabMovesFocus -->
+        <span data-bind="i18n: 'Tab now moves to the next field.'"></span>
+        <!-- /ko -->
+    </span>
+    <span data-bind="visible: plainMode, i18n: 'Very large template: highlighting is switched off.'"></span>
+</div>

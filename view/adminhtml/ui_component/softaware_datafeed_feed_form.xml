@@ -11,6 +11,7 @@
             <button name="back" class="Softaware\DataFeed\Block\Adminhtml\Feed\Edit\BackButton"/>
             <button name="delete" class="Softaware\DataFeed\Block\Adminhtml\Feed\Edit\DeleteButton"/>
             <button name="generate" class="Softaware\DataFeed\Block\Adminhtml\Feed\Edit\GenerateButton"/>
+            <button name="preview" class="Softaware\DataFeed\Block\Adminhtml\Feed\Edit\PreviewButton"/>
             <button name="save" class="Softaware\DataFeed\Block\Adminhtml\Feed\Edit\SaveButton"/>
         </buttons>
         <namespace>softaware_datafeed_feed_form</namespace>
@@ -229,6 +230,17 @@
             <label translate="true">Content</label>
             <dataScope>data</dataScope>
         </settings>
+        <container name="preview_bar" component="Softaware_DataFeed/js/form/preview" sortOrder="5">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="template" xsi:type="string">Softaware_DataFeed/form/preview-bar</item>
+                    <item name="url" xsi:type="url" path="softaware_datafeed/feed/preview"/>
+                    <item name="provider" xsi:type="string">softaware_datafeed_feed_form.softaware_datafeed_feed_form_data_source</item>
+                    <item name="editorName" xsi:type="string">softaware_datafeed_feed_form.areas.content_section.content_section.template_section.template</item>
+                    <item name="tabName" xsi:type="string">softaware_datafeed_feed_form.areas.content_section</item>
+                </item>
+            </argument>
+        </container>
         <fieldset name="template_section" sortOrder="10">
             <settings>
                 <label/>
@@ -237,7 +249,7 @@
                     <class name="softaware-datafeed-plain">true</class>
                 </additionalClasses>
             </settings>
-            <field name="template" formElement="textarea" sortOrder="10">
+            <field name="template" formElement="textarea" component="Softaware_DataFeed/js/form/element/code-editor" sortOrder="10">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
                         <item name="rows" xsi:type="number">28</item>
@@ -889,6 +901,8 @@
                 <item name="config" xsi:type="array">
                     <item name="url" xsi:type="url" path="softaware_datafeed/feed/preview"/>
                     <item name="provider" xsi:type="string">softaware_datafeed_feed_form.softaware_datafeed_feed_form_data_source</item>
+                    <item name="editorName" xsi:type="string">softaware_datafeed_feed_form.areas.content_section.content_section.template_section.template</item>
+                    <item name="tabName" xsi:type="string">softaware_datafeed_feed_form.areas.content_section</item>
                 </item>
             </argument>
         </container>

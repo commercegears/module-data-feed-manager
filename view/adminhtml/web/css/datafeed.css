@@ -296,3 +296,204 @@ textarea.softaware-datafeed-code,
 .softaware-datafeed-columns .admin__control-table th:nth-child(2) { width: 24%; }
 .softaware-datafeed-columns .admin__control-table th:nth-child(3) { width: 46%; }
 .softaware-datafeed-columns .admin__control-table th:nth-child(4) { width: 22%; }
+
+/* Template editor: a highlighted copy is drawn under a transparent textarea (the textarea stays the field) */
+.softaware-datafeed-editor {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid #adadad;
+    border-radius: 1px;
+    background: #fff;
+}
+.softaware-datafeed-editor:focus-within {
+    border-color: #007bdb;
+    box-shadow: 0 0 0 1px #007bdb;
+}
+.softaware-datafeed-editor-gutter,
+.softaware-datafeed-editor-gutter pre,
+.softaware-datafeed-editor-highlight,
+.softaware-datafeed-editor-highlight code,
+.softaware-datafeed-code .softaware-datafeed-editor .softaware-datafeed-editor-input {
+    font-family: Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 1.25rem;
+    font-weight: 400;
+    font-variant-ligatures: none;
+    line-height: 1.5;
+    letter-spacing: normal;
+    tab-size: 4;
+}
+.softaware-datafeed-editor-gutter {
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #f6f8fa;
+    border-right: 1px solid #e3e3e3;
+    color: #6e7781;
+    text-align: right;
+    user-select: none;
+}
+.softaware-datafeed-editor-gutter pre {
+    margin: 0;
+    padding: 0 .8rem 4rem 1rem;
+    min-width: 3ch;
+    border: 0;
+    background: none;
+    color: inherit;
+    white-space: pre;
+}
+.softaware-datafeed-editor-body {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+.softaware-datafeed-editor-highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: .6rem 1rem;
+    overflow: hidden;
+    border: 0;
+    background: none;
+    color: #24292f;
+    white-space: pre;
+    pointer-events: none;
+}
+.softaware-datafeed-editor-highlight code {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    white-space: inherit;
+}
+.softaware-datafeed-code .softaware-datafeed-editor .softaware-datafeed-editor-input {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 40rem;
+    margin: 0;
+    padding: .6rem 1rem;
+    overflow: auto;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: transparent;
+    caret-color: #1f2328;
+    white-space: pre;
+    overflow-wrap: normal;
+    resize: vertical;
+}
+.softaware-datafeed-code .softaware-datafeed-editor .softaware-datafeed-editor-input::selection {
+    background: rgba(0, 105, 218, .25);
+    color: transparent;
+}
+.softaware-datafeed-code .softaware-datafeed-editor .softaware-datafeed-editor-input::placeholder {
+    color: #8a8a8a;
+}
+.softaware-datafeed-code .softaware-datafeed-editor.is-plain .softaware-datafeed-editor-input {
+    color: #24292f;
+}
+.softaware-datafeed-editor-marker {
+    position: absolute;
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    background: rgba(207, 34, 46, .12);
+    border-left: 3px solid #cf222e;
+    pointer-events: none;
+}
+.softaware-datafeed-editor-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 2rem;
+    margin-top: .5rem;
+    color: #6f6f6f;
+    font-size: 1.2rem;
+}
+
+/* Highlighting colours: light (editor) */
+.sw-hl-tpl-delim,
+.sw-hl-tpl-tag { color: #8250df; font-weight: 700; }
+.sw-hl-tpl-keyword { color: #cf222e; font-weight: 700; }
+.sw-hl-tpl-var { color: #0550ae; }
+.sw-hl-tpl-prop { color: #0969da; }
+.sw-hl-tpl-filter { color: #8250df; }
+.sw-hl-tpl-string { color: #9a6700; }
+.sw-hl-tpl-number { color: #953800; }
+.sw-hl-tpl-op { color: #57606a; }
+.sw-hl-tpl-comment { color: #6e7781; font-style: italic; }
+.sw-hl-tpl-error { color: #fff; background: #cf222e; }
+.sw-hl-xml-tag { color: #1a7f37; }
+.sw-hl-xml-attr { color: #953800; }
+.sw-hl-xml-string { color: #0a3069; }
+.sw-hl-xml-punct { color: #57606a; }
+.sw-hl-xml-entity { color: #953800; }
+.sw-hl-xml-comment { color: #6e7781; font-style: italic; }
+.sw-hl-xml-cdata,
+.sw-hl-xml-decl { color: #6e7781; }
+.sw-hl-json-key { color: #953800; }
+.sw-hl-json-string { color: #0a3069; }
+.sw-hl-json-number { color: #116329; }
+.sw-hl-json-punct { color: #57606a; }
+
+/* Highlighting colours: dark (preview output) */
+.softaware-datafeed-output .sw-hl-xml-tag { color: #7ee787; }
+.softaware-datafeed-output .sw-hl-xml-attr,
+.softaware-datafeed-output .sw-hl-xml-entity,
+.softaware-datafeed-output .sw-hl-json-key { color: #ffa657; }
+.softaware-datafeed-output .sw-hl-xml-string,
+.softaware-datafeed-output .sw-hl-json-string,
+.softaware-datafeed-output .sw-hl-csv-string { color: #a5d6ff; }
+.softaware-datafeed-output .sw-hl-xml-punct,
+.softaware-datafeed-output .sw-hl-json-punct,
+.softaware-datafeed-output .sw-hl-xml-comment,
+.softaware-datafeed-output .sw-hl-xml-cdata,
+.softaware-datafeed-output .sw-hl-xml-decl { color: #8b949e; }
+.softaware-datafeed-output .sw-hl-json-number { color: #79c0ff; }
+.softaware-datafeed-output .sw-hl-csv-header { color: #f0f6fc; font-weight: 700; }
+.softaware-datafeed-output .sw-hl-csv-delim { color: #ff7b72; font-weight: 700; }
+
+/* Preview output: line numbers and the line named in a validation error */
+.softaware-datafeed-output {
+    counter-reset: swline;
+}
+.softaware-datafeed-output .sw-hl-line {
+    counter-increment: swline;
+}
+.softaware-datafeed-output .sw-hl-line::before {
+    content: counter(swline);
+    display: inline-block;
+    width: 4ch;
+    margin-right: 1.5rem;
+    color: #6e7681;
+    text-align: right;
+    user-select: none;
+}
+.softaware-datafeed-output .sw-hl-line.is-error {
+    display: inline-block;
+    min-width: 100%;
+    background: rgba(248, 81, 73, .3);
+}
+.softaware-datafeed-output:focus {
+    outline: 2px solid #68a8e0;
+    outline-offset: 1px;
+}
+.softaware-datafeed-preview-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    align-items: center;
+    margin: 0 0 2rem;
+}
+.softaware-datafeed-preview-slide .modal-inner-wrap {
+    max-width: 120rem;
+}
+.softaware-datafeed-preview-slide .softaware-datafeed-output {
+    max-height: none;
+}
+.softaware-datafeed-editor-status > span:empty {
+    display: none;
+}

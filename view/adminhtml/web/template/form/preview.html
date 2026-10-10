@@ -3,17 +3,23 @@
         <button type="button" class="action-secondary" data-bind="click: run, disable: loading">
             <span data-bind="i18n: 'Preview First Items'"></span>
         </button>
-        <span class="softaware-datafeed-muted" data-bind="i18n: 'Uses the values in this form, including unsaved changes. Nothing is written.'"></span>
+        <span class="softaware-datafeed-muted" data-bind="i18n: 'Renders the first matching products with the values in this form, including unsaved changes. Nothing is saved or written.'"></span>
     </div>
-    <div class="softaware-datafeed-spinner" data-bind="visible: loading">
+    <div class="softaware-datafeed-spinner" role="status" data-bind="visible: loading">
         <span data-bind="i18n: 'Rendering…'"></span>
     </div>
-    <div data-bind="visible: message, attr: {class: 'message message-' + messageType()}">
+    <div role="alert" data-bind="visible: message, attr: {class: 'message message-' + messageType()}">
         <div data-bind="text: message"></div>
     </div>
+    <p data-bind="visible: templateLine() && editorName">
+        <button type="button" class="action-secondary" data-bind="click: showTemplateLine">
+            <span data-bind="text: $t('Show line %1 in the template').replace('%1', templateLine())"></span>
+        </button>
+    </p>
     <p data-bind="visible: summary, text: summary"></p>
     <ul class="softaware-datafeed-messages" data-bind="visible: errors().length, foreach: errors">
         <li data-bind="text: $data"></li>
     </ul>
-    <pre class="softaware-datafeed-output" data-bind="visible: output, text: output"></pre>
+    <pre class="softaware-datafeed-output" tabindex="0"
+         data-bind="visible: output, html: outputHtml, afterRender: onOutputRendered, attr: {'aria-label': $t('Preview output')}"></pre>
 </div>

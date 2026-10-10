@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.5.2 (2026-10-10)
+
+### Fixed
+
+- Template editor: when the module's admin stylesheet is missing or out of date (for example static content not
+  redeployed after an upgrade in production mode), the editor now stays a plain text field instead of drawing the
+  line numbers and a second copy of the template over it.
+- Template editor: typing in large templates (over 30,000 characters) is debounced instead of re-highlighting on
+  every keystroke; Magento's "changed from default" tracking of the field works again; the "Line, column" hint no
+  longer depends on the translation script being loaded first.
+- `replace` with a map of pairs: the size check now counts the actual occurrences, so long descriptions are no
+  longer refused (and the item skipped) when the result would stay well under the limit.
+
+### Upgrade notes (1.5.0)
+
+- Since 1.5.0 a single template value may be at most 1 MB and one item's output at most 8 MB, in previews and in
+  feed generation. An item that exceeds a limit is skipped and the run ends with a warning in the feed log; the file
+  stays valid.
+- The preview size setting is limited to 1 to 20 products; a stored higher value is used as 20.
+
 ## 1.5.1 (2026-10-10)
 
 ### Fixed

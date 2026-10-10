@@ -118,8 +118,15 @@ class Filters
                 $text = $this->str($value);
                 if (is_array($args[0] ?? null)) {
                     $pairs = array_map([$this, 'str'], $args[0]);
-                    $longest = max(array_map('strlen', $pairs ?: ['']));
-                    $this->assertResultLength(strlen($text) * max(1, $longest));
+                    // Upper bound of the result: every occurrence of a key replaced by its value.
+                    $estimate = strlen($text);
+                    foreach ($pairs as $search => $replacement) {
+                        $search = (string)$search;
+                        if ($search !== '' && strlen($replacement) > strlen($search)) {
+                            $estimate += substr_count($text, $search) * (strlen($replacement) - strlen($search));
+                        }
+                    }
+                    $this->assertResultLength($estimate);
                     return strtr($text, $pairs);
                 }
                 $search = $this->str($args[0] ?? '');

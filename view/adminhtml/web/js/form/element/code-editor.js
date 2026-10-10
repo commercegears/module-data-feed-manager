@@ -7,12 +7,13 @@
 define([
     'jquery',
     'Magento_Ui/js/form/element/textarea',
-    'Softaware_DataFeed/js/highlight'
+    'Softaware_DataFeed/js/highlight',
+    'mage/translate'
 ], function ($, Textarea, highlighter) {
     'use strict';
 
     var INDENT = '    ',
-        LARGE = 200000,
+        LARGE = 30000,
         HUGE = 2000000;
 
     return Textarea.extend({
@@ -28,7 +29,7 @@ define([
             },
             listens: {
                 format: 'refresh',
-                value: 'onValueChange'
+                value: 'setDifferedFromDefault onValueChange'
             }
         },
 
@@ -77,8 +78,28 @@ define([
             }
             // The value binding of the textarea is applied after this wrapper's afterRender.
             window.setTimeout(function () {
+                if (!self.hasEditorStyles()) {
+                    self.disableOverlay();
+
+                    return;
+                }
                 self.refresh();
             }, 0);
+        },
+
+        /**
+         * The overlay only works with datafeed.css (absolute layers, transparent textarea text). If the stylesheet
+         * is missing or stale (e.g. static content not redeployed after an upgrade), the layers would stack as a
+         * second copy of the template with the line numbers above it: keep the plain textarea instead.
+         */
+        hasEditorStyles: function () {
+            return !!this.highlightBox && window.getComputedStyle(this.highlightBox).position === 'absolute';
+        },
+
+        disableOverlay: function () {
+            this.overlayOff = true;
+            $(this.gutter).hide();
+            $(this.highlightBox).hide();
         },
 
         onValueChange: function () {
@@ -96,7 +117,7 @@ define([
             var self = this,
                 length = this.input ? this.input.value.length : 0;
 
-            if (!this.input) {
+            if (!this.input || this.overlayOff) {
                 return;
             }
             window.clearTimeout(this.timer);
@@ -121,7 +142,7 @@ define([
         refresh: function () {
             var text, lines, numbers = [], i;
 
-            if (!this.input) {
+            if (!this.input || this.overlayOff) {
                 return;
             }
             text = this.input.value;
@@ -152,7 +173,7 @@ define([
             var input = this.input,
                 style;
 
-            if (!input || !this.highlightBox) {
+            if (!input || !this.highlightBox || this.overlayOff) {
                 return;
             }
             style = window.getComputedStyle(input);
@@ -170,7 +191,7 @@ define([
         },
 
         syncScroll: function () {
-            if (!this.input) {
+            if (!this.input || this.overlayOff) {
                 return;
             }
             this.highlightBox.scrollTop = this.input.scrollTop;

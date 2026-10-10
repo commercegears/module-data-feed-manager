@@ -18,8 +18,19 @@ class Runtime
 
     private const MAX_LOOP_ITEMS = 10000;
 
+    /** Longest value (bytes) an expression may produce, so a template cannot exhaust memory. */
+    public const MAX_VALUE_LENGTH = 1048576;
+
+    /** Longest output (bytes) of one render call: an item, the header or the footer. */
+    public const MAX_OUTPUT_LENGTH = 8388608;
+
+    /** Loop iterations allowed in one render call (nested loops multiply). */
+    private const MAX_ITERATIONS = 1000000;
+
     private string $escape = self::ESCAPE_NONE;
     private string $currency = '';
+    private int $depth = 0;
+    private int $iterations = 0;
 
     public function __construct(private readonly Filters $filters)
     {
@@ -48,6 +59,23 @@ class Runtime
      */
     public function render(array $nodes, array &$scope): string
     {
+        if ($this->depth === 0) {
+            $this->iterations = 0;
+        }
+        $this->depth++;
+        try {
+            return $this->renderNodes($nodes, $scope);
+        } finally {
+            $this->depth--;
+        }
+    }
+
+    /**
+     * @param array<int, array> $nodes
+     * @param array<string, mixed> $scope
+     */
+    private function renderNodes(array $nodes, array &$scope): string
+    {
         $output = '';
         foreach ($nodes as $node) {
             switch ($node[0]) {
@@ -73,6 +101,12 @@ class Runtime
                 case 'set':
                     $scope[$node[1]] = $this->evaluate($node[2], $scope);
                     break;
+            }
+            if (strlen($output) > self::MAX_OUTPUT_LENGTH) {
+                throw new \LengthException(sprintf(
+                    'the output is longer than %d MB; check loops and repeated text',
+                    self::MAX_OUTPUT_LENGTH >> 20
+                ));
             }
         }
         return $output;
@@ -115,6 +149,13 @@ class Runtime
         $length = count($items);
         $output = '';
         foreach ($items as $index => $item) {
+            if (++$this->iterations > self::MAX_ITERATIONS) {
+                throw new \LengthException(sprintf(
+                    'Line %d: more than %d loop steps for one item; check nested loops',
+                    (int)($node[4] ?? 0),
+                    self::MAX_ITERATIONS
+                ));
+            }
             $scope[$variable] = $item;
             $scope['loop'] = [
                 'index' => $index + 1,
@@ -156,7 +197,17 @@ class Runtime
                 foreach ($expr[3] as $arg) {
                     $args[] = $this->evaluate($arg, $scope);
                 }
-                return $this->filters->apply($expr[1], $this->evaluate($expr[2], $scope), $args, $this);
+                try {
+                    $value = $this->filters->apply($expr[1], $this->evaluate($expr[2], $scope), $args, $this);
+                    self::assertLength($value);
+                } catch (\InvalidArgumentException | \LengthException $e) {
+                    $message = $e->getMessage();
+                    if (!str_starts_with($message, 'Line ') && isset($expr[4])) {
+                        $message = sprintf('Line %d: %s', (int)$expr[4], $message);
+                    }
+                    throw new \InvalidArgumentException($message, 0, $e);
+                }
+                return $value;
             case 'not':
                 return !self::isTruthy($this->evaluate($expr[1], $scope));
             case 'neg':
@@ -200,7 +251,12 @@ class Runtime
         }
         switch ($op) {
             case '~':
-                return $this->stringify($left) . $this->stringify($right);
+                $left = $this->stringify($left);
+                $right = $this->stringify($right);
+                if (strlen($left) + strlen($right) > self::MAX_VALUE_LENGTH) {
+                    throw new \LengthException(self::tooLongMessage());
+                }
+                return $left . $right;
             case 'in':
                 if (is_array($right)) {
                     $needle = $this->stringify($left);
@@ -341,6 +397,21 @@ class Runtime
             JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE
         );
         return $json === false ? '' : substr($json, 1, -1);
+    }
+
+    /**
+     * @throws \LengthException when a string value is longer than {@see MAX_VALUE_LENGTH}
+     */
+    public static function assertLength(mixed $value): void
+    {
+        if ((is_string($value) || $value instanceof SafeString) && strlen((string)$value) > self::MAX_VALUE_LENGTH) {
+            throw new \LengthException(self::tooLongMessage());
+        }
+    }
+
+    public static function tooLongMessage(): string
+    {
+        return sprintf('a value is longer than %d MB', self::MAX_VALUE_LENGTH >> 20);
     }
 
     public static function isEmpty(mixed $value): bool

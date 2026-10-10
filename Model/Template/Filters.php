@@ -115,16 +115,33 @@ class Filters
             case 'if':
                 return Runtime::isTruthy($value) ? ($args[0] ?? '1') : ($args[1] ?? '');
             case 'replace':
+                $text = $this->str($value);
                 if (is_array($args[0] ?? null)) {
-                    return strtr($this->str($value), array_map('strval', $args[0]));
+                    $pairs = array_map([$this, 'str'], $args[0]);
+                    $longest = max(array_map('strlen', $pairs ?: ['']));
+                    $this->assertResultLength(strlen($text) * max(1, $longest));
+                    return strtr($text, $pairs);
                 }
-                return str_replace((string)($args[0] ?? ''), (string)($args[1] ?? ''), $this->str($value));
+                $search = $this->str($args[0] ?? '');
+                $replacement = $this->str($args[1] ?? '');
+                if ($search !== '' && $replacement !== '') {
+                    $this->assertResultLength(strlen($text) + substr_count($text, $search) * strlen($replacement));
+                }
+                return str_replace($search, $replacement, $text);
             case 'regex_replace':
                 $pattern = (string)($args[0] ?? '');
                 if ($pattern === '' || @preg_match($pattern, '') === false) {
                     throw new \InvalidArgumentException(sprintf('regex_replace: invalid pattern "%s"', $pattern));
                 }
-                return (string)preg_replace($pattern, (string)($args[1] ?? ''), $this->str($value));
+                $text = $this->str($value);
+                $replacement = $this->str($args[1] ?? '');
+                // Matches do not overlap, so every back reference adds at most the length of the text.
+                $matches = (int)@preg_match_all($pattern, $text);
+                $references = preg_match_all('/\$\d+|\$\{\d+\}|\\\\\d+/', $replacement);
+                $this->assertResultLength(
+                    strlen($text) + $matches * strlen($replacement) + (int)$references * strlen($text)
+                );
+                return (string)preg_replace($pattern, $replacement, $text);
             case 'prepend':
                 $text = $this->str($value);
                 return $text === '' ? '' : ($args[0] ?? '') . $text;
@@ -132,7 +149,12 @@ class Filters
                 $text = $this->str($value);
                 return $text === '' ? '' : $text . ($args[0] ?? '');
             case 'join':
-                return implode((string)($args[0] ?? ', '), array_map([$runtime, 'stringify'], $this->toList($value)));
+                $parts = array_map([$runtime, 'stringify'], $this->toList($value));
+                $separator = $this->str($args[0] ?? ', ');
+                $this->assertResultLength(
+                    array_sum(array_map('strlen', $parts)) + max(0, count($parts) - 1) * strlen($separator)
+                );
+                return implode($separator, $parts);
             case 'split':
                 $text = $this->str($value);
                 $separator = (string)($args[0] ?? ',');
@@ -193,6 +215,16 @@ class Filters
                 });
         }
         throw new \InvalidArgumentException(sprintf('Unknown filter "%s"', $name));
+    }
+
+    /**
+     * Refuses a result before it is built when it would be longer than {@see Runtime::MAX_VALUE_LENGTH}.
+     */
+    private function assertResultLength(int $length): void
+    {
+        if ($length > Runtime::MAX_VALUE_LENGTH) {
+            throw new \LengthException(Runtime::tooLongMessage());
+        }
     }
 
     private function str(mixed $value): string

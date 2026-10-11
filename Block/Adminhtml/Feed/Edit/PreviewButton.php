@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Block\Adminhtml\Feed\Edit;
+namespace CommerceGears\DataFeed\Block\Adminhtml\Feed\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
@@ -13,7 +13,7 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
  */
 class PreviewButton extends GenericButton implements ButtonProviderInterface
 {
-    private const TARGET = 'softaware_datafeed_feed_form.areas.content_section.content_section.preview_bar';
+    private const TARGET = 'commercegears_datafeed_feed_form.areas.content_section.content_section.preview_bar';
 
     public function getButtonData(): array
     {

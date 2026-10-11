@@ -2,27 +2,27 @@
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">softaware_datafeed_feed_listing.softaware_datafeed_feed_listing_data_source</item>
+            <item name="provider" xsi:type="string">commercegears_datafeed_feed_listing.commercegears_datafeed_feed_listing_data_source</item>
         </item>
     </argument>
     <settings>
         <buttons>
-            <button name="add" class="Softaware\DataFeed\Block\Adminhtml\Feed\AddButton"/>
+            <button name="add" class="CommerceGears\DataFeed\Block\Adminhtml\Feed\AddButton"/>
         </buttons>
-        <spinner>softaware_datafeed_feed_columns</spinner>
+        <spinner>commercegears_datafeed_feed_columns</spinner>
         <deps>
-            <dep>softaware_datafeed_feed_listing.softaware_datafeed_feed_listing_data_source</dep>
+            <dep>commercegears_datafeed_feed_listing.commercegears_datafeed_feed_listing_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="softaware_datafeed_feed_listing_data_source" component="Magento_Ui/js/grid/provider">
+    <dataSource name="commercegears_datafeed_feed_listing_data_source" component="Magento_Ui/js/grid/provider">
         <settings>
             <storageConfig>
                 <param name="indexField" xsi:type="string">feed_id</param>
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
-        <aclResource>Softaware_DataFeed::feeds</aclResource>
-        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="softaware_datafeed_feed_listing_data_source">
+        <aclResource>CommerceGears_DataFeed::feeds</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="commercegears_datafeed_feed_listing_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>feed_id</primaryFieldName>
@@ -40,7 +40,7 @@
         <massaction name="listing_massaction">
             <action name="enable">
                 <settings>
-                    <url path="softaware_datafeed/feed/massStatus">
+                    <url path="commercegears_datafeed/feed/massStatus">
                         <param name="status">1</param>
                     </url>
                     <type>enable</type>
@@ -49,7 +49,7 @@
             </action>
             <action name="disable">
                 <settings>
-                    <url path="softaware_datafeed/feed/massStatus">
+                    <url path="commercegears_datafeed/feed/massStatus">
                         <param name="status">0</param>
                     </url>
                     <type>disable</type>
@@ -62,7 +62,7 @@
                         <message translate="true">Delete the selected feeds? Generated files stay on the server.</message>
                         <title translate="true">Delete Feeds</title>
                     </confirm>
-                    <url path="softaware_datafeed/feed/massDelete"/>
+                    <url path="commercegears_datafeed/feed/massDelete"/>
                     <type>delete</type>
                     <label translate="true">Delete</label>
                 </settings>
@@ -70,13 +70,13 @@
         </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="softaware_datafeed_feed_columns" component="Softaware_DataFeed/js/grid/listing">
+    <columns name="commercegears_datafeed_feed_columns" component="CommerceGears_DataFeed/js/grid/listing">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="emptyTitle" xsi:type="string" translate="true">No feeds yet</item>
                 <item name="emptyText" xsi:type="string" translate="true">A feed is a product file (XML, JSON, CSV or TXT) for Google Shopping, Meta, Pinterest or any other channel, generated on a schedule or on demand.</item>
                 <item name="emptyActionLabel" xsi:type="string" translate="true">Create your first feed</item>
-                <item name="emptyActionUrl" xsi:type="url" path="softaware_datafeed/feed/new">
+                <item name="emptyActionUrl" xsi:type="url" path="commercegears_datafeed/feed/new">
                     <param name="preset">google_shopping</param>
                 </item>
             </item>
@@ -84,7 +84,7 @@
         <settings>
             <childDefaults>
                 <param name="fieldAction" xsi:type="array">
-                    <item name="provider" xsi:type="string">softaware_datafeed_feed_listing.softaware_datafeed_feed_listing.softaware_datafeed_feed_columns.actions</item>
+                    <item name="provider" xsi:type="string">commercegears_datafeed_feed_listing.commercegears_datafeed_feed_listing.commercegears_datafeed_feed_columns.actions</item>
                     <item name="target" xsi:type="string">applyAction</item>
                     <item name="params" xsi:type="array">
                         <item name="0" xsi:type="string">edit</item>
@@ -111,7 +111,7 @@
                 <label translate="true">Name</label>
             </settings>
         </column>
-        <column name="store_id" class="Softaware\DataFeed\Ui\Component\Listing\Column\StoreView" sortOrder="30">
+        <column name="store_id" class="CommerceGears\DataFeed\Ui\Component\Listing\Column\StoreView" sortOrder="30">
             <settings>
                 <label translate="true">Store View</label>
                 <sortable>false</sortable>
@@ -119,31 +119,31 @@
         </column>
         <column name="format" component="Magento_Ui/js/grid/columns/select" sortOrder="40">
             <settings>
-                <options class="Softaware\DataFeed\Model\Source\Format"/>
+                <options class="CommerceGears\DataFeed\Model\Source\Format"/>
                 <filter>select</filter>
                 <dataType>select</dataType>
                 <label translate="true">Format</label>
             </settings>
         </column>
-        <column name="filename" class="Softaware\DataFeed\Ui\Component\Listing\Column\FeedFile" sortOrder="50">
+        <column name="filename" class="CommerceGears\DataFeed\Ui\Component\Listing\Column\FeedFile" sortOrder="50">
             <settings>
                 <filter>text</filter>
                 <bodyTmpl>ui/grid/cells/html</bodyTmpl>
                 <label translate="true">File</label>
                 <fieldClass>
-                    <class name="softaware-datafeed-col-file">true</class>
+                    <class name="commercegears-datafeed-col-file">true</class>
                 </fieldClass>
             </settings>
         </column>
         <column name="is_active" component="Magento_Ui/js/grid/columns/select" sortOrder="60">
             <settings>
-                <options class="Softaware\DataFeed\Model\Source\Status"/>
+                <options class="CommerceGears\DataFeed\Model\Source\Status"/>
                 <filter>select</filter>
                 <dataType>select</dataType>
                 <label translate="true">Status</label>
             </settings>
         </column>
-        <column name="schedule_type" class="Softaware\DataFeed\Ui\Component\Listing\Column\Schedule" sortOrder="70">
+        <column name="schedule_type" class="CommerceGears\DataFeed\Ui\Component\Listing\Column\Schedule" sortOrder="70">
             <settings>
                 <label translate="true">Schedule</label>
                 <sortable>false</sortable>
@@ -170,13 +170,13 @@
                 <visible>false</visible>
             </settings>
         </column>
-        <column name="generated_size" class="Softaware\DataFeed\Ui\Component\Listing\Column\FileSize" sortOrder="110">
+        <column name="generated_size" class="CommerceGears\DataFeed\Ui\Component\Listing\Column\FileSize" sortOrder="110">
             <settings>
                 <label translate="true">Size</label>
                 <visible>false</visible>
             </settings>
         </column>
-        <column name="generated_status" class="Softaware\DataFeed\Ui\Component\Listing\Column\Status" sortOrder="120">
+        <column name="generated_status" class="CommerceGears\DataFeed\Ui\Component\Listing\Column\Status" sortOrder="120">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="messageField" xsi:type="string">generated_message</item>
@@ -187,7 +187,7 @@
                 <label translate="true">Result</label>
             </settings>
         </column>
-        <actionsColumn name="actions" class="Softaware\DataFeed\Ui\Component\Listing\Column\FeedActions" sortOrder="200">
+        <actionsColumn name="actions" class="CommerceGears\DataFeed\Ui\Component\Listing\Column\FeedActions" sortOrder="200">
             <settings>
                 <indexField>feed_id</indexField>
             </settings>

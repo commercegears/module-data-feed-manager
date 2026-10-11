@@ -3,15 +3,15 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Softaware_Core::core">
-                    <resource id="Softaware_DataFeed::datafeed" title="Data Feed Manager" translate="title" sortOrder="40">
-                        <resource id="Softaware_DataFeed::feeds" title="Manage Feeds" translate="title" sortOrder="10">
-                            <resource id="Softaware_DataFeed::feed_generate" title="Generate Feeds" translate="title" sortOrder="10"/>
-                            <resource id="Softaware_DataFeed::feed_delete" title="Delete Feeds" translate="title" sortOrder="20"/>
+                <resource id="CommerceGears_Core::core">
+                    <resource id="CommerceGears_DataFeed::datafeed" title="Data Feed Manager" translate="title" sortOrder="40">
+                        <resource id="CommerceGears_DataFeed::feeds" title="Manage Feeds" translate="title" sortOrder="10">
+                            <resource id="CommerceGears_DataFeed::feed_generate" title="Generate Feeds" translate="title" sortOrder="10"/>
+                            <resource id="CommerceGears_DataFeed::feed_delete" title="Delete Feeds" translate="title" sortOrder="20"/>
                         </resource>
-                        <resource id="Softaware_DataFeed::mapping" title="Google Category Mapping" translate="title" sortOrder="20"/>
-                        <resource id="Softaware_DataFeed::log" title="Generation Log" translate="title" sortOrder="30"/>
-                        <resource id="Softaware_DataFeed::config" title="Data Feed Manager Settings" translate="title" sortOrder="40"/>
+                        <resource id="CommerceGears_DataFeed::mapping" title="Google Category Mapping" translate="title" sortOrder="20"/>
+                        <resource id="CommerceGears_DataFeed::log" title="Generation Log" translate="title" sortOrder="30"/>
+                        <resource id="CommerceGears_DataFeed::config" title="Data Feed Manager Settings" translate="title" sortOrder="40"/>
                     </resource>
                 </resource>
             </resource>

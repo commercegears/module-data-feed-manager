@@ -1,23 +1,23 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model;
+namespace CommerceGears\DataFeed\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
 /**
- * Module settings (Stores > Configuration > Softaware > Data Feed Manager).
+ * Module settings (Stores > Configuration > CommerceGears > Data Feed Manager).
  */
 class Config
 {
-    private const XML_ENABLED = 'softaware_datafeed/general/enabled';
-    private const XML_BATCH_SIZE = 'softaware_datafeed/general/batch_size';
-    private const XML_PREVIEW_LIMIT = 'softaware_datafeed/general/preview_limit';
-    private const XML_LOG_DAYS = 'softaware_datafeed/general/log_retention_days';
-    private const XML_BRAND_ATTRIBUTE = 'softaware_datafeed/product_data/brand_attribute';
+    private const XML_ENABLED = 'commercegears_datafeed/general/enabled';
+    private const XML_BATCH_SIZE = 'commercegears_datafeed/general/batch_size';
+    private const XML_PREVIEW_LIMIT = 'commercegears_datafeed/general/preview_limit';
+    private const XML_LOG_DAYS = 'commercegears_datafeed/general/log_retention_days';
+    private const XML_BRAND_ATTRIBUTE = 'commercegears_datafeed/product_data/brand_attribute';
 
     public function __construct(private readonly ScopeConfigInterface $scopeConfig)
     {

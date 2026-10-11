@@ -1,14 +1,14 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Product;
+namespace CommerceGears\DataFeed\Model\Product;
 
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\Product\Visibility;
-use Softaware\DataFeed\Model\Template\VariableProviderInterface;
+use CommerceGears\DataFeed\Model\Template\VariableProviderInterface;
 
 /**
  * The "product" variable of a feed template. Values are computed on first use and cached.

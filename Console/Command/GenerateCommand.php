@@ -1,15 +1,15 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Console\Command;
+namespace CommerceGears\DataFeed\Console\Command;
 
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
-use Softaware\DataFeed\Api\FeedGeneratorInterface;
-use Softaware\DataFeed\Api\FeedRepositoryInterface;
+use CommerceGears\DataFeed\Api\FeedGeneratorInterface;
+use CommerceGears\DataFeed\Api\FeedRepositoryInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
@@ -29,7 +29,7 @@ class GenerateCommand extends Command
 
     protected function configure(): void
     {
-        $this->setName('softaware:feed:generate')
+        $this->setName('commercegears:feed:generate')
             ->setDescription('Generate one or more product feeds')
             ->addArgument('id', InputArgument::OPTIONAL | InputArgument::IS_ARRAY, 'Feed ID(s)')
             ->addOption('all', 'a', InputOption::VALUE_NONE, 'Generate all enabled feeds');
@@ -47,7 +47,7 @@ class GenerateCommand extends Command
             $ids = array_map(static fn ($feed) => (int)$feed->getId(), $this->feedRepository->getActiveFeeds());
         }
         if (!$ids) {
-            $output->writeln('<error>Give a feed ID or use --all. List feeds with softaware:feed:list.</error>');
+            $output->writeln('<error>Give a feed ID or use --all. List feeds with commercegears:feed:list.</error>');
             return Command::INVALID;
         }
 

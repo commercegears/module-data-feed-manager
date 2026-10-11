@@ -5,9 +5,9 @@ Data Feed Manager exports your products as XML, JSON, CSV or delimited TXT feeds
 batches by cron, from the admin or on the command line, checked before they are published, and can be uploaded by
 SFTP, FTP or FTPS.
 
-- Admin demo: https://demo.softawarecommerce.com/try-admin/data-feed-manager
-- Sample feeds on the demo store: https://demo.softawarecommerce.com/media/feeds/google_shopping.xml and
-  https://demo.softawarecommerce.com/media/feeds/meta_catalogue.csv
+- Admin demo: https://demo.commercegears.com/try-admin/data-feed-manager
+- Sample feeds on the demo store: https://demo.commercegears.com/media/feeds/google_shopping.xml and
+  https://demo.commercegears.com/media/feeds/meta_catalogue.csv
 - Changelog: [CHANGELOG.md](../CHANGELOG.md) · Questions: [FAQ](faq.md)
 
 ![Feeds grid](images/feed-grid.png)
@@ -20,17 +20,17 @@ SFTP, FTP or FTPS.
 | PHP | 8.2 to 8.5 (with the FTP extension for FTP or FTPS upload) |
 | Inventory | Default stock; with Multi-Source Inventory, stock values come from the default stock |
 | Themes | Not involved: the module works in the admin, by cron and on the command line |
-| Other | `softaware/module-core` (installed automatically) |
+| Other | `commercegears/module-core` (installed automatically) |
 
 ## 2. Installation
 
 Install with Composer. The access keys come from your account; see
-https://softawarecommerce.com/shop/composer-access/ for the details.
+https://commercegears.com/shop/composer-access/ for the details.
 
 ```bash
-composer config repositories.softaware composer https://repo.softawarecommerce.com
-composer config --auth http-basic.repo.softawarecommerce.com PUBLIC_KEY PRIVATE_KEY
-composer require softaware/module-data-feed-manager
+composer config repositories.commercegears composer https://repo.commercegears.com
+composer config --auth http-basic.repo.commercegears.com PUBLIC_KEY PRIVATE_KEY
+composer require commercegears/module-data-feed-manager
 bin/magento setup:upgrade
 bin/magento setup:di:compile            # production mode only
 bin/magento setup:static-content:deploy # production mode only
@@ -39,11 +39,11 @@ bin/magento cache:flush
 
 The installation imports Google's product taxonomy in English (en-GB). Make sure Magento's cron is running
 (`bin/magento cron:install`) for scheduled feeds. To update later, run
-`composer update softaware/module-data-feed-manager` and the same `bin/magento` commands.
+`composer update commercegears/module-data-feed-manager` and the same `bin/magento` commands.
 
 ## 3. Settings
 
-**Stores > Configuration > Softaware > Data Feed Manager** (also under **Softaware > Data Feed Manager > Settings**).
+**Stores > Configuration > CommerceGears > Data Feed Manager** (also under **CommerceGears > Data Feed Manager > Settings**).
 Store view, currency and schedule are set per feed; these settings apply to all feeds.
 
 | Setting | What it does |
@@ -56,7 +56,7 @@ Store view, currency and schedule are set per feed; these settings apply to all 
 
 ## 4. Creating a feed
 
-Go to **Softaware > Data Feed Manager > Feeds** and open the **Add Feed** split button. Choose **From template:
+Go to **CommerceGears > Data Feed Manager > Feeds** and open the **Add Feed** split button. Choose **From template:
 Google Shopping**, Meta catalogue, Pinterest catalogue, Microsoft/Bing Shopping or generic JSON, or **Blank feed**.
 The main part of the button opens a blank feed.
 The feed form has tabs on the left.
@@ -187,7 +187,7 @@ locations and template syntax errors are refused on save, and the entered values
 
 ## 5. Generating feeds
 
-- **By cron:** feeds with a schedule are generated in the cron group `softaware_datafeed`.
+- **By cron:** feeds with a schedule are generated in the cron group `commercegears_datafeed`.
 - **In the admin:** **Generate Now** (in the form or the grid's Select menu) runs batch by batch in the browser with a
   progress bar, then shows items, errors, file size, duration and the URL.
 - **On the command line:** see section 9.
@@ -203,7 +203,7 @@ keyword search. Public feeds show their URL in the File column; feeds below `var
 the Magento root. Mass actions: enable, disable and delete. Row actions: Edit, Generate Now, View Log, Duplicate and
 Delete; Generate Now, Duplicate and Delete ask for confirmation first.
 
-**Softaware > Data Feed Manager > Generation Log** lists every run: feed, start time, started by (cron, admin or CLI),
+**CommerceGears > Data Feed Manager > Generation Log** lists every run: feed, start time, started by (cron, admin or CLI),
 status, seconds, items, errors, file size and messages. A run that never finished (for example the server
 restarted, or the browser tab was closed during Generate Now) is marked as an error, counted as one error, by the
 daily log clean-up (03:17) once it is more than 75 minutes old.
@@ -212,14 +212,14 @@ daily log clean-up (03:17) once it is more than 75 minutes old.
 
 ![Google category mapping](images/category-mapping.png)
 
-**Softaware > Data Feed Manager > Google Category Mapping** lists your store categories. Type in the field next to a
+**CommerceGears > Data Feed Manager > Google Category Mapping** lists your store categories. Type in the field next to a
 category (for example "hoodies") and pick a Google category. A product uses the mapping of its deepest category;
 categories without a mapping inherit the nearest mapped parent (shown in grey). Use **Find category** to filter the
 list and **Save Mapping** to save. In templates use `{{ product.google_category_id }}` or
 `{{ product.google_category }}`. The mapping applies to all feeds and store views.
 
 **Taxonomy Language:** download `taxonomy-with-ids.<locale>.txt` from Google (for example
-`taxonomy-with-ids.de-DE.txt`) and import it at the bottom of the page or with `softaware:feed:taxonomy-import`.
+`taxonomy-with-ids.de-DE.txt`) and import it at the bottom of the page or with `commercegears:feed:taxonomy-import`.
 Category IDs are the same in every language, so existing mappings stay valid.
 
 ## 7. File locations and privacy
@@ -234,7 +234,7 @@ Category IDs are the same in every language, so existing mappings stay valid.
 
 ## 8. Permissions (ACL)
 
-Under **System > Permissions > User Roles > Role Resources > Softaware > Data Feed Manager**:
+Under **System > Permissions > User Roles > Role Resources > CommerceGears > Data Feed Manager**:
 
 | Resource | Allows |
 | --- | --- |
@@ -248,11 +248,11 @@ Under **System > Permissions > User Roles > Role Resources > Softaware > Data Fe
 ## 9. Command line
 
 ```bash
-bin/magento softaware:feed:list                                   # feeds with schedule, last run, items, status and URL
-bin/magento softaware:feed:generate <id> [<id> ...]               # generate the given feeds
-bin/magento softaware:feed:generate --all                         # generate all enabled feeds
-bin/magento softaware:feed:preview <id> [--limit=3]               # print the first items
-bin/magento softaware:feed:taxonomy-import [path/to/taxonomy-with-ids.de-DE.txt]
+bin/magento commercegears:feed:list                                   # feeds with schedule, last run, items, status and URL
+bin/magento commercegears:feed:generate <id> [<id> ...]               # generate the given feeds
+bin/magento commercegears:feed:generate --all                         # generate all enabled feeds
+bin/magento commercegears:feed:preview <id> [--limit=3]               # print the first items
+bin/magento commercegears:feed:taxonomy-import [path/to/taxonomy-with-ids.de-DE.txt]
 ```
 
 ## 10. Troubleshooting
@@ -278,8 +278,8 @@ bin/magento softaware:feed:taxonomy-import [path/to/taxonomy-with-ids.de-DE.txt]
 ## 12. Uninstall
 
 ```bash
-bin/magento module:disable Softaware_DataFeed
-composer remove softaware/module-data-feed-manager
+bin/magento module:disable CommerceGears_DataFeed
+composer remove commercegears/module-data-feed-manager
 bin/magento setup:upgrade
 ```
 

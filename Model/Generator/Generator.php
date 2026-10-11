@@ -1,25 +1,25 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Generator;
+namespace CommerceGears\DataFeed\Model\Generator;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Filesystem\Driver\File;
 use Psr\Log\LoggerInterface;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Api\FeedGeneratorInterface;
-use Softaware\DataFeed\Api\FeedRepositoryInterface;
-use Softaware\DataFeed\Model\Config;
-use Softaware\DataFeed\Model\Log;
-use Softaware\DataFeed\Model\Product\AttributeResolver;
-use Softaware\DataFeed\Model\Product\Needs;
-use Softaware\DataFeed\Model\Product\ProductProvider;
-use Softaware\DataFeed\Model\Product\StoreContextBuilder;
-use Softaware\DataFeed\Model\ResourceModel\Feed as FeedResource;
-use Softaware\DataFeed\Model\ResourceModel\Log as LogResource;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Api\FeedGeneratorInterface;
+use CommerceGears\DataFeed\Api\FeedRepositoryInterface;
+use CommerceGears\DataFeed\Model\Config;
+use CommerceGears\DataFeed\Model\Log;
+use CommerceGears\DataFeed\Model\Product\AttributeResolver;
+use CommerceGears\DataFeed\Model\Product\Needs;
+use CommerceGears\DataFeed\Model\Product\ProductProvider;
+use CommerceGears\DataFeed\Model\Product\StoreContextBuilder;
+use CommerceGears\DataFeed\Model\ResourceModel\Feed as FeedResource;
+use CommerceGears\DataFeed\Model\ResourceModel\Log as LogResource;
 
 /**
  * Batched feed generation: start() writes the header, step() appends one batch of products,
@@ -75,7 +75,7 @@ class Generator implements FeedGeneratorInterface
     {
         if (!$this->config->isEnabled()) {
             throw new LocalizedException(
-                __('Data Feed Manager is disabled (Stores > Configuration > Softaware > Data Feed Manager).')
+                __('Data Feed Manager is disabled (Stores > Configuration > CommerceGears > Data Feed Manager).')
             );
         }
         $feed = $this->feedRepository->getById($feedId);
@@ -263,7 +263,7 @@ class Generator implements FeedGeneratorInterface
     {
         $message = $this->fileLocator->hideRoot($error->getMessage());
         if (!$error instanceof LocalizedException) {
-            $this->logger->error('Softaware_DataFeed: generation of feed ' . $job->feedId . ' failed', ['exception' => $error]);
+            $this->logger->error('CommerceGears_DataFeed: generation of feed ' . $job->feedId . ' failed', ['exception' => $error]);
         }
         try {
             $this->updateLog($job->logId, [
@@ -280,7 +280,7 @@ class Generator implements FeedGeneratorInterface
                 FeedInterface::GENERATED_MESSAGE => mb_substr($message, 0, 1000),
             ]);
         } catch (\Throwable $e) {
-            $this->logger->error('Softaware_DataFeed: could not record failed generation: ' . $e->getMessage());
+            $this->logger->error('CommerceGears_DataFeed: could not record failed generation: ' . $e->getMessage());
         }
         $this->jobStorage->delete($job->feedId);
         unset($this->sessions[$job->feedId]);

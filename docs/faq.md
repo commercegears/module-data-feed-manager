@@ -31,7 +31,7 @@ price and tier prices, each also with or without tax, converted to the feed's cu
 store's default tax destination. If a feed shows outdated prices, reindex prices.
 
 **How does the Google product category get into the feed?**
-Under **Softaware > Data Feed Manager > Google Category Mapping** you map your store categories to Google's product
+Under **CommerceGears > Data Feed Manager > Google Category Mapping** you map your store categories to Google's product
 taxonomy with autocomplete. Categories without a mapping inherit the nearest mapped parent. The English (en-GB)
 taxonomy is installed with the module; other languages can be imported. The mapping is global, not per feed.
 
@@ -55,5 +55,5 @@ No. The module only works in the admin, by cron and on the command line, so it w
 theme.
 
 **Can I generate feeds from the command line?**
-Yes: `bin/magento softaware:feed:generate <id>` (or `--all`), `softaware:feed:list`, `softaware:feed:preview <id>`
-and `softaware:feed:taxonomy-import` for another taxonomy language.
+Yes: `bin/magento commercegears:feed:generate <id>` (or `--all`), `commercegears:feed:list`, `commercegears:feed:preview <id>`
+and `commercegears:feed:taxonomy-import` for another taxonomy language.

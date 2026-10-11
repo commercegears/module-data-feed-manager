@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Source;
+namespace CommerceGears\DataFeed\Model\Source;
 
 use Magento\Catalog\Model\Product\Type;
 use Magento\Framework\Data\OptionSourceInterface;

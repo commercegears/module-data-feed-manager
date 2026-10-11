@@ -1,16 +1,16 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model;
+namespace CommerceGears\DataFeed\Model;
 
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Model\Generator\FileLocator;
-use Softaware\DataFeed\Model\Generator\Uploader;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Model\Generator\FileLocator;
+use CommerceGears\DataFeed\Model\Generator\Uploader;
 
 /**
  * Converts between admin form data and the feed model.

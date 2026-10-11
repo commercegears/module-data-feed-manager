@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="Softaware_DataFeed::css/datafeed.css"/>
+        <css src="CommerceGears_DataFeed::css/datafeed.css"/>
     </head>
     <body>
         <referenceContainer name="content">
-            <uiComponent name="softaware_datafeed_feed_form"/>
+            <uiComponent name="commercegears_datafeed_feed_form"/>
         </referenceContainer>
     </body>
 </page>

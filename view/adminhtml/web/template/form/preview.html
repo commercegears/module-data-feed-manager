@@ -1,11 +1,11 @@
-<div class="softaware-datafeed-preview">
-    <div class="softaware-datafeed-preview-actions">
+<div class="commercegears-datafeed-preview">
+    <div class="commercegears-datafeed-preview-actions">
         <button type="button" class="action-secondary" data-bind="click: run, disable: loading">
             <span data-bind="i18n: 'Preview First Items'"></span>
         </button>
-        <span class="softaware-datafeed-muted" data-bind="i18n: 'Renders the first matching products with the values in this form, including unsaved changes. Nothing is saved or written.'"></span>
+        <span class="commercegears-datafeed-muted" data-bind="i18n: 'Renders the first matching products with the values in this form, including unsaved changes. Nothing is saved or written.'"></span>
     </div>
-    <div class="softaware-datafeed-spinner" role="status" data-bind="visible: loading">
+    <div class="commercegears-datafeed-spinner" role="status" data-bind="visible: loading">
         <span data-bind="i18n: 'Rendering…'"></span>
     </div>
     <div role="alert" data-bind="visible: message, attr: {class: 'message message-' + messageType()}">
@@ -17,9 +17,9 @@
         </button>
     </p>
     <p data-bind="visible: summary, text: summary"></p>
-    <ul class="softaware-datafeed-messages" data-bind="visible: errors().length, foreach: errors">
+    <ul class="commercegears-datafeed-messages" data-bind="visible: errors().length, foreach: errors">
         <li data-bind="text: $data"></li>
     </ul>
-    <pre class="softaware-datafeed-output" tabindex="0"
+    <pre class="commercegears-datafeed-output" tabindex="0"
          data-bind="visible: output, html: outputHtml, afterRender: onOutputRendered, attr: {'aria-label': $t('Preview output')}"></pre>
 </div>

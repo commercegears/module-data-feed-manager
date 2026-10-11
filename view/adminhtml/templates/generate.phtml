@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
-/** @var \Softaware\DataFeed\Block\Adminhtml\Feed\Generate $block */
+/** @var \CommerceGears\DataFeed\Block\Adminhtml\Feed\Generate $block */
 /** @var \Magento\Framework\Escaper $escaper */
 $feed = $block->getFeed();
 if (!$feed) {
@@ -32,9 +32,9 @@ $config = [
     ],
 ];
 ?>
-<div class="softaware-datafeed-generate" id="softaware-datafeed-generate"
-     data-mage-init='<?= $escaper->escapeHtmlAttr(json_encode(['Softaware_DataFeed/js/generate' => $config])) ?>'>
-    <table class="softaware-datafeed-facts">
+<div class="commercegears-datafeed-generate" id="commercegears-datafeed-generate"
+     data-mage-init='<?= $escaper->escapeHtmlAttr(json_encode(['CommerceGears_DataFeed/js/generate' => $config])) ?>'>
+    <table class="commercegears-datafeed-facts">
         <tr>
             <th><?= $escaper->escapeHtml(__('Feed')) ?></th>
             <td><?= $escaper->escapeHtml($feed->getName()) ?> (<?= $escaper->escapeHtml(strtoupper($feed->getFormat())) ?>)</td>
@@ -44,15 +44,15 @@ $config = [
             <td><code><?= $escaper->escapeHtml($block->getFilePath()) ?></code></td>
         </tr>
     </table>
-    <div class="softaware-datafeed-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-        <div class="softaware-datafeed-progress-bar" data-role="bar"></div>
+    <div class="commercegears-datafeed-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="commercegears-datafeed-progress-bar" data-role="bar"></div>
     </div>
-    <p class="softaware-datafeed-progress-text" data-role="text" aria-live="polite"><?= $escaper->escapeHtml(__('Preparing…')) ?></p>
+    <p class="commercegears-datafeed-progress-text" data-role="text" aria-live="polite"><?= $escaper->escapeHtml(__('Preparing…')) ?></p>
     <div data-role="result"></div>
-    <div class="softaware-datafeed-actions">
+    <div class="commercegears-datafeed-actions">
         <a class="action-default" href="<?= $escaper->escapeUrl($block->getEditUrl()) ?>"><?= $escaper->escapeHtml(__('Back to Feed')) ?></a>
         <a class="action-default" href="<?= $escaper->escapeUrl($block->getLogUrl()) ?>"><?= $escaper->escapeHtml(__('Generation Log')) ?></a>
         <button type="button" class="action-secondary" data-role="restart" hidden><?= $escaper->escapeHtml(__('Generate Again')) ?></button>
     </div>
-    <noscript><p><?= $escaper->escapeHtml(__('JavaScript is required. Alternatively run: bin/magento softaware:feed:generate %1', (int)$feed->getId())) ?></p></noscript>
+    <noscript><p><?= $escaper->escapeHtml(__('JavaScript is required. Alternatively run: bin/magento commercegears:feed:generate %1', (int)$feed->getId())) ?></p></noscript>
 </div>

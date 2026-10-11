@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Product;
+namespace CommerceGears\DataFeed\Model\Product;
 
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
 use Magento\Catalog\Model\View\Asset\PlaceholderFactory;
@@ -20,10 +20,10 @@ use Magento\Store\Model\App\Emulation;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Model\Generator\FileLocator;
-use Softaware\DataFeed\Model\ResourceModel\CategoryMap;
-use Softaware\DataFeed\Model\ResourceModel\Taxonomy;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Model\Generator\FileLocator;
+use CommerceGears\DataFeed\Model\ResourceModel\CategoryMap;
+use CommerceGears\DataFeed\Model\ResourceModel\Taxonomy;
 
 class StoreContextBuilder
 {
@@ -188,7 +188,7 @@ class StoreContextBuilder
         try {
             return (string)$this->placeholderFactory->create(['type' => 'image'])->getUrl();
         } catch (\Throwable $e) {
-            $this->logger->warning('Softaware_DataFeed: placeholder image URL could not be built: ' . $e->getMessage());
+            $this->logger->warning('CommerceGears_DataFeed: placeholder image URL could not be built: ' . $e->getMessage());
             return '';
         } finally {
             $this->emulation->stopEnvironmentEmulation();

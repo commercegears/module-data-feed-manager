@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.0 (2026-10-11)
+- Improvement: renamed to CommerceGears (new Composer package, admin menu and settings paths)
+
 ## 1.5.4 (2026-10-11)
 - Fix: the main part of the Add Feed button works again and opens a blank feed.
 - Fix: an unfinished or unpublished run counts as an error in the generation log.
@@ -38,7 +41,7 @@
 - Improvement: settings split into General and Generation groups with defaults that can be restored.
 
 ## 1.2.0 (2026-10-06)
-- Improvement: requires Softaware Core instead of Softaware Base; menu and permissions move under "Softaware".
+- Improvement: requires CommerceGears Core instead of CommerceGears Base; menu and permissions move under "CommerceGears".
 
 ## 1.1.0 (2026-10-06)
 - New: SFTP host key check; new feeds get a file name with a random part.

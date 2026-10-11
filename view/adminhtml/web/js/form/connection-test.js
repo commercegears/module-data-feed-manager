@@ -6,7 +6,7 @@ define(['jquery', 'uiElement', 'mage/translate'], function ($, Element, $t) {
 
     return Element.extend({
         defaults: {
-            template: 'Softaware_DataFeed/form/connection-test',
+            template: 'CommerceGears_DataFeed/form/connection-test',
             url: '',
             visible: true,
             loading: false,

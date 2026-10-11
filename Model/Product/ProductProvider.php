@@ -1,17 +1,17 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Product;
+namespace CommerceGears\DataFeed\Model\Product;
 
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\Product\Attribute\Source\Status;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
 
 /**
  * Selects the products of a feed (filters) and returns them batch by batch as template contexts,

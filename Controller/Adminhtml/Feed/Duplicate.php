@@ -1,25 +1,25 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Controller\Adminhtml\Feed;
+namespace CommerceGears\DataFeed\Controller\Adminhtml\Feed;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Api\FeedRepositoryInterface;
-use Softaware\DataFeed\Model\FeedFactory;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Api\FeedRepositoryInterface;
+use CommerceGears\DataFeed\Model\FeedFactory;
 
 /**
  * Copies a feed (disabled, with a new file name) so it can be adapted.
  */
 class Duplicate extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_DataFeed::feeds';
+    public const ADMIN_RESOURCE = 'CommerceGears_DataFeed::feeds';
 
     private const RESET_FIELDS = [
         FeedInterface::FEED_ID, FeedInterface::NEXT_RUN_AT, FeedInterface::GENERATED_AT, FeedInterface::GENERATED_ITEMS,

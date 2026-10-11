@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
-    <group id="softaware_datafeed">
-        <job name="softaware_datafeed_generate_scheduled" instance="Softaware\DataFeed\Cron\GenerateScheduled" method="execute">
+    <group id="commercegears_datafeed">
+        <job name="commercegears_datafeed_generate_scheduled" instance="CommerceGears\DataFeed\Cron\GenerateScheduled" method="execute">
             <schedule>* * * * *</schedule>
         </job>
-        <job name="softaware_datafeed_clean_log" instance="Softaware\DataFeed\Cron\CleanLog" method="execute">
+        <job name="commercegears_datafeed_clean_log" instance="CommerceGears\DataFeed\Cron\CleanLog" method="execute">
             <schedule>17 3 * * *</schedule>
         </job>
     </group>

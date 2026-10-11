@@ -1,16 +1,16 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Generator;
+namespace CommerceGears\DataFeed\Model\Generator;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
 
 /**
  * Validates feed output locations and builds file paths and public URLs.
@@ -124,7 +124,7 @@ class FileLocator
      */
     public function getWorkDirectory(): string
     {
-        return rtrim($this->directoryList->getPath(DirectoryList::VAR_DIR), '/') . '/softaware_datafeed/';
+        return rtrim($this->directoryList->getPath(DirectoryList::VAR_DIR), '/') . '/commercegears_datafeed/';
     }
 
     /**

@@ -111,19 +111,19 @@
         "storefront": [
             {
                 "label": "Sample Google Shopping feed (XML)",
-                "url": "https://demo.softawarecommerce.com/media/feeds/google_shopping.xml",
+                "url": "https://demo.commercegears.com/media/feeds/google_shopping.xml",
                 "image": "docs/images/preview.png"
             },
             {
                 "label": "Sample Meta catalogue feed (CSV)",
-                "url": "https://demo.softawarecommerce.com/media/feeds/meta_catalogue.csv",
+                "url": "https://demo.commercegears.com/media/feeds/meta_catalogue.csv",
                 "image": "docs/images/column-mapper.png"
             }
         ],
         "admin": [
             {
                 "label": "Admin panel",
-                "url": "https://demo.softawarecommerce.com/try-admin/data-feed-manager",
+                "url": "https://demo.commercegears.com/try-admin/data-feed-manager",
                 "image": "docs/images/feed-grid.png"
             }
         ]

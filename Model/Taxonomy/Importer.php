@@ -1,14 +1,14 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Taxonomy;
+namespace CommerceGears\DataFeed\Model\Taxonomy;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Module\Dir\Reader as ModuleDirReader;
-use Softaware\DataFeed\Model\ResourceModel\Taxonomy;
+use CommerceGears\DataFeed\Model\ResourceModel\Taxonomy;
 
 /**
  * Imports the Google product taxonomy file "taxonomy-with-ids.<locale>.txt"
@@ -27,7 +27,7 @@ class Importer
 
     public function getBundledFile(): string
     {
-        return $this->moduleDirReader->getModuleDir('', 'Softaware_DataFeed') . '/' . self::BUNDLED_FILE;
+        return $this->moduleDirReader->getModuleDir('', 'CommerceGears_DataFeed') . '/' . self::BUNDLED_FILE;
     }
 
     /**

@@ -1,14 +1,14 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Console\Command;
+namespace CommerceGears\DataFeed\Console\Command;
 
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Model\Generator\FileLocator;
-use Softaware\DataFeed\Model\ResourceModel\Feed\CollectionFactory;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Model\Generator\FileLocator;
+use CommerceGears\DataFeed\Model\ResourceModel\Feed\CollectionFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -25,7 +25,7 @@ class ListCommand extends Command
 
     protected function configure(): void
     {
-        $this->setName('softaware:feed:list')->setDescription('List product feeds');
+        $this->setName('commercegears:feed:list')->setDescription('List product feeds');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

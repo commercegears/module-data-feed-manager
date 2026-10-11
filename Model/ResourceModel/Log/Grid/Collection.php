@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\ResourceModel\Log\Grid;
+namespace CommerceGears\DataFeed\Model\ResourceModel\Log\Grid;
 
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 
@@ -17,7 +17,7 @@ class Collection extends SearchResult
     {
         parent::_initSelect();
         $this->getSelect()->joinLeft(
-            ['feed' => $this->getTable('softaware_datafeed_feed')],
+            ['feed' => $this->getTable('commercegears_datafeed_feed')],
             'feed.feed_id = main_table.feed_id',
             ['feed_name' => 'feed.name']
         );

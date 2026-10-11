@@ -8,14 +8,14 @@ define([
     'uiElement',
     'uiRegistry',
     'mage/translate',
-    'Softaware_DataFeed/js/highlight',
+    'CommerceGears_DataFeed/js/highlight',
     'Magento_Ui/js/modal/modal'
 ], function ($, Element, registry, $t, highlighter) {
     'use strict';
 
     return Element.extend({
         defaults: {
-            template: 'Softaware_DataFeed/form/preview',
+            template: 'CommerceGears_DataFeed/form/preview',
             url: '',
             editorName: '',
             tabName: '',
@@ -186,10 +186,10 @@ define([
             var self = this;
 
             if (!this.modalElement) {
-                this.modalElement = $('<div class="softaware-datafeed-preview-modal"></div>').modal({
+                this.modalElement = $('<div class="commercegears-datafeed-preview-modal"></div>').modal({
                     type: 'slide',
                     title: $t('Feed Preview'),
-                    modalClass: 'softaware-datafeed-preview-slide',
+                    modalClass: 'commercegears-datafeed-preview-slide',
                     buttons: [{
                         text: $t('Refresh'),
                         'class': 'action-secondary',
@@ -222,12 +222,12 @@ define([
             if (!this.modalElement) {
                 return;
             }
-            $body = $('<div class="softaware-datafeed-preview"></div>');
-            $body.append($('<p class="softaware-datafeed-muted"></p>').text(
+            $body = $('<div class="commercegears-datafeed-preview"></div>');
+            $body.append($('<p class="commercegears-datafeed-muted"></p>').text(
                 $t('Rendered from the values in the form, including unsaved changes, for the first matching products. Nothing is saved or written.')
             ));
             if (this.loading()) {
-                $body.append($('<div class="softaware-datafeed-spinner" role="status"></div>').text($t('Rendering…')));
+                $body.append($('<div class="commercegears-datafeed-spinner" role="status"></div>').text($t('Rendering…')));
             }
             if (this.message()) {
                 $body.append(
@@ -248,14 +248,14 @@ define([
                 $body.append($('<p></p>').text(this.summary()));
             }
             if (this.errors().length) {
-                $list = $('<ul class="softaware-datafeed-messages"></ul>');
+                $list = $('<ul class="commercegears-datafeed-messages"></ul>');
                 $.each(this.errors(), function (i, error) {
                     $list.append($('<li></li>').text(error));
                 });
                 $body.append($list);
             }
             if (this.outputHtml()) {
-                $output = $('<pre class="softaware-datafeed-output" tabindex="0"></pre>')
+                $output = $('<pre class="commercegears-datafeed-output" tabindex="0"></pre>')
                     .attr('aria-label', $t('Preview output'))
                     .html(this.outputHtml());
                 $body.append($output);

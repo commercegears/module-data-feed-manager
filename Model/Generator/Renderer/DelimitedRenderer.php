@@ -1,19 +1,19 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Generator\Renderer;
+namespace CommerceGears\DataFeed\Model\Generator\Renderer;
 
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Model\Product\ProductContext;
-use Softaware\DataFeed\Model\Product\StoreContext;
-use Softaware\DataFeed\Model\Template\Parser;
-use Softaware\DataFeed\Model\Template\Runtime;
-use Softaware\DataFeed\Model\Template\RuntimeFactory;
-use Softaware\DataFeed\Model\Template\SyntaxException;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Model\Product\ProductContext;
+use CommerceGears\DataFeed\Model\Product\StoreContext;
+use CommerceGears\DataFeed\Model\Template\Parser;
+use CommerceGears\DataFeed\Model\Template\Runtime;
+use CommerceGears\DataFeed\Model\Template\RuntimeFactory;
+use CommerceGears\DataFeed\Model\Template\SyntaxException;
 
 /**
  * CSV and delimited TXT feeds from a column map (header, value template, default).

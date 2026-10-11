@@ -1,15 +1,15 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Generator;
+namespace CommerceGears\DataFeed\Model\Generator;
 
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Model\Generator\Renderer\DelimitedRenderer;
-use Softaware\DataFeed\Model\Product\ProductProvider;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Model\Generator\Renderer\DelimitedRenderer;
+use CommerceGears\DataFeed\Model\Product\ProductProvider;
 
 /**
  * Renders the first items of a feed (saved or unsaved) without writing a file.

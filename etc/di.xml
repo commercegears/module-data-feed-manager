@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Softaware\DataFeed\Api\Data\FeedInterface" type="Softaware\DataFeed\Model\Feed"/>
-    <preference for="Softaware\DataFeed\Api\FeedRepositoryInterface" type="Softaware\DataFeed\Model\FeedRepository"/>
-    <preference for="Softaware\DataFeed\Api\FeedGeneratorInterface" type="Softaware\DataFeed\Model\Generator\Generator"/>
+    <preference for="CommerceGears\DataFeed\Api\Data\FeedInterface" type="CommerceGears\DataFeed\Model\Feed"/>
+    <preference for="CommerceGears\DataFeed\Api\FeedRepositoryInterface" type="CommerceGears\DataFeed\Model\FeedRepository"/>
+    <preference for="CommerceGears\DataFeed\Api\FeedGeneratorInterface" type="CommerceGears\DataFeed\Model\Generator\Generator"/>
 
-    <type name="Softaware\DataFeed\Model\Template\Parser" shared="false"/>
-    <type name="Softaware\DataFeed\Model\Template\Runtime" shared="false"/>
+    <type name="CommerceGears\DataFeed\Model\Template\Parser" shared="false"/>
+    <type name="CommerceGears\DataFeed\Model\Template\Runtime" shared="false"/>
 
     <!-- Option lists -->
-    <virtualType name="Softaware\DataFeed\Model\Source\Status" type="Softaware\DataFeed\Model\Source\StaticOptions">
+    <virtualType name="CommerceGears\DataFeed\Model\Source\Status" type="CommerceGears\DataFeed\Model\Source\StaticOptions">
         <arguments>
             <argument name="options" xsi:type="array">
                 <item name="1" xsi:type="string" translate="true">Enabled</item>
@@ -16,7 +16,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Softaware\DataFeed\Model\Source\Format" type="Softaware\DataFeed\Model\Source\StaticOptions">
+    <virtualType name="CommerceGears\DataFeed\Model\Source\Format" type="CommerceGears\DataFeed\Model\Source\StaticOptions">
         <arguments>
             <argument name="options" xsi:type="array">
                 <item name="xml" xsi:type="string" translate="true">XML</item>
@@ -26,7 +26,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Softaware\DataFeed\Model\Source\Delimiter" type="Softaware\DataFeed\Model\Source\StaticOptions">
+    <virtualType name="CommerceGears\DataFeed\Model\Source\Delimiter" type="CommerceGears\DataFeed\Model\Source\StaticOptions">
         <arguments>
             <argument name="options" xsi:type="array">
                 <item name="," xsi:type="string" translate="true">Comma (,)</item>
@@ -36,7 +36,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Softaware\DataFeed\Model\Source\Enclosure" type="Softaware\DataFeed\Model\Source\StaticOptions">
+    <virtualType name="CommerceGears\DataFeed\Model\Source\Enclosure" type="CommerceGears\DataFeed\Model\Source\StaticOptions">
         <arguments>
             <argument name="options" xsi:type="array">
                 <item name="&quot;" xsi:type="string" translate="true">Double quote (&quot;)</item>
@@ -45,7 +45,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Softaware\DataFeed\Model\Source\Encoding" type="Softaware\DataFeed\Model\Source\StaticOptions">
+    <virtualType name="CommerceGears\DataFeed\Model\Source\Encoding" type="CommerceGears\DataFeed\Model\Source\StaticOptions">
         <arguments>
             <argument name="options" xsi:type="array">
                 <item name="UTF-8" xsi:type="string" translate="true">UTF-8</item>
@@ -55,7 +55,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Softaware\DataFeed\Model\Source\LineEnding" type="Softaware\DataFeed\Model\Source\StaticOptions">
+    <virtualType name="CommerceGears\DataFeed\Model\Source\LineEnding" type="CommerceGears\DataFeed\Model\Source\StaticOptions">
         <arguments>
             <argument name="options" xsi:type="array">
                 <item name="lf" xsi:type="string" translate="true">LF (Unix)</item>
@@ -63,7 +63,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Softaware\DataFeed\Model\Source\ScheduleType" type="Softaware\DataFeed\Model\Source\StaticOptions">
+    <virtualType name="CommerceGears\DataFeed\Model\Source\ScheduleType" type="CommerceGears\DataFeed\Model\Source\StaticOptions">
         <arguments>
             <argument name="options" xsi:type="array">
                 <item name="manual" xsi:type="string" translate="true">Manual only (admin or CLI)</item>
@@ -72,7 +72,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Softaware\DataFeed\Model\Source\ParentChildMode" type="Softaware\DataFeed\Model\Source\StaticOptions">
+    <virtualType name="CommerceGears\DataFeed\Model\Source\ParentChildMode" type="CommerceGears\DataFeed\Model\Source\StaticOptions">
         <arguments>
             <argument name="options" xsi:type="array">
                 <item name="parent" xsi:type="string" translate="true">Parents only (configurable products as one item)</item>
@@ -81,7 +81,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Softaware\DataFeed\Model\Source\CategoryMode" type="Softaware\DataFeed\Model\Source\StaticOptions">
+    <virtualType name="CommerceGears\DataFeed\Model\Source\CategoryMode" type="CommerceGears\DataFeed\Model\Source\StaticOptions">
         <arguments>
             <argument name="options" xsi:type="array">
                 <item name="include" xsi:type="string" translate="true">Only products in these categories</item>
@@ -89,7 +89,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Softaware\DataFeed\Model\Source\Operator" type="Softaware\DataFeed\Model\Source\StaticOptions">
+    <virtualType name="CommerceGears\DataFeed\Model\Source\Operator" type="CommerceGears\DataFeed\Model\Source\StaticOptions">
         <arguments>
             <argument name="options" xsi:type="array">
                 <item name="eq" xsi:type="string" translate="true">=</item>
@@ -107,7 +107,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Softaware\DataFeed\Model\Source\FtpProtocol" type="Softaware\DataFeed\Model\Source\StaticOptions">
+    <virtualType name="CommerceGears\DataFeed\Model\Source\FtpProtocol" type="CommerceGears\DataFeed\Model\Source\StaticOptions">
         <arguments>
             <argument name="options" xsi:type="array">
                 <item name="sftp" xsi:type="string" translate="true">SFTP</item>
@@ -116,7 +116,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Softaware\DataFeed\Model\Source\LogStatus" type="Softaware\DataFeed\Model\Source\StaticOptions">
+    <virtualType name="CommerceGears\DataFeed\Model\Source\LogStatus" type="CommerceGears\DataFeed\Model\Source\StaticOptions">
         <arguments>
             <argument name="options" xsi:type="array">
                 <item name="running" xsi:type="string" translate="true">Running</item>
@@ -126,7 +126,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Softaware\DataFeed\Model\Source\Trigger" type="Softaware\DataFeed\Model\Source\StaticOptions">
+    <virtualType name="CommerceGears\DataFeed\Model\Source\Trigger" type="CommerceGears\DataFeed\Model\Source\StaticOptions">
         <arguments>
             <argument name="options" xsi:type="array">
                 <item name="admin" xsi:type="string" translate="true">Admin</item>
@@ -137,24 +137,24 @@
     </virtualType>
 
     <!-- Admin grids -->
-    <virtualType name="Softaware\DataFeed\Model\ResourceModel\Feed\Grid\Collection"
+    <virtualType name="CommerceGears\DataFeed\Model\ResourceModel\Feed\Grid\Collection"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
-            <argument name="mainTable" xsi:type="string">softaware_datafeed_feed</argument>
-            <argument name="resourceModel" xsi:type="string">Softaware\DataFeed\Model\ResourceModel\Feed</argument>
+            <argument name="mainTable" xsi:type="string">commercegears_datafeed_feed</argument>
+            <argument name="resourceModel" xsi:type="string">CommerceGears\DataFeed\Model\ResourceModel\Feed</argument>
         </arguments>
     </virtualType>
-    <type name="Softaware\DataFeed\Model\ResourceModel\Log\Grid\Collection">
+    <type name="CommerceGears\DataFeed\Model\ResourceModel\Log\Grid\Collection">
         <arguments>
-            <argument name="mainTable" xsi:type="string">softaware_datafeed_log</argument>
-            <argument name="resourceModel" xsi:type="string">Softaware\DataFeed\Model\ResourceModel\Log</argument>
+            <argument name="mainTable" xsi:type="string">commercegears_datafeed_log</argument>
+            <argument name="resourceModel" xsi:type="string">CommerceGears\DataFeed\Model\ResourceModel\Log</argument>
         </arguments>
     </type>
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="softaware_datafeed_feed_listing_data_source" xsi:type="string">Softaware\DataFeed\Model\ResourceModel\Feed\Grid\Collection</item>
-                <item name="softaware_datafeed_log_listing_data_source" xsi:type="string">Softaware\DataFeed\Model\ResourceModel\Log\Grid\Collection</item>
+                <item name="commercegears_datafeed_feed_listing_data_source" xsi:type="string">CommerceGears\DataFeed\Model\ResourceModel\Feed\Grid\Collection</item>
+                <item name="commercegears_datafeed_log_listing_data_source" xsi:type="string">CommerceGears\DataFeed\Model\ResourceModel\Log\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
@@ -163,26 +163,26 @@
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="softaware_feed_generate" xsi:type="object">Softaware\DataFeed\Console\Command\GenerateCommand</item>
-                <item name="softaware_feed_list" xsi:type="object">Softaware\DataFeed\Console\Command\ListCommand</item>
-                <item name="softaware_feed_preview" xsi:type="object">Softaware\DataFeed\Console\Command\PreviewCommand</item>
-                <item name="softaware_feed_taxonomy_import" xsi:type="object">Softaware\DataFeed\Console\Command\TaxonomyImportCommand</item>
+                <item name="commercegears_feed_generate" xsi:type="object">CommerceGears\DataFeed\Console\Command\GenerateCommand</item>
+                <item name="commercegears_feed_list" xsi:type="object">CommerceGears\DataFeed\Console\Command\ListCommand</item>
+                <item name="commercegears_feed_preview" xsi:type="object">CommerceGears\DataFeed\Console\Command\PreviewCommand</item>
+                <item name="commercegears_feed_taxonomy_import" xsi:type="object">CommerceGears\DataFeed\Console\Command\TaxonomyImportCommand</item>
             </argument>
         </arguments>
     </type>
-    <type name="Softaware\DataFeed\Console\Command\GenerateCommand">
+    <type name="CommerceGears\DataFeed\Console\Command\GenerateCommand">
         <arguments>
-            <argument name="generator" xsi:type="object">Softaware\DataFeed\Api\FeedGeneratorInterface\Proxy</argument>
+            <argument name="generator" xsi:type="object">CommerceGears\DataFeed\Api\FeedGeneratorInterface\Proxy</argument>
         </arguments>
     </type>
-    <type name="Softaware\DataFeed\Console\Command\PreviewCommand">
+    <type name="CommerceGears\DataFeed\Console\Command\PreviewCommand">
         <arguments>
-            <argument name="preview" xsi:type="object">Softaware\DataFeed\Model\Generator\Preview\Proxy</argument>
+            <argument name="preview" xsi:type="object">CommerceGears\DataFeed\Model\Generator\Preview\Proxy</argument>
         </arguments>
     </type>
-    <type name="Softaware\DataFeed\Console\Command\TaxonomyImportCommand">
+    <type name="CommerceGears\DataFeed\Console\Command\TaxonomyImportCommand">
         <arguments>
-            <argument name="importer" xsi:type="object">Softaware\DataFeed\Model\Taxonomy\Importer\Proxy</argument>
+            <argument name="importer" xsi:type="object">CommerceGears\DataFeed\Model\Taxonomy\Importer\Proxy</argument>
         </arguments>
     </type>
 </config>

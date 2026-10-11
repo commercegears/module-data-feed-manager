@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Block\Adminhtml\Feed\Edit;
+namespace CommerceGears\DataFeed\Block\Adminhtml\Feed\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 use Magento\Ui\Component\Control\Container;
@@ -14,7 +14,7 @@ use Magento\Ui\Component\Control\Container;
  */
 class SaveButton extends GenericButton implements ButtonProviderInterface
 {
-    private const FORM = 'softaware_datafeed_feed_form.areas';
+    private const FORM = 'commercegears_datafeed_feed_form.areas';
 
     public function getButtonData(): array
     {
@@ -25,7 +25,7 @@ class SaveButton extends GenericButton implements ButtonProviderInterface
                 'data_attribute' => $this->saveAction(['back' => 'close']),
             ],
         ];
-        if ($this->authorization->isAllowed('Softaware_DataFeed::feed_generate')) {
+        if ($this->authorization->isAllowed('CommerceGears_DataFeed::feed_generate')) {
             $options[] = [
                 'id_hard' => 'save_and_generate',
                 'label' => __('Save &amp; Generate Now'),

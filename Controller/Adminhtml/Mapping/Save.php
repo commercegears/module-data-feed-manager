@@ -1,20 +1,20 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Controller\Adminhtml\Mapping;
+namespace CommerceGears\DataFeed\Controller\Adminhtml\Mapping;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\Redirect;
-use Softaware\DataFeed\Model\ResourceModel\CategoryMap;
-use Softaware\DataFeed\Model\ResourceModel\Taxonomy;
+use CommerceGears\DataFeed\Model\ResourceModel\CategoryMap;
+use CommerceGears\DataFeed\Model\ResourceModel\Taxonomy;
 
 class Save extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_DataFeed::mapping';
+    public const ADMIN_RESOURCE = 'CommerceGears_DataFeed::mapping';
 
     public function __construct(
         Action\Context $context,

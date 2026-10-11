@@ -1,6 +1,6 @@
-# Softaware Data Feed Manager
+# CommerceGears Data Feed Manager
 
-`softaware/module-data-feed-manager` (Magento module `Softaware_DataFeed`)
+`commercegears/module-data-feed-manager` (Magento module `CommerceGears_DataFeed`)
 
 Exports product data as XML, JSON, CSV or delimited TXT feeds for Google Shopping, Meta (Facebook/Instagram),
 Pinterest, Microsoft/Bing Shopping, price comparison sites and ERPs. Feeds are generated in batches (cron, admin or
@@ -10,7 +10,7 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
 
 ## Features
 
-- **Feeds** (Softaware > Data Feed Manager > Feeds): name, store view, format, file name and directory, currency,
+- **Feeds** (CommerceGears > Data Feed Manager > Feeds): name, store view, format, file name and directory, currency,
   enabled switch, schedule, product filters, delivery. Grid with the feed's public URL (or, for feeds below `var/`,
   its location relative to the Magento root), last result, item count and size; mass enable, disable and delete;
   duplicate. Generate Now, Duplicate and Delete in the grid ask for confirmation and are sent as POST requests.
@@ -47,12 +47,12 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
   of, is not one of, is empty, is not empty`; option labels are accepted for dropdowns), SKUs to exclude.
 - **Configurable products**: parents only, variants only (with `item_group_id`), or both. Variants without their own
   URL or image fall back to the parent's.
-- **Google category mapping** (Softaware > Data Feed Manager > Google Category Mapping): map store categories to the
+- **Google category mapping** (CommerceGears > Data Feed Manager > Google Category Mapping): map store categories to the
   Google product taxonomy with autocomplete; categories inherit the nearest mapped parent. The en-GB taxonomy is
   imported on installation; other languages can be uploaded (IDs are the same in every language).
 - **Generation**: batched by product ID (memory use does not grow with catalogue size), atomic file replacement,
   final validation (streamed XML check, JSON check). An invalid file is not published, the previous file stays.
-  - cron: per feed daily times or a cron expression (store view timezone), own cron group `softaware_datafeed`
+  - cron: per feed daily times or a cron expression (store view timezone), own cron group `commercegears_datafeed`
   - admin: "Generate Now" runs batch by batch in the browser with a progress bar
   - CLI: see below
   - **preview**: the **Preview** button (page header), **Preview Output** (Content tab) and the Preview tab render
@@ -63,7 +63,7 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
     or written. Template errors name
     the line, with a button that puts the cursor on it; output errors mark the line in the output. The work is
     bounded: at most 20 items, 500 products read and about 10 seconds
-  - **generation log** (Softaware > Data Feed Manager > Generation Log): start time, trigger, status, duration, items,
+  - **generation log** (CommerceGears > Data Feed Manager > Generation Log): start time, trigger, status, duration, items,
     errors with messages, file size
 - **Delivery**: local file (public URL when below `pub/`), optional upload by SFTP, FTP or FTPS (password stored
   encrypted, "Test Connection" button). Upload failures mark the run as a warning; the local file is still updated.
@@ -72,21 +72,21 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
     is sent. Clear the field when the server was really replaced. Changing the host or port clears it too.
   - The saved password is only reused for the same host and protocol; after changing either, enter it again.
 
-The feed form (Softaware > Data Feed Manager > Feeds) has tabs on the left: General, Content (the template for XML
+The feed form (CommerceGears > Data Feed Manager > Feeds) has tabs on the left: General, Content (the template for XML
 and JSON or the columns for CSV and TXT, depending on the format), Product Filters, Schedule, Delivery (FTP / SFTP)
 and Preview. The feed grid has a keyword search (name and file name).
 
 ## Configuration
 
-Stores > Configuration > Softaware > Data Feed Manager (groups General, Generation and Product Data):
+Stores > Configuration > CommerceGears > Data Feed Manager (groups General, Generation and Product Data):
 
 | Setting | Path | Default |
 |---|---|---|
-| Enabled | `softaware_datafeed/general/enabled` | Yes |
-| Batch Size | `softaware_datafeed/general/batch_size` | 250 |
-| Preview Items | `softaware_datafeed/general/preview_limit` | 5 (1 to 20) |
-| Keep Generation Log For (Days) | `softaware_datafeed/general/log_retention_days` | 30 |
-| Brand Attribute | `softaware_datafeed/product_data/brand_attribute` | Automatic: `brand` if the store has it, otherwise `manufacturer` |
+| Enabled | `commercegears_datafeed/general/enabled` | Yes |
+| Batch Size | `commercegears_datafeed/general/batch_size` | 250 |
+| Preview Items | `commercegears_datafeed/general/preview_limit` | 5 (1 to 20) |
+| Keep Generation Log For (Days) | `commercegears_datafeed/general/log_retention_days` | 30 |
+| Brand Attribute | `commercegears_datafeed/product_data/brand_attribute` | Automatic: `brand` if the store has it, otherwise `manufacturer` |
 
 **Brand**: `{{ product.brand }}` reads the Brand Attribute (option labels for dropdowns); a variant without a value
 uses its parent's. The Google Shopping, Meta, Pinterest and Microsoft presets send it as the brand and use the store
@@ -95,17 +95,17 @@ name only when the product has no brand. Feeds created from these presets before
 
 When disabled, nothing is generated (cron, admin and CLI); existing files stay in place.
 
-ACL: Softaware > Data Feed Manager > Manage Feeds (Generate Feeds, Delete Feeds), Google Category Mapping,
+ACL: CommerceGears > Data Feed Manager > Manage Feeds (Generate Feeds, Delete Feeds), Google Category Mapping,
 Generation Log, Settings.
 
 ## CLI
 
 ```
-bin/magento softaware:feed:list
-bin/magento softaware:feed:generate <id> [<id> …]
-bin/magento softaware:feed:generate --all
-bin/magento softaware:feed:preview <id> [--limit=3]
-bin/magento softaware:feed:taxonomy-import [path/to/taxonomy-with-ids.de-DE.txt]
+bin/magento commercegears:feed:list
+bin/magento commercegears:feed:generate <id> [<id> …]
+bin/magento commercegears:feed:generate --all
+bin/magento commercegears:feed:preview <id> [--limit=3]
+bin/magento commercegears:feed:taxonomy-import [path/to/taxonomy-with-ids.de-DE.txt]
 ```
 
 ## File locations
@@ -113,7 +113,7 @@ bin/magento softaware:feed:taxonomy-import [path/to/taxonomy-with-ids.de-DE.txt]
 Feeds may be written below `pub/` (public; below `pub/media/` the URL is the media URL) or below `var/` (not public,
 use FTP upload). `pub/static/`, `pub/errors/` and hidden folders such as `pub/.well-known/` are not allowed. File names
 may only contain letters, digits, `.`, `-` and `_` and must end in `.xml`, `.json`, `.csv`, `.txt` or `.tsv` to match
-the format. Partial files and job state are kept in `var/softaware_datafeed/` while a feed is generated.
+the format. Partial files and job state are kept in `var/commercegears_datafeed/` while a feed is generated.
 
 - New feeds get a file name with a random part (e.g. `google_shopping_k3v9q2xa.xml`), so the URL cannot be guessed.
   Public feed files can still be read by anyone who has the URL; put feeds with private data (cost, stock levels)

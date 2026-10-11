@@ -65,7 +65,7 @@ define(['jquery'], function ($) {
                     [labels.duration, format(labels.seconds, result.duration)]
                 ];
 
-            html += '<table class="softaware-datafeed-facts">';
+            html += '<table class="commercegears-datafeed-facts">';
             facts.forEach(function (fact) {
                 html += '<tr><th>' + escapeHtml(fact[0]) + '</th><td>' + escapeHtml(fact[1]) + '</td></tr>';
             });
@@ -75,7 +75,7 @@ define(['jquery'], function ($) {
             }
             html += '</table>';
             if (result.messages && result.messages.length) {
-                html += '<h3>' + escapeHtml(labels.messages) + '</h3><ul class="softaware-datafeed-messages">';
+                html += '<h3>' + escapeHtml(labels.messages) + '</h3><ul class="commercegears-datafeed-messages">';
                 result.messages.forEach(function (message) {
                     html += '<li>' + escapeHtml(message) + '</li>';
                 });

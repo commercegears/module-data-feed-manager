@@ -1,20 +1,20 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Controller\Adminhtml\Feed;
+namespace CommerceGears\DataFeed\Controller\Adminhtml\Feed;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\DataFeed\Api\FeedRepositoryInterface;
+use CommerceGears\DataFeed\Api\FeedRepositoryInterface;
 
 class Delete extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_DataFeed::feed_delete';
+    public const ADMIN_RESOURCE = 'CommerceGears_DataFeed::feed_delete';
 
     public function __construct(
         Action\Context $context,

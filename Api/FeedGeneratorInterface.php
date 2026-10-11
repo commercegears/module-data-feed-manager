@@ -1,13 +1,13 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Api;
+namespace CommerceGears\DataFeed\Api;
 
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\DataFeed\Model\Generator\Result;
+use CommerceGears\DataFeed\Model\Generator\Result;
 
 /**
  * Generates a feed file in one go (cron and CLI). The admin uses the step-wise job API instead.

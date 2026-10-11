@@ -1,23 +1,23 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Controller\Adminhtml\Mapping;
+namespace CommerceGears\DataFeed\Controller\Adminhtml\Mapping;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\DataFeed\Model\Taxonomy\Importer;
+use CommerceGears\DataFeed\Model\Taxonomy\Importer;
 
 /**
  * Imports the Google taxonomy from an uploaded file, or the bundled en-GB list.
  */
 class Import extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_DataFeed::mapping';
+    public const ADMIN_RESOURCE = 'CommerceGears_DataFeed::mapping';
 
     public function __construct(
         Action\Context $context,

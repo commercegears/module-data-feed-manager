@@ -1,19 +1,19 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model;
+namespace CommerceGears\DataFeed\Model;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Model\Generator\FileLocator;
-use Softaware\DataFeed\Model\Generator\RendererProvider;
-use Softaware\DataFeed\Model\Product\ProductProvider;
-use Softaware\DataFeed\Model\ResourceModel\Feed\CollectionFactory;
-use Softaware\DataFeed\Model\Schedule\NextRunCalculator;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Model\Generator\FileLocator;
+use CommerceGears\DataFeed\Model\Generator\RendererProvider;
+use CommerceGears\DataFeed\Model\Product\ProductProvider;
+use CommerceGears\DataFeed\Model\ResourceModel\Feed\CollectionFactory;
+use CommerceGears\DataFeed\Model\Schedule\NextRunCalculator;
 
 /**
  * Checks a feed before it is saved. Returns all problems at once.

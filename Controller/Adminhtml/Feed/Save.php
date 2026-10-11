@@ -1,27 +1,27 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Controller\Adminhtml\Feed;
+namespace CommerceGears\DataFeed\Controller\Adminhtml\Feed;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Api\FeedRepositoryInterface;
-use Softaware\DataFeed\Model\FeedDataMapper;
-use Softaware\DataFeed\Model\FeedFactory;
-use Softaware\DataFeed\Model\FeedValidator;
-use Softaware\DataFeed\Model\Schedule\NextRunCalculator;
-use Softaware\DataFeed\Ui\DataProvider\FeedFormDataProvider;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Api\FeedRepositoryInterface;
+use CommerceGears\DataFeed\Model\FeedDataMapper;
+use CommerceGears\DataFeed\Model\FeedFactory;
+use CommerceGears\DataFeed\Model\FeedValidator;
+use CommerceGears\DataFeed\Model\Schedule\NextRunCalculator;
+use CommerceGears\DataFeed\Ui\DataProvider\FeedFormDataProvider;
 
 class Save extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_DataFeed::feeds';
+    public const ADMIN_RESOURCE = 'CommerceGears_DataFeed::feeds';
 
     public function __construct(
         Action\Context $context,
@@ -60,7 +60,7 @@ class Save extends Action implements HttpPostActionInterface
             $this->dataPersistor->clear(FeedFormDataProvider::PERSISTOR_KEY);
 
             $back = (string)($data['back'] ?? $this->getRequest()->getParam('back'));
-            if ($back === 'generate' && $this->_authorization->isAllowed('Softaware_DataFeed::feed_generate')) {
+            if ($back === 'generate' && $this->_authorization->isAllowed('CommerceGears_DataFeed::feed_generate')) {
                 return $redirect->setPath('*/*/generate', ['id' => $feed->getId()]);
             }
             if ($back === 'close') {

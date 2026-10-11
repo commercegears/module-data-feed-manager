@@ -1,15 +1,15 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Console\Command;
+namespace CommerceGears\DataFeed\Console\Command;
 
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
-use Softaware\DataFeed\Api\FeedRepositoryInterface;
-use Softaware\DataFeed\Model\Generator\Preview;
+use CommerceGears\DataFeed\Api\FeedRepositoryInterface;
+use CommerceGears\DataFeed\Model\Generator\Preview;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -28,7 +28,7 @@ class PreviewCommand extends Command
 
     protected function configure(): void
     {
-        $this->setName('softaware:feed:preview')
+        $this->setName('commercegears:feed:preview')
             ->setDescription('Print the first items of a feed without writing the file')
             ->addArgument('id', InputArgument::REQUIRED, 'Feed ID')
             ->addOption('limit', 'l', InputOption::VALUE_REQUIRED, 'Number of items', '3');

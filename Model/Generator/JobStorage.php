@@ -1,16 +1,16 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Generator;
+namespace CommerceGears\DataFeed\Model\Generator;
 
 use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Filesystem\Driver\File;
 
 /**
- * Keeps the state of running generations in var/softaware_datafeed/ (one JSON file per feed).
+ * Keeps the state of running generations in var/commercegears_datafeed/ (one JSON file per feed).
  * The file doubles as a lock: a feed cannot be generated twice at the same time.
  */
 class JobStorage

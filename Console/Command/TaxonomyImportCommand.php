@@ -1,12 +1,12 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Console\Command;
+namespace CommerceGears\DataFeed\Console\Command;
 
-use Softaware\DataFeed\Model\Taxonomy\Importer;
+use CommerceGears\DataFeed\Model\Taxonomy\Importer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -21,7 +21,7 @@ class TaxonomyImportCommand extends Command
 
     protected function configure(): void
     {
-        $this->setName('softaware:feed:taxonomy-import')
+        $this->setName('commercegears:feed:taxonomy-import')
             ->setDescription('Import the Google product taxonomy (taxonomy-with-ids.<locale>.txt); without a file the bundled en-GB list is used')
             ->addArgument('file', InputArgument::OPTIONAL, 'Path to a taxonomy-with-ids file');
     }

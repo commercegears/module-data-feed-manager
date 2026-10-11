@@ -1,5 +1,5 @@
 {
-    "softaware_datafeed_feed": {
+    "commercegears_datafeed_feed": {
         "column": {
             "feed_id": true,
             "name": true,
@@ -48,15 +48,15 @@
             "ftp_host_key": true
         },
         "index": {
-            "SOFTAWARE_DATAFEED_FEED_IS_ACTIVE_NEXT_RUN_AT": true,
-            "SOFTAWARE_DATAFEED_FEED_NAME_FILENAME": true
+            "COMMERCEGEARS_DATAFEED_FEED_IS_ACTIVE_NEXT_RUN_AT": true,
+            "COMMERCEGEARS_DATAFEED_FEED_NAME_FILENAME": true
         },
         "constraint": {
             "PRIMARY": true,
-            "SOFTAWARE_DATAFEED_FEED_STORE_ID_STORE_STORE_ID": true
+            "COMMERCEGEARS_DATAFEED_FEED_STORE_ID_STORE_STORE_ID": true
         }
     },
-    "softaware_datafeed_log": {
+    "commercegears_datafeed_log": {
         "column": {
             "log_id": true,
             "feed_id": true,
@@ -71,14 +71,14 @@
             "messages": true
         },
         "index": {
-            "SOFTAWARE_DATAFEED_LOG_FEED_ID_STARTED_AT": true
+            "COMMERCEGEARS_DATAFEED_LOG_FEED_ID_STARTED_AT": true
         },
         "constraint": {
             "PRIMARY": true,
-            "SOFTAWARE_DATAFEED_LOG_FEED_ID_SOFTAWARE_DATAFEED_FEED_FEED_ID": true
+            "COMMERCEGEARS_DATAFEED_LOG_FEED_ID_COMMERCEGEARS_DATAFEED_FEED_FEED_ID": true
         }
     },
-    "softaware_datafeed_taxonomy": {
+    "commercegears_datafeed_taxonomy": {
         "column": {
             "taxonomy_id": true,
             "name": true,
@@ -88,7 +88,7 @@
             "PRIMARY": true
         }
     },
-    "softaware_datafeed_category_map": {
+    "commercegears_datafeed_category_map": {
         "column": {
             "category_id": true,
             "taxonomy_id": true

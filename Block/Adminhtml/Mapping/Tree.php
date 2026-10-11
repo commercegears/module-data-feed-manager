@@ -1,16 +1,16 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Block\Adminhtml\Mapping;
+namespace CommerceGears\DataFeed\Block\Adminhtml\Mapping;
 
 use Magento\Backend\Block\Template;
 use Magento\Backend\Block\Widget\Button;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory;
-use Softaware\DataFeed\Model\ResourceModel\CategoryMap;
-use Softaware\DataFeed\Model\ResourceModel\Taxonomy;
+use CommerceGears\DataFeed\Model\ResourceModel\CategoryMap;
+use CommerceGears\DataFeed\Model\ResourceModel\Taxonomy;
 
 /**
  * Category tree (all root categories) with the mapped Google category per row.
@@ -40,11 +40,11 @@ class Tree extends Template
     {
         $toolbar = $this->getLayout()->getBlock('page.actions.toolbar');
         if ($toolbar && $this->getTaxonomyCount() > 0) {
-            $toolbar->addChild('softaware_datafeed_mapping_save', Button::class, [
+            $toolbar->addChild('commercegears_datafeed_mapping_save', Button::class, [
                 'label' => __('Save Mapping'),
                 'class' => 'save primary',
                 'data_attribute' => [
-                    'mage-init' => ['button' => ['event' => 'submit', 'target' => '#softaware-datafeed-mapping-form']],
+                    'mage-init' => ['button' => ['event' => 'submit', 'target' => '#commercegears-datafeed-mapping-form']],
                 ],
             ]);
         }

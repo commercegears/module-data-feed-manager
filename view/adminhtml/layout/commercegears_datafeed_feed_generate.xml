@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="Softaware_DataFeed::css/datafeed.css"/>
+        <css src="CommerceGears_DataFeed::css/datafeed.css"/>
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Softaware\DataFeed\Block\Adminhtml\Feed\Generate" name="softaware_datafeed_generate" template="Softaware_DataFeed::generate.phtml"/>
+            <block class="CommerceGears\DataFeed\Block\Adminhtml\Feed\Generate" name="commercegears_datafeed_generate" template="CommerceGears_DataFeed::generate.phtml"/>
         </referenceContainer>
     </body>
 </page>

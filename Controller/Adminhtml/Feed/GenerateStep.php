@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Controller\Adminhtml\Feed;
+namespace CommerceGears\DataFeed\Controller\Adminhtml\Feed;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
@@ -12,16 +12,16 @@ use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Psr\Log\LoggerInterface;
-use Softaware\DataFeed\Api\FeedGeneratorInterface;
-use Softaware\DataFeed\Model\Generator\Generator;
-use Softaware\DataFeed\Model\Generator\JobStorage;
+use CommerceGears\DataFeed\Api\FeedGeneratorInterface;
+use CommerceGears\DataFeed\Model\Generator\Generator;
+use CommerceGears\DataFeed\Model\Generator\JobStorage;
 
 /**
  * One request per batch: action=start, then action=step until done (the last step also finishes the file).
  */
 class GenerateStep extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_DataFeed::feed_generate';
+    public const ADMIN_RESOURCE = 'CommerceGears_DataFeed::feed_generate';
 
     public function __construct(
         Action\Context $context,
@@ -66,7 +66,7 @@ class GenerateStep extends Action implements HttpPostActionInterface
                 $this->generator->abort($job, $e);
             }
             if (!$e instanceof LocalizedException) {
-                $this->logger->error('Softaware_DataFeed: ' . $e->getMessage(), ['exception' => $e]);
+                $this->logger->error('CommerceGears_DataFeed: ' . $e->getMessage(), ['exception' => $e]);
             }
             return $result->setData([
                 'ok' => false,

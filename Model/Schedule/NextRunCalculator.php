@@ -1,15 +1,15 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Schedule;
+namespace CommerceGears\DataFeed\Model\Schedule;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\ScopeInterface;
-use Softaware\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
 
 /**
  * Works out when a feed is due next. Daily times and cron expressions use the timezone of the feed's store view;

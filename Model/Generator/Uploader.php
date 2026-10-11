@@ -1,16 +1,16 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Generator;
+namespace CommerceGears\DataFeed\Model\Generator;
 
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Filesystem\Io\FtpFactory;
 use phpseclib3\Net\SFTP;
-use Softaware\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
 
 /**
  * Uploads generated feeds to an FTP, FTPS or SFTP server.

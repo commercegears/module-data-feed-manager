@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <softaware_datafeed>
+        <commercegears_datafeed>
             <general>
                 <enabled>1</enabled>
                 <batch_size>250</batch_size>
                 <preview_limit>5</preview_limit>
                 <log_retention_days>30</log_retention_days>
             </general>
-        </softaware_datafeed>
+        </commercegears_datafeed>
     </default>
 </config>

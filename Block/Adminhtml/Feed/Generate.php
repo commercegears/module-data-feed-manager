@@ -1,15 +1,15 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Block\Adminhtml\Feed;
+namespace CommerceGears\DataFeed\Block\Adminhtml\Feed;
 
 use Magento\Backend\Block\Template;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Model\Generator\FileLocator;
-use Softaware\DataFeed\Model\Generator\JobStorage;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Model\Generator\FileLocator;
+use CommerceGears\DataFeed\Model\Generator\JobStorage;
 
 class Generate extends Template
 {

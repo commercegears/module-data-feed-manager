@@ -1,5 +1,5 @@
 {
-    "name": "softaware/module-data-feed-manager",
+    "name": "commercegears/module-data-feed-manager",
     "description": "Data Feed Manager: export product data as XML, JSON, CSV or delimited TXT feeds for Google Shopping, Meta, Pinterest, Bing, price comparison sites and ERPs.",
     "type": "magento2-module",
     "license": "proprietary",
@@ -11,7 +11,7 @@
         "ext-mbstring": "*",
         "ext-xmlreader": "*",
         "magento/framework": "~103.0.7",
-        "softaware/module-core": "^1.3",
+        "commercegears/module-core": "^2.0",
         "magento/module-backend": "*",
         "magento/module-catalog": "*",
         "magento/module-catalog-inventory": "*",
@@ -33,7 +33,10 @@
             "registration.php"
         ],
         "psr-4": {
-            "Softaware\\DataFeed\\": ""
+            "CommerceGears\\DataFeed\\": ""
         }
+    },
+    "replace": {
+        "softaware/module-data-feed-manager": "*"
     }
 }

@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Controller\Adminhtml\Feed;
+namespace CommerceGears\DataFeed\Controller\Adminhtml\Feed;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpGetActionInterface;
@@ -12,7 +12,7 @@ use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Softaware\DataFeed\Api\FeedRepositoryInterface;
+use CommerceGears\DataFeed\Api\FeedRepositoryInterface;
 
 /**
  * Progress page: the browser runs the generation batch by batch (see GenerateStep).
@@ -20,7 +20,7 @@ use Softaware\DataFeed\Api\FeedRepositoryInterface;
  */
 class Generate extends Action implements HttpGetActionInterface, HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_DataFeed::feed_generate';
+    public const ADMIN_RESOURCE = 'CommerceGears_DataFeed::feed_generate';
 
     public function __construct(
         Action\Context $context,
@@ -39,9 +39,9 @@ class Generate extends Action implements HttpGetActionInterface, HttpPostActionI
         }
         /** @var \Magento\Framework\View\Result\Page $page */
         $page = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $page->setActiveMenu('Softaware_DataFeed::feeds');
+        $page->setActiveMenu('CommerceGears_DataFeed::feeds');
         $page->getConfig()->getTitle()->prepend(__('Generate Feed: %1', $feed->getName()));
-        $block = $page->getLayout()->getBlock('softaware_datafeed_generate');
+        $block = $page->getLayout()->getBlock('commercegears_datafeed_generate');
         if ($block) {
             $block->setData('feed', $feed);
         }

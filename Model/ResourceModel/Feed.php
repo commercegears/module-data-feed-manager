@@ -1,16 +1,16 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\ResourceModel;
+namespace CommerceGears\DataFeed\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class Feed extends AbstractDb
 {
-    public const TABLE = 'softaware_datafeed_feed';
+    public const TABLE = 'commercegears_datafeed_feed';
 
     protected function _construct(): void
     {

@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Ui\Component\Listing\Column;
+namespace CommerceGears\DataFeed\Ui\Component\Listing\Column;
 
 use Magento\Framework\AuthorizationInterface;
 use Magento\Framework\Escaper;
@@ -36,9 +36,9 @@ class FeedActions extends Column
         if (!isset($dataSource['data']['items'])) {
             return $dataSource;
         }
-        $canGenerate = $this->authorization->isAllowed('Softaware_DataFeed::feed_generate');
-        $canDelete = $this->authorization->isAllowed('Softaware_DataFeed::feed_delete');
-        $canLog = $this->authorization->isAllowed('Softaware_DataFeed::log');
+        $canGenerate = $this->authorization->isAllowed('CommerceGears_DataFeed::feed_generate');
+        $canDelete = $this->authorization->isAllowed('CommerceGears_DataFeed::feed_delete');
+        $canLog = $this->authorization->isAllowed('CommerceGears_DataFeed::log');
         $name = $this->getData('name');
         foreach ($dataSource['data']['items'] as &$item) {
             if (!isset($item['feed_id'])) {
@@ -46,12 +46,12 @@ class FeedActions extends Column
             }
             $id = (int)$item['feed_id'];
             $item[$name]['edit'] = [
-                'href' => $this->urlBuilder->getUrl('softaware_datafeed/feed/edit', ['id' => $id]),
+                'href' => $this->urlBuilder->getUrl('commercegears_datafeed/feed/edit', ['id' => $id]),
                 'label' => __('Edit'),
             ];
             if ($canGenerate) {
                 $item[$name]['generate'] = [
-                    'href' => $this->urlBuilder->getUrl('softaware_datafeed/feed/generate', ['id' => $id]),
+                    'href' => $this->urlBuilder->getUrl('commercegears_datafeed/feed/generate', ['id' => $id]),
                     'label' => __('Generate Now'),
                     // Replaces the published file: ask first, then post the request.
                     'post' => true,
@@ -66,12 +66,12 @@ class FeedActions extends Column
             }
             if ($canLog) {
                 $item[$name]['log'] = [
-                    'href' => $this->urlBuilder->getUrl('softaware_datafeed/log/index', ['feed_id' => $id]),
+                    'href' => $this->urlBuilder->getUrl('commercegears_datafeed/log/index', ['feed_id' => $id]),
                     'label' => __('View Log'),
                 ];
             }
             $item[$name]['duplicate'] = [
-                'href' => $this->urlBuilder->getUrl('softaware_datafeed/feed/duplicate', ['id' => $id]),
+                'href' => $this->urlBuilder->getUrl('commercegears_datafeed/feed/duplicate', ['id' => $id]),
                 'label' => __('Duplicate'),
                 // The grid only posts actions that have a confirm (or callback); without one it opens the
                 // link with GET, which the POST-only controller answers with a 404.
@@ -87,7 +87,7 @@ class FeedActions extends Column
             ];
             if ($canDelete) {
                 $item[$name]['delete'] = [
-                    'href' => $this->urlBuilder->getUrl('softaware_datafeed/feed/delete', ['id' => $id]),
+                    'href' => $this->urlBuilder->getUrl('commercegears_datafeed/feed/delete', ['id' => $id]),
                     'label' => __('Delete'),
                     'confirm' => [
                         'title' => __('Delete Feed'),

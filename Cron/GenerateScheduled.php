@@ -1,19 +1,19 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Cron;
+namespace CommerceGears\DataFeed\Cron;
 
 use Psr\Log\LoggerInterface;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Api\FeedGeneratorInterface;
-use Softaware\DataFeed\Model\Config;
-use Softaware\DataFeed\Model\Generator\JobStorage;
-use Softaware\DataFeed\Model\ResourceModel\Feed as FeedResource;
-use Softaware\DataFeed\Model\ResourceModel\Feed\CollectionFactory;
-use Softaware\DataFeed\Model\Schedule\NextRunCalculator;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Api\FeedGeneratorInterface;
+use CommerceGears\DataFeed\Model\Config;
+use CommerceGears\DataFeed\Model\Generator\JobStorage;
+use CommerceGears\DataFeed\Model\ResourceModel\Feed as FeedResource;
+use CommerceGears\DataFeed\Model\ResourceModel\Feed\CollectionFactory;
+use CommerceGears\DataFeed\Model\Schedule\NextRunCalculator;
 
 /**
  * Runs every minute (own cron group) and generates the feeds that are due.
@@ -55,13 +55,13 @@ class GenerateScheduled
                 $next = $this->nextRunCalculator->calculate($feed);
             } catch (\Throwable $e) {
                 $next = null;
-                $this->logger->error(sprintf('Softaware_DataFeed: feed %d has an invalid schedule: %s', $feedId, $e->getMessage()));
+                $this->logger->error(sprintf('CommerceGears_DataFeed: feed %d has an invalid schedule: %s', $feedId, $e->getMessage()));
             }
             $this->feedResource->updateFields($feedId, [FeedInterface::NEXT_RUN_AT => $next]);
             try {
                 $this->generator->generate($feedId, FeedGeneratorInterface::TRIGGER_CRON);
             } catch (\Throwable $e) {
-                $this->logger->error(sprintf('Softaware_DataFeed: feed %d failed: %s', $feedId, $e->getMessage()));
+                $this->logger->error(sprintf('CommerceGears_DataFeed: feed %d failed: %s', $feedId, $e->getMessage()));
             }
         }
     }

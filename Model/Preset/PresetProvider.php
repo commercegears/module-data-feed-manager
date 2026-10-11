@@ -1,14 +1,14 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Preset;
+namespace CommerceGears\DataFeed\Model\Preset;
 
 use Magento\Catalog\Model\Product\Visibility;
 use Magento\Framework\Module\Dir\Reader as ModuleDirReader;
-use Softaware\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
 
 /**
  * Ready-made feed definitions offered under "Add Feed".
@@ -214,7 +214,7 @@ class PresetProvider
 
     private function readFile(string $name): string
     {
-        $path = $this->moduleDirReader->getModuleDir('', 'Softaware_DataFeed') . '/' . self::FILES_DIR . $name;
+        $path = $this->moduleDirReader->getModuleDir('', 'CommerceGears_DataFeed') . '/' . self::FILES_DIR . $name;
         return is_readable($path) ? (string)file_get_contents($path) : '';
     }
 }

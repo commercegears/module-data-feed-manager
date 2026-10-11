@@ -1,13 +1,13 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model;
+namespace CommerceGears\DataFeed\Model;
 
 use Magento\Framework\Model\AbstractModel;
-use Softaware\DataFeed\Model\ResourceModel\Log as LogResource;
+use CommerceGears\DataFeed\Model\ResourceModel\Log as LogResource;
 
 class Log extends AbstractModel
 {

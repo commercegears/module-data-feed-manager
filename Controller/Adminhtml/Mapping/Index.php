@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Controller\Adminhtml\Mapping;
+namespace CommerceGears\DataFeed\Controller\Adminhtml\Mapping;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpGetActionInterface;
@@ -13,13 +13,13 @@ use Magento\Framework\View\Result\Page;
 
 class Index extends Action implements HttpGetActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_DataFeed::mapping';
+    public const ADMIN_RESOURCE = 'CommerceGears_DataFeed::mapping';
 
     public function execute(): Page
     {
         /** @var Page $page */
         $page = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $page->setActiveMenu('Softaware_DataFeed::mapping');
+        $page->setActiveMenu('CommerceGears_DataFeed::mapping');
         $page->getConfig()->getTitle()->prepend(__('Google Category Mapping'));
         return $page;
     }

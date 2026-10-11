@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Block\Adminhtml\Feed\Edit;
+namespace CommerceGears\DataFeed\Block\Adminhtml\Feed\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
@@ -15,7 +15,7 @@ class GenerateButton extends GenericButton implements ButtonProviderInterface
 {
     public function getButtonData(): array
     {
-        if (!$this->getFeedId() || !$this->authorization->isAllowed('Softaware_DataFeed::feed_generate')) {
+        if (!$this->getFeedId() || !$this->authorization->isAllowed('CommerceGears_DataFeed::feed_generate')) {
             return [];
         }
         return [

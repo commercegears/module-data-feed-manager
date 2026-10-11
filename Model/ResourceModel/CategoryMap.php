@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\ResourceModel;
+namespace CommerceGears\DataFeed\Model\ResourceModel;
 
 use Magento\Framework\App\ResourceConnection;
 
@@ -13,7 +13,7 @@ use Magento\Framework\App\ResourceConnection;
  */
 class CategoryMap
 {
-    public const TABLE = 'softaware_datafeed_category_map';
+    public const TABLE = 'commercegears_datafeed_category_map';
 
     public function __construct(private readonly ResourceConnection $resource)
     {

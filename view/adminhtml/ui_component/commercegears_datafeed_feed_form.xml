@@ -2,37 +2,37 @@
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">softaware_datafeed_feed_form.softaware_datafeed_feed_form_data_source</item>
+            <item name="provider" xsi:type="string">commercegears_datafeed_feed_form.commercegears_datafeed_feed_form_data_source</item>
         </item>
         <item name="label" xsi:type="string" translate="true">Feed Information</item>
     </argument>
     <settings>
         <buttons>
-            <button name="back" class="Softaware\DataFeed\Block\Adminhtml\Feed\Edit\BackButton"/>
-            <button name="delete" class="Softaware\DataFeed\Block\Adminhtml\Feed\Edit\DeleteButton"/>
-            <button name="generate" class="Softaware\DataFeed\Block\Adminhtml\Feed\Edit\GenerateButton"/>
-            <button name="preview" class="Softaware\DataFeed\Block\Adminhtml\Feed\Edit\PreviewButton"/>
-            <button name="save" class="Softaware\DataFeed\Block\Adminhtml\Feed\Edit\SaveButton"/>
+            <button name="back" class="CommerceGears\DataFeed\Block\Adminhtml\Feed\Edit\BackButton"/>
+            <button name="delete" class="CommerceGears\DataFeed\Block\Adminhtml\Feed\Edit\DeleteButton"/>
+            <button name="generate" class="CommerceGears\DataFeed\Block\Adminhtml\Feed\Edit\GenerateButton"/>
+            <button name="preview" class="CommerceGears\DataFeed\Block\Adminhtml\Feed\Edit\PreviewButton"/>
+            <button name="save" class="CommerceGears\DataFeed\Block\Adminhtml\Feed\Edit\SaveButton"/>
         </buttons>
-        <namespace>softaware_datafeed_feed_form</namespace>
+        <namespace>commercegears_datafeed_feed_form</namespace>
         <layout>
             <navContainerName>left</navContainerName>
             <type>tabs</type>
         </layout>
         <deps>
-            <dep>softaware_datafeed_feed_form.softaware_datafeed_feed_form_data_source</dep>
+            <dep>commercegears_datafeed_feed_form.commercegears_datafeed_feed_form_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="softaware_datafeed_feed_form_data_source">
+    <dataSource name="commercegears_datafeed_feed_form_data_source">
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
             </item>
         </argument>
         <settings>
-            <submitUrl path="softaware_datafeed/feed/save"/>
+            <submitUrl path="commercegears_datafeed/feed/save"/>
         </settings>
-        <dataProvider class="Softaware\DataFeed\Ui\DataProvider\FeedFormDataProvider" name="softaware_datafeed_feed_form_data_source">
+        <dataProvider class="CommerceGears\DataFeed\Ui\DataProvider\FeedFormDataProvider" name="commercegears_datafeed_feed_form_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>feed_id</primaryFieldName>
@@ -55,7 +55,7 @@
         <container name="file_info" component="Magento_Ui/js/form/components/html" sortOrder="5">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="additionalClasses" xsi:type="string">softaware-datafeed-info</item>
+                    <item name="additionalClasses" xsi:type="string">commercegears-datafeed-info</item>
                     <item name="content" xsi:type="string"/>
                 </item>
             </argument>
@@ -121,12 +121,12 @@
                             <value>xml</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.template_section</target>
+                                    <target>commercegears_datafeed_feed_form.areas.content_section.content_section.template_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">true</param></params>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.columns_section</target>
+                                    <target>commercegears_datafeed_feed_form.areas.content_section.content_section.columns_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">false</param></params>
                                 </action>
@@ -136,12 +136,12 @@
                             <value>json</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.template_section</target>
+                                    <target>commercegears_datafeed_feed_form.areas.content_section.content_section.template_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">true</param></params>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.columns_section</target>
+                                    <target>commercegears_datafeed_feed_form.areas.content_section.content_section.columns_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">false</param></params>
                                 </action>
@@ -151,12 +151,12 @@
                             <value>csv</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.template_section</target>
+                                    <target>commercegears_datafeed_feed_form.areas.content_section.content_section.template_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">false</param></params>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.columns_section</target>
+                                    <target>commercegears_datafeed_feed_form.areas.content_section.content_section.columns_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">true</param></params>
                                 </action>
@@ -166,12 +166,12 @@
                             <value>txt</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.template_section</target>
+                                    <target>commercegears_datafeed_feed_form.areas.content_section.content_section.template_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">false</param></params>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.areas.content_section.content_section.columns_section</target>
+                                    <target>commercegears_datafeed_feed_form.areas.content_section.content_section.columns_section</target>
                                     <callback>visible</callback>
                                     <params><param name="0" xsi:type="boolean">true</param></params>
                                 </action>
@@ -184,7 +184,7 @@
             <formElements>
                 <select>
                     <settings>
-                        <options class="Softaware\DataFeed\Model\Source\Format"/>
+                        <options class="CommerceGears\DataFeed\Model\Source\Format"/>
                     </settings>
                 </select>
             </formElements>
@@ -218,7 +218,7 @@
             <formElements>
                 <select>
                     <settings>
-                        <options class="Softaware\DataFeed\Model\Source\Currency"/>
+                        <options class="CommerceGears\DataFeed\Model\Source\Currency"/>
                     </settings>
                 </select>
             </formElements>
@@ -230,14 +230,14 @@
             <label translate="true">Content</label>
             <dataScope>data</dataScope>
         </settings>
-        <container name="preview_bar" component="Softaware_DataFeed/js/form/preview" sortOrder="5">
+        <container name="preview_bar" component="CommerceGears_DataFeed/js/form/preview" sortOrder="5">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="template" xsi:type="string">Softaware_DataFeed/form/preview-bar</item>
-                    <item name="url" xsi:type="url" path="softaware_datafeed/feed/preview"/>
-                    <item name="provider" xsi:type="string">softaware_datafeed_feed_form.softaware_datafeed_feed_form_data_source</item>
-                    <item name="editorName" xsi:type="string">softaware_datafeed_feed_form.areas.content_section.content_section.template_section.template</item>
-                    <item name="tabName" xsi:type="string">softaware_datafeed_feed_form.areas.content_section</item>
+                    <item name="template" xsi:type="string">CommerceGears_DataFeed/form/preview-bar</item>
+                    <item name="url" xsi:type="url" path="commercegears_datafeed/feed/preview"/>
+                    <item name="provider" xsi:type="string">commercegears_datafeed_feed_form.commercegears_datafeed_feed_form_data_source</item>
+                    <item name="editorName" xsi:type="string">commercegears_datafeed_feed_form.areas.content_section.content_section.template_section.template</item>
+                    <item name="tabName" xsi:type="string">commercegears_datafeed_feed_form.areas.content_section</item>
                 </item>
             </argument>
         </container>
@@ -246,14 +246,14 @@
                 <label/>
                 <dataScope/>
                 <additionalClasses>
-                    <class name="softaware-datafeed-plain">true</class>
+                    <class name="commercegears-datafeed-plain">true</class>
                 </additionalClasses>
             </settings>
-            <field name="template" formElement="textarea" component="Softaware_DataFeed/js/form/element/code-editor" sortOrder="10">
+            <field name="template" formElement="textarea" component="CommerceGears_DataFeed/js/form/element/code-editor" sortOrder="10">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
                         <item name="rows" xsi:type="number">28</item>
-                        <item name="additionalClasses" xsi:type="string">softaware-datafeed-code</item>
+                        <item name="additionalClasses" xsi:type="string">commercegears-datafeed-code</item>
                     </item>
                 </argument>
                 <settings>
@@ -269,7 +269,7 @@
                 <label/>
                 <dataScope/>
                 <additionalClasses>
-                    <class name="softaware-datafeed-plain">true</class>
+                    <class name="commercegears-datafeed-plain">true</class>
                 </additionalClasses>
             </settings>
             <dynamicRows name="columns" sortOrder="10">
@@ -279,7 +279,7 @@
                         <param name="enabled" xsi:type="boolean">true</param>
                     </dndConfig>
                     <additionalClasses>
-                        <class name="softaware-datafeed-columns">true</class>
+                        <class name="commercegears-datafeed-columns">true</class>
                     </additionalClasses>
                     <componentType>dynamicRows</componentType>
                     <!-- Empty: the rows live at data.<name>.<n>; the default would add the name twice inside the tab. -->
@@ -303,7 +303,7 @@
                     <field name="value" formElement="input" sortOrder="20">
                         <argument name="data" xsi:type="array">
                             <item name="config" xsi:type="array">
-                                <item name="additionalClasses" xsi:type="string">softaware-datafeed-code</item>
+                                <item name="additionalClasses" xsi:type="string">commercegears-datafeed-code</item>
                                 <item name="placeholder" xsi:type="string">{{ product.sku }}</item>
                             </item>
                         </argument>
@@ -316,7 +316,7 @@
                     <field name="default" formElement="input" sortOrder="30">
                         <argument name="data" xsi:type="array">
                             <item name="config" xsi:type="array">
-                                <item name="additionalClasses" xsi:type="string">softaware-datafeed-code</item>
+                                <item name="additionalClasses" xsi:type="string">commercegears-datafeed-code</item>
                             </item>
                         </argument>
                         <settings>
@@ -343,7 +343,7 @@
                 <formElements>
                     <select>
                         <settings>
-                            <options class="Softaware\DataFeed\Model\Source\Delimiter"/>
+                            <options class="CommerceGears\DataFeed\Model\Source\Delimiter"/>
                         </settings>
                     </select>
                 </formElements>
@@ -357,7 +357,7 @@
                 <formElements>
                     <select>
                         <settings>
-                            <options class="Softaware\DataFeed\Model\Source\Enclosure"/>
+                            <options class="CommerceGears\DataFeed\Model\Source\Enclosure"/>
                         </settings>
                     </select>
                 </formElements>
@@ -371,7 +371,7 @@
                 <formElements>
                     <select>
                         <settings>
-                            <options class="Softaware\DataFeed\Model\Source\Encoding"/>
+                            <options class="CommerceGears\DataFeed\Model\Source\Encoding"/>
                         </settings>
                     </select>
                 </formElements>
@@ -385,7 +385,7 @@
                 <formElements>
                     <select>
                         <settings>
-                            <options class="Softaware\DataFeed\Model\Source\LineEnding"/>
+                            <options class="CommerceGears\DataFeed\Model\Source\LineEnding"/>
                         </settings>
                     </select>
                 </formElements>
@@ -419,7 +419,7 @@
             <container name="reference" component="Magento_Ui/js/form/components/html" sortOrder="10">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
-                        <item name="additionalClasses" xsi:type="string">softaware-datafeed-reference</item>
+                        <item name="additionalClasses" xsi:type="string">commercegears-datafeed-reference</item>
                         <item name="content" xsi:type="string"/>
                     </item>
                 </argument>
@@ -479,7 +479,7 @@
             <formElements>
                 <multiselect>
                     <settings>
-                        <options class="Softaware\DataFeed\Model\Source\ProductType"/>
+                        <options class="CommerceGears\DataFeed\Model\Source\ProductType"/>
                     </settings>
                 </multiselect>
             </formElements>
@@ -524,7 +524,7 @@
             <formElements>
                 <select>
                     <settings>
-                        <options class="Softaware\DataFeed\Model\Source\ParentChildMode"/>
+                        <options class="CommerceGears\DataFeed\Model\Source\ParentChildMode"/>
                     </settings>
                 </select>
             </formElements>
@@ -564,7 +564,7 @@
             <formElements>
                 <select>
                     <settings>
-                        <options class="Softaware\DataFeed\Model\Source\CategoryMode"/>
+                        <options class="CommerceGears\DataFeed\Model\Source\CategoryMode"/>
                     </settings>
                 </select>
             </formElements>
@@ -597,7 +597,7 @@
                     <formElements>
                         <select>
                             <settings>
-                                <options class="Softaware\DataFeed\Model\Source\Attribute"/>
+                                <options class="CommerceGears\DataFeed\Model\Source\Attribute"/>
                             </settings>
                         </select>
                     </formElements>
@@ -611,7 +611,7 @@
                     <formElements>
                         <select>
                             <settings>
-                                <options class="Softaware\DataFeed\Model\Source\Operator"/>
+                                <options class="CommerceGears\DataFeed\Model\Source\Operator"/>
                             </settings>
                         </select>
                     </formElements>
@@ -635,7 +635,7 @@
         <container name="conditions_note" component="Magento_Ui/js/form/components/html" sortOrder="95">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="additionalClasses" xsi:type="string">softaware-datafeed-note</item>
+                    <item name="additionalClasses" xsi:type="string">commercegears-datafeed-note</item>
                     <item name="content" xsi:type="string" translate="true">All conditions must match. For dropdown attributes enter the option label (e.g. Red) or its ID. Dates as YYYY-MM-DD.</item>
                 </item>
             </argument>
@@ -671,11 +671,11 @@
                             <value>manual</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_times</target>
+                                    <target>commercegears_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_times</target>
                                     <callback>hide</callback>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_cron</target>
+                                    <target>commercegears_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_cron</target>
                                     <callback>hide</callback>
                                 </action>
                             </actions>
@@ -684,11 +684,11 @@
                             <value>times</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_times</target>
+                                    <target>commercegears_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_times</target>
                                     <callback>show</callback>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_cron</target>
+                                    <target>commercegears_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_cron</target>
                                     <callback>hide</callback>
                                 </action>
                             </actions>
@@ -697,11 +697,11 @@
                             <value>cron</value>
                             <actions>
                                 <action name="0">
-                                    <target>softaware_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_times</target>
+                                    <target>commercegears_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_times</target>
                                     <callback>hide</callback>
                                 </action>
                                 <action name="1">
-                                    <target>softaware_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_cron</target>
+                                    <target>commercegears_datafeed_feed_form.areas.schedule_section.schedule_section.schedule_cron</target>
                                     <callback>show</callback>
                                 </action>
                             </actions>
@@ -713,7 +713,7 @@
             <formElements>
                 <select>
                     <settings>
-                        <options class="Softaware\DataFeed\Model\Source\ScheduleType"/>
+                        <options class="CommerceGears\DataFeed\Model\Source\ScheduleType"/>
                     </settings>
                 </select>
             </formElements>
@@ -737,7 +737,7 @@
         <container name="schedule_info" component="Magento_Ui/js/form/components/html" sortOrder="40">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="additionalClasses" xsi:type="string">softaware-datafeed-note</item>
+                    <item name="additionalClasses" xsi:type="string">commercegears-datafeed-note</item>
                     <item name="content" xsi:type="string"/>
                 </item>
             </argument>
@@ -780,7 +780,7 @@
             <formElements>
                 <select>
                     <settings>
-                        <options class="Softaware\DataFeed\Model\Source\FtpProtocol"/>
+                        <options class="CommerceGears\DataFeed\Model\Source\FtpProtocol"/>
                     </settings>
                 </select>
             </formElements>
@@ -822,7 +822,7 @@
         <field name="ftp_password" formElement="input" sortOrder="60">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="elementTmpl" xsi:type="string">Softaware_DataFeed/form/element/password</item>
+                    <item name="elementTmpl" xsi:type="string">CommerceGears_DataFeed/form/element/password</item>
                 </item>
             </argument>
             <settings>
@@ -879,11 +879,11 @@
                 </checkbox>
             </formElements>
         </field>
-        <container name="ftp_test" component="Softaware_DataFeed/js/form/connection-test" sortOrder="90">
+        <container name="ftp_test" component="CommerceGears_DataFeed/js/form/connection-test" sortOrder="90">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="url" xsi:type="url" path="softaware_datafeed/feed/testConnection"/>
-                    <item name="provider" xsi:type="string">softaware_datafeed_feed_form.softaware_datafeed_feed_form_data_source</item>
+                    <item name="url" xsi:type="url" path="commercegears_datafeed/feed/testConnection"/>
+                    <item name="provider" xsi:type="string">commercegears_datafeed_feed_form.commercegears_datafeed_feed_form_data_source</item>
                     <item name="imports" xsi:type="array">
                         <item name="visible" xsi:type="string">${ $.parentName }.ftp_enabled:checked</item>
                     </item>
@@ -896,13 +896,13 @@
             <label translate="true">Preview</label>
             <dataScope>data</dataScope>
         </settings>
-        <container name="preview" component="Softaware_DataFeed/js/form/preview" sortOrder="10">
+        <container name="preview" component="CommerceGears_DataFeed/js/form/preview" sortOrder="10">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="url" xsi:type="url" path="softaware_datafeed/feed/preview"/>
-                    <item name="provider" xsi:type="string">softaware_datafeed_feed_form.softaware_datafeed_feed_form_data_source</item>
-                    <item name="editorName" xsi:type="string">softaware_datafeed_feed_form.areas.content_section.content_section.template_section.template</item>
-                    <item name="tabName" xsi:type="string">softaware_datafeed_feed_form.areas.content_section</item>
+                    <item name="url" xsi:type="url" path="commercegears_datafeed/feed/preview"/>
+                    <item name="provider" xsi:type="string">commercegears_datafeed_feed_form.commercegears_datafeed_feed_form_data_source</item>
+                    <item name="editorName" xsi:type="string">commercegears_datafeed_feed_form.areas.content_section.content_section.template_section.template</item>
+                    <item name="tabName" xsi:type="string">commercegears_datafeed_feed_form.areas.content_section</item>
                 </item>
             </argument>
         </container>

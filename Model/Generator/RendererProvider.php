@@ -1,16 +1,16 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Generator;
+namespace CommerceGears\DataFeed\Model\Generator;
 
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Model\Generator\Renderer\DelimitedRendererFactory;
-use Softaware\DataFeed\Model\Generator\Renderer\RendererInterface;
-use Softaware\DataFeed\Model\Generator\Renderer\TemplateRendererFactory;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Model\Generator\Renderer\DelimitedRendererFactory;
+use CommerceGears\DataFeed\Model\Generator\Renderer\RendererInterface;
+use CommerceGears\DataFeed\Model\Generator\Renderer\TemplateRendererFactory;
 
 class RendererProvider
 {

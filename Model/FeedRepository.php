@@ -1,18 +1,18 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model;
+namespace CommerceGears\DataFeed\Model;
 
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Api\FeedRepositoryInterface;
-use Softaware\DataFeed\Model\ResourceModel\Feed as FeedResource;
-use Softaware\DataFeed\Model\ResourceModel\Feed\CollectionFactory;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Api\FeedRepositoryInterface;
+use CommerceGears\DataFeed\Model\ResourceModel\Feed as FeedResource;
+use CommerceGears\DataFeed\Model\ResourceModel\Feed\CollectionFactory;
 
 class FeedRepository implements FeedRepositoryInterface
 {

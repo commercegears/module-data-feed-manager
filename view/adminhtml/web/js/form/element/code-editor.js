@@ -7,7 +7,7 @@
 define([
     'jquery',
     'Magento_Ui/js/form/element/textarea',
-    'Softaware_DataFeed/js/highlight',
+    'CommerceGears_DataFeed/js/highlight',
     'mage/translate'
 ], function ($, Textarea, highlighter) {
     'use strict';
@@ -18,7 +18,7 @@ define([
 
     return Textarea.extend({
         defaults: {
-            elementTmpl: 'Softaware_DataFeed/form/element/code-editor',
+            elementTmpl: 'CommerceGears_DataFeed/form/element/code-editor',
             valueUpdate: 'input',
             format: 'xml',
             cursorText: '',
@@ -48,9 +48,9 @@ define([
 
             this.root = element;
             this.input = $root.find('textarea')[0];
-            this.code = $root.find('.softaware-datafeed-editor-highlight code')[0];
-            this.highlightBox = $root.find('.softaware-datafeed-editor-highlight')[0];
-            this.gutter = $root.find('.softaware-datafeed-editor-gutter')[0];
+            this.code = $root.find('.commercegears-datafeed-editor-highlight code')[0];
+            this.highlightBox = $root.find('.commercegears-datafeed-editor-highlight')[0];
+            this.gutter = $root.find('.commercegears-datafeed-editor-gutter')[0];
             this.lineCount = 0;
 
             $(this.input)
@@ -339,10 +339,10 @@ define([
          * Tints a line (the one named in an error) until the template is edited.
          */
         markLine: function (line, lineHeight) {
-            var marker = $(this.highlightBox).find('.softaware-datafeed-editor-marker');
+            var marker = $(this.highlightBox).find('.commercegears-datafeed-editor-marker');
 
             if (!marker.length) {
-                marker = $('<span class="softaware-datafeed-editor-marker"></span>').appendTo(this.highlightBox);
+                marker = $('<span class="commercegears-datafeed-editor-marker"></span>').appendTo(this.highlightBox);
             }
             marker.css({
                 top: parseFloat(window.getComputedStyle(this.input).paddingTop) + (line - 1) * lineHeight,

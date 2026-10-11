@@ -1,17 +1,17 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Ui\Component\Listing\Column;
+namespace CommerceGears\DataFeed\Ui\Component\Listing\Column;
 
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
-use Softaware\DataFeed\Model\FeedFactory;
-use Softaware\DataFeed\Model\Generator\FileLocator;
+use CommerceGears\DataFeed\Model\FeedFactory;
+use CommerceGears\DataFeed\Model\Generator\FileLocator;
 
 /**
  * Public URL of the feed (linked once the file exists), or its location below the Magento root when not public.

@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Setup\Patch\Data;
+namespace CommerceGears\DataFeed\Setup\Patch\Data;
 
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
@@ -22,7 +22,7 @@ class CountUnfinishedRunErrors implements DataPatchInterface
     public function apply(): self
     {
         $this->setup->getConnection()->update(
-            $this->setup->getTable('softaware_datafeed_log'),
+            $this->setup->getTable('commercegears_datafeed_log'),
             ['error_count' => 1],
             ['status = ?' => 'error', 'error_count = ?' => 0]
         );

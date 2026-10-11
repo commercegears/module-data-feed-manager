@@ -1,15 +1,15 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model\Generator\Renderer;
+namespace CommerceGears\DataFeed\Model\Generator\Renderer;
 
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Model\Product\ProductContext;
-use Softaware\DataFeed\Model\Product\StoreContext;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Model\Product\ProductContext;
+use CommerceGears\DataFeed\Model\Product\StoreContext;
 
 /**
  * Turns products into feed text for one output format.

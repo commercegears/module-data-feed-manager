@@ -10,7 +10,7 @@ define([
 
     return Listing.extend({
         defaults: {
-            template: 'Softaware_DataFeed/grid/listing',
+            template: 'CommerceGears_DataFeed/grid/listing',
             emptyTitle: '',
             emptyText: '',
             emptyActionLabel: '',

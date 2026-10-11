@@ -1,21 +1,21 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Model;
+namespace CommerceGears\DataFeed\Model;
 
 use Magento\Framework\Model\AbstractModel;
-use Softaware\DataFeed\Api\Data\FeedInterface;
-use Softaware\DataFeed\Model\ResourceModel\Feed as FeedResource;
+use CommerceGears\DataFeed\Api\Data\FeedInterface;
+use CommerceGears\DataFeed\Model\ResourceModel\Feed as FeedResource;
 
 class Feed extends AbstractModel implements FeedInterface
 {
     /**
      * @var string
      */
-    protected $_eventPrefix = 'softaware_datafeed_feed';
+    protected $_eventPrefix = 'commercegears_datafeed_feed';
 
     protected function _construct(): void
     {

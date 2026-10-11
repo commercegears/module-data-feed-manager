@@ -1,14 +1,14 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Cron;
+namespace CommerceGears\DataFeed\Cron;
 
-use Softaware\DataFeed\Model\Config;
-use Softaware\DataFeed\Model\Generator\JobStorage;
-use Softaware\DataFeed\Model\ResourceModel\Log as LogResource;
+use CommerceGears\DataFeed\Model\Config;
+use CommerceGears\DataFeed\Model\Generator\JobStorage;
+use CommerceGears\DataFeed\Model\ResourceModel\Log as LogResource;
 
 /**
  * Removes old generation log entries and marks abandoned runs as failed.

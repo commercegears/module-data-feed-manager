@@ -2,31 +2,31 @@
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">softaware_datafeed_log_listing.softaware_datafeed_log_listing_data_source</item>
+            <item name="provider" xsi:type="string">commercegears_datafeed_log_listing.commercegears_datafeed_log_listing_data_source</item>
         </item>
     </argument>
     <settings>
         <buttons>
             <button name="feeds">
-                <url path="softaware_datafeed/feed/index"/>
+                <url path="commercegears_datafeed/feed/index"/>
                 <class>back</class>
                 <label translate="true">Back to Feeds</label>
             </button>
         </buttons>
-        <spinner>softaware_datafeed_log_columns</spinner>
+        <spinner>commercegears_datafeed_log_columns</spinner>
         <deps>
-            <dep>softaware_datafeed_log_listing.softaware_datafeed_log_listing_data_source</dep>
+            <dep>commercegears_datafeed_log_listing.commercegears_datafeed_log_listing_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="softaware_datafeed_log_listing_data_source" component="Magento_Ui/js/grid/provider">
+    <dataSource name="commercegears_datafeed_log_listing_data_source" component="Magento_Ui/js/grid/provider">
         <settings>
             <storageConfig>
                 <param name="indexField" xsi:type="string">log_id</param>
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
-        <aclResource>Softaware_DataFeed::log</aclResource>
-        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="softaware_datafeed_log_listing_data_source">
+        <aclResource>CommerceGears_DataFeed::log</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="commercegears_datafeed_log_listing_data_source">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter_url_params" xsi:type="array">
@@ -49,13 +49,13 @@
         <filters name="listing_filters"/>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="softaware_datafeed_log_columns" component="Softaware_DataFeed/js/grid/listing">
+    <columns name="commercegears_datafeed_log_columns" component="CommerceGears_DataFeed/js/grid/listing">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="emptyTitle" xsi:type="string" translate="true">No feeds generated yet</item>
                 <item name="emptyText" xsi:type="string" translate="true">Every generation (by cron, Generate Now or the command line) is listed here with its result, item count, file size and any errors.</item>
                 <item name="emptyActionLabel" xsi:type="string" translate="true">Go to Feeds</item>
-                <item name="emptyActionUrl" xsi:type="url" path="softaware_datafeed/feed/index"/>
+                <item name="emptyActionUrl" xsi:type="url" path="commercegears_datafeed/feed/index"/>
             </item>
         </argument>
         <column name="log_id" sortOrder="10">
@@ -67,7 +67,7 @@
         </column>
         <column name="feed_id" component="Magento_Ui/js/grid/columns/select" sortOrder="20">
             <settings>
-                <options class="Softaware\DataFeed\Model\Source\Feed"/>
+                <options class="CommerceGears\DataFeed\Model\Source\Feed"/>
                 <filter>select</filter>
                 <dataType>select</dataType>
                 <label translate="true">Feed</label>
@@ -82,13 +82,13 @@
         </column>
         <column name="trigger_source" component="Magento_Ui/js/grid/columns/select" sortOrder="40">
             <settings>
-                <options class="Softaware\DataFeed\Model\Source\Trigger"/>
+                <options class="CommerceGears\DataFeed\Model\Source\Trigger"/>
                 <filter>select</filter>
                 <dataType>select</dataType>
                 <label translate="true">Started By</label>
             </settings>
         </column>
-        <column name="status" class="Softaware\DataFeed\Ui\Component\Listing\Column\Status" sortOrder="50">
+        <column name="status" class="CommerceGears\DataFeed\Ui\Component\Listing\Column\Status" sortOrder="50">
             <settings>
                 <bodyTmpl>ui/grid/cells/html</bodyTmpl>
                 <label translate="true">Status</label>
@@ -111,12 +111,12 @@
                 <label translate="true">Errors</label>
             </settings>
         </column>
-        <column name="file_size" class="Softaware\DataFeed\Ui\Component\Listing\Column\FileSize" sortOrder="90">
+        <column name="file_size" class="CommerceGears\DataFeed\Ui\Component\Listing\Column\FileSize" sortOrder="90">
             <settings>
                 <label translate="true">File Size</label>
             </settings>
         </column>
-        <column name="messages" class="Softaware\DataFeed\Ui\Component\Listing\Column\LogMessages" sortOrder="100">
+        <column name="messages" class="CommerceGears\DataFeed\Ui\Component\Listing\Column\LogMessages" sortOrder="100">
             <settings>
                 <bodyTmpl>ui/grid/cells/html</bodyTmpl>
                 <label translate="true">Messages</label>

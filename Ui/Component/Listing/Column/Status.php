@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\DataFeed\Ui\Component\Listing\Column;
+namespace CommerceGears\DataFeed\Ui\Component\Listing\Column;
 
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
@@ -44,7 +44,7 @@ class Status extends Column
         foreach ($dataSource['data']['items'] ?? [] as $index => $item) {
             $status = (string)($item[$name] ?? '');
             if ($status === '') {
-                $dataSource['data']['items'][$index][$name] = '<span class="softaware-datafeed-muted">'
+                $dataSource['data']['items'][$index][$name] = '<span class="commercegears-datafeed-muted">'
                     . $this->escaper->escapeHtml(__('Not generated')) . '</span>';
                 continue;
             }

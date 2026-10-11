@@ -1,61 +1,61 @@
-/* Softaware Data Feed Manager: admin styles */
-.softaware-datafeed-code textarea,
-.softaware-datafeed-code input,
-textarea.softaware-datafeed-code,
-.softaware-datafeed-code .admin__control-textarea,
-.softaware-datafeed-code .admin__control-text {
+/* CommerceGears Data Feed Manager: admin styles */
+.commercegears-datafeed-code textarea,
+.commercegears-datafeed-code input,
+textarea.commercegears-datafeed-code,
+.commercegears-datafeed-code .admin__control-textarea,
+.commercegears-datafeed-code .admin__control-text {
     font-family: Menlo, Consolas, "Liberation Mono", monospace;
     font-size: 1.25rem;
     line-height: 1.5;
 }
-.softaware-datafeed-code .admin__control-textarea {
+.commercegears-datafeed-code .admin__control-textarea {
     min-height: 40rem;
     white-space: pre;
     tab-size: 4;
 }
-.softaware-datafeed-columns .admin__control-table td {
+.commercegears-datafeed-columns .admin__control-table td {
     vertical-align: top;
 }
-.softaware-datafeed-facts {
+.commercegears-datafeed-facts {
     margin: 0 0 1.5rem;
 }
-.softaware-datafeed-facts th,
-.softaware-datafeed-facts td {
+.commercegears-datafeed-facts th,
+.commercegears-datafeed-facts td {
     padding: .4rem 1.5rem .4rem 0;
     text-align: left;
     vertical-align: top;
 }
-.softaware-datafeed-facts th {
+.commercegears-datafeed-facts th {
     font-weight: 600;
     white-space: nowrap;
 }
-.softaware-datafeed-info {
+.commercegears-datafeed-info {
     margin: 0 0 2rem;
     padding: 1.2rem 1.5rem;
     background: #f8f8f8;
     border: 1px solid #e3e3e3;
 }
-.softaware-datafeed-info .softaware-datafeed-facts {
+.commercegears-datafeed-info .commercegears-datafeed-facts {
     margin: 0;
 }
-.softaware-datafeed-status-success { color: #185b00; }
-.softaware-datafeed-status-warning { color: #8a5300; }
-.softaware-datafeed-status-error { color: #a4000f; }
-.softaware-datafeed-muted {
+.commercegears-datafeed-status-success { color: #185b00; }
+.commercegears-datafeed-status-warning { color: #8a5300; }
+.commercegears-datafeed-status-error { color: #a4000f; }
+.commercegears-datafeed-muted {
     color: #6f6f6f;
 }
-.softaware-datafeed-note {
+.commercegears-datafeed-note {
     margin: -1rem 0 2rem calc(25% + 1.5rem);
     color: #6f6f6f;
 }
-.softaware-datafeed-preview-actions {
+.commercegears-datafeed-preview-actions {
     display: flex;
     gap: 1.5rem;
     align-items: center;
     flex-wrap: wrap;
     margin-bottom: 1.5rem;
 }
-.softaware-datafeed-output {
+.commercegears-datafeed-output {
     max-height: 60rem;
     overflow: auto;
     padding: 1.5rem;
@@ -67,58 +67,58 @@ textarea.softaware-datafeed-code,
     white-space: pre;
     border-radius: 3px;
 }
-.softaware-datafeed-messages {
+.commercegears-datafeed-messages {
     margin: 0 0 1.5rem 2rem;
     color: #8a5300;
 }
-.softaware-datafeed-connection .message {
+.commercegears-datafeed-connection .message {
     margin-top: 1rem;
 }
-.softaware-datafeed-ref-columns {
+.commercegears-datafeed-ref-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
 }
 @media (max-width: 1200px) {
-    .softaware-datafeed-ref-columns {
+    .commercegears-datafeed-ref-columns {
         grid-template-columns: 1fr;
     }
 }
-.softaware-datafeed-ref td {
+.commercegears-datafeed-ref td {
     padding: .5rem 1rem;
     vertical-align: top;
 }
-.softaware-datafeed-ref td:first-child {
+.commercegears-datafeed-ref td:first-child {
     width: 40%;
     overflow-wrap: anywhere;
 }
-.softaware-datafeed-ref code {
+.commercegears-datafeed-ref code {
     font-size: 1.2rem;
 }
 
 /* Generate page */
-.softaware-datafeed-generate {
+.commercegears-datafeed-generate {
     max-width: 90rem;
 }
-.softaware-datafeed-progress {
+.commercegears-datafeed-progress {
     height: 1.6rem;
     background: #e3e3e3;
     border-radius: 3px;
     overflow: hidden;
 }
-.softaware-datafeed-progress-bar {
+.commercegears-datafeed-progress-bar {
     width: 0;
     height: 100%;
     background: #1979c3;
     transition: width .3s ease;
 }
-.softaware-datafeed-progress-bar.is-error {
+.commercegears-datafeed-progress-bar.is-error {
     background: #e22626;
 }
-.softaware-datafeed-progress-text {
+.commercegears-datafeed-progress-text {
     margin: 1rem 0 2rem;
 }
-.softaware-datafeed-actions {
+.commercegears-datafeed-actions {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -126,60 +126,60 @@ textarea.softaware-datafeed-code,
 }
 
 /* Category mapping */
-.softaware-datafeed-intro {
+.commercegears-datafeed-intro {
     max-width: 100rem;
     margin-bottom: 2rem;
 }
-.softaware-datafeed-filter {
+.commercegears-datafeed-filter {
     display: flex;
     gap: 1rem;
     align-items: center;
     margin-bottom: 1.5rem;
 }
-.softaware-datafeed-filter input {
+.commercegears-datafeed-filter input {
     max-width: 40rem;
 }
-.softaware-datafeed-mapping-table td {
+.commercegears-datafeed-mapping-table td {
     vertical-align: middle;
 }
-.softaware-datafeed-mapping-table td:first-child {
+.commercegears-datafeed-mapping-table td:first-child {
     width: 40%;
 }
-.softaware-datafeed-mapping-table td.level-1 {
+.commercegears-datafeed-mapping-table td.level-1 {
     font-weight: 600;
     background: #f1f1f1;
 }
-.softaware-datafeed-mapping-table td.level-2 .softaware-datafeed-category { padding-left: 2rem; }
-.softaware-datafeed-mapping-table td.level-3 .softaware-datafeed-category { padding-left: 4rem; }
-.softaware-datafeed-mapping-table td.level-4 .softaware-datafeed-category { padding-left: 6rem; }
-.softaware-datafeed-mapping-table td.level-5 .softaware-datafeed-category { padding-left: 8rem; }
-.softaware-datafeed-mapping-table td.level-6 .softaware-datafeed-category { padding-left: 10rem; }
-.softaware-datafeed-mapping-table td.level-7 .softaware-datafeed-category { padding-left: 12rem; }
-.softaware-datafeed-mapping-table td.level-8 .softaware-datafeed-category { padding-left: 14rem; }
-.softaware-datafeed-mapping-table input::placeholder {
+.commercegears-datafeed-mapping-table td.level-2 .commercegears-datafeed-category { padding-left: 2rem; }
+.commercegears-datafeed-mapping-table td.level-3 .commercegears-datafeed-category { padding-left: 4rem; }
+.commercegears-datafeed-mapping-table td.level-4 .commercegears-datafeed-category { padding-left: 6rem; }
+.commercegears-datafeed-mapping-table td.level-5 .commercegears-datafeed-category { padding-left: 8rem; }
+.commercegears-datafeed-mapping-table td.level-6 .commercegears-datafeed-category { padding-left: 10rem; }
+.commercegears-datafeed-mapping-table td.level-7 .commercegears-datafeed-category { padding-left: 12rem; }
+.commercegears-datafeed-mapping-table td.level-8 .commercegears-datafeed-category { padding-left: 14rem; }
+.commercegears-datafeed-mapping-table input::placeholder {
     color: #8a8a8a;
 }
-.softaware-datafeed-import {
+.commercegears-datafeed-import {
     margin-top: 4rem;
     padding-top: 2rem;
     border-top: 1px solid #e3e3e3;
     max-width: 100rem;
 }
-.softaware-datafeed-import h3 {
+.commercegears-datafeed-import h3 {
     font-size: 1.7rem;
     font-weight: 600;
 }
-.softaware-datafeed-import-row {
+.commercegears-datafeed-import-row {
     display: flex;
     gap: 1.5rem;
     align-items: center;
     flex-wrap: wrap;
     margin-bottom: .8rem;
 }
-.softaware-datafeed-import-row label {
+.commercegears-datafeed-import-row label {
     font-weight: 600;
 }
-.softaware-datafeed-intro code {
+.commercegears-datafeed-intro code {
     font-size: 1.2rem;
 }
 .ui-autocomplete {
@@ -189,57 +189,57 @@ textarea.softaware-datafeed-code,
 }
 
 /* Wider editors */
-.admin__field.softaware-datafeed-columns > .admin__field-control,
-.admin__field.softaware-datafeed-code > .admin__field-control {
+.admin__field.commercegears-datafeed-columns > .admin__field-control,
+.admin__field.commercegears-datafeed-code > .admin__field-control {
     width: 75%;
     max-width: 120rem;
 }
-.softaware-datafeed-columns .admin__control-table {
+.commercegears-datafeed-columns .admin__control-table {
     width: 100%;
 }
-.softaware-datafeed-columns .admin__control-table .admin__control-text {
+.commercegears-datafeed-columns .admin__control-table .admin__control-text {
     box-sizing: border-box;
     width: 100%;
 }
-.softaware-datafeed-columns .admin__control-table .admin__control-text {
+.commercegears-datafeed-columns .admin__control-table .admin__control-text {
     width: 100%;
 }
-.softaware-datafeed-columns .admin__control-table th:nth-child(2),
-.softaware-datafeed-columns .admin__control-table td:nth-child(2) {
+.commercegears-datafeed-columns .admin__control-table th:nth-child(2),
+.commercegears-datafeed-columns .admin__control-table td:nth-child(2) {
     width: 18%;
 }
-.softaware-datafeed-columns .admin__control-table th:nth-child(4),
-.softaware-datafeed-columns .admin__control-table td:nth-child(4) {
+.commercegears-datafeed-columns .admin__control-table th:nth-child(4),
+.commercegears-datafeed-columns .admin__control-table td:nth-child(4) {
     width: 20%;
 }
-.softaware-datafeed-mapping-table input.admin__control-text {
+.commercegears-datafeed-mapping-table input.admin__control-text {
     width: 100%;
 }
 
 /* Feed grid: long file paths wrap instead of widening the grid */
-.data-grid td.softaware-datafeed-col-file {
+.data-grid td.commercegears-datafeed-col-file {
     min-width: 14rem;
     overflow-wrap: anywhere;
 }
 
 /* Empty state of the grids */
-.softaware-empty-state {
+.commercegears-empty-state {
     max-width: 60rem;
     margin: 0 auto;
     padding: 3rem 2rem;
     text-align: center;
 }
-.softaware-empty-state-title {
+.commercegears-empty-state-title {
     margin: 0 0 .8rem;
     font-size: 1.8rem;
     font-weight: 600;
     color: #303030;
 }
-.softaware-empty-state-text {
+.commercegears-empty-state-text {
     margin: 0 0 2rem;
     color: #6f6f6f;
 }
-.data-grid .data-grid-tr-no-data .softaware-empty-state-action {
+.data-grid .data-grid-tr-no-data .commercegears-empty-state-action {
     display: inline-block;
     padding: .7rem 1.5rem;
     text-decoration: none;
@@ -247,26 +247,26 @@ textarea.softaware-datafeed-code,
 
 /* Content tab: the template / columns blocks sit directly in the tab (no nested box), full width.
    The tabbed form lives in .admin__scope-old, whose nested .fieldset-wrapper rules draw a box. */
-.admin__scope-old .fieldset-wrapper .fieldset-wrapper.softaware-datafeed-plain,
-.admin__scope-old .fieldset-wrapper.softaware-datafeed-plain {
+.admin__scope-old .fieldset-wrapper .fieldset-wrapper.commercegears-datafeed-plain,
+.admin__scope-old .fieldset-wrapper.commercegears-datafeed-plain {
     margin: 0 0 2rem;
     padding: 0;
     border: 0;
     border-radius: 0;
     background: none;
 }
-.fieldset-wrapper.softaware-datafeed-plain > .admin__fieldset-wrapper-content > .admin__fieldset {
+.fieldset-wrapper.commercegears-datafeed-plain > .admin__fieldset-wrapper-content > .admin__fieldset {
     margin: 0;
     padding: 0;
 }
-.softaware-datafeed-plain .admin__fieldset > .admin__field.softaware-datafeed-code,
-.softaware-datafeed-plain .admin__fieldset > .admin__field.softaware-datafeed-columns {
+.commercegears-datafeed-plain .admin__fieldset > .admin__field.commercegears-datafeed-code,
+.commercegears-datafeed-plain .admin__fieldset > .admin__field.commercegears-datafeed-columns {
     display: block;
     width: 100%;
     margin-left: 0;
 }
-.softaware-datafeed-plain .admin__fieldset > .admin__field.softaware-datafeed-code > .admin__field-label,
-.softaware-datafeed-plain .admin__fieldset > .admin__field.softaware-datafeed-columns > .admin__field-label {
+.commercegears-datafeed-plain .admin__fieldset > .admin__field.commercegears-datafeed-code > .admin__field-label,
+.commercegears-datafeed-plain .admin__fieldset > .admin__field.commercegears-datafeed-columns > .admin__field-label {
     float: none;
     display: block;
     width: auto;
@@ -274,46 +274,46 @@ textarea.softaware-datafeed-code,
     padding: 0 0 .8rem;
     text-align: left;
 }
-.softaware-datafeed-plain .admin__fieldset > .admin__field.softaware-datafeed-code > .admin__field-control,
-.softaware-datafeed-plain .admin__fieldset > .admin__field.softaware-datafeed-columns > .admin__field-control {
+.commercegears-datafeed-plain .admin__fieldset > .admin__field.commercegears-datafeed-code > .admin__field-control,
+.commercegears-datafeed-plain .admin__fieldset > .admin__field.commercegears-datafeed-columns > .admin__field-control {
     float: none;
     display: block;
     width: 100%;
     max-width: none;
     margin-left: 0;
 }
-.softaware-datafeed-plain .admin__field.softaware-datafeed-code .admin__control-textarea {
+.commercegears-datafeed-plain .admin__field.commercegears-datafeed-code .admin__control-textarea {
     box-sizing: border-box;
     width: 100%;
 }
-.softaware-datafeed-columns .admin__control-table {
+.commercegears-datafeed-columns .admin__control-table {
     width: 100%;
 }
-.softaware-datafeed-columns .admin__control-table .admin__control-text {
+.commercegears-datafeed-columns .admin__control-table .admin__control-text {
     box-sizing: border-box;
     width: 100%;
 }
-.softaware-datafeed-columns .admin__control-table th:nth-child(2) { width: 24%; }
-.softaware-datafeed-columns .admin__control-table th:nth-child(3) { width: 46%; }
-.softaware-datafeed-columns .admin__control-table th:nth-child(4) { width: 22%; }
+.commercegears-datafeed-columns .admin__control-table th:nth-child(2) { width: 24%; }
+.commercegears-datafeed-columns .admin__control-table th:nth-child(3) { width: 46%; }
+.commercegears-datafeed-columns .admin__control-table th:nth-child(4) { width: 22%; }
 
 /* Template editor: a highlighted copy is drawn under a transparent textarea (the textarea stays the field) */
-.softaware-datafeed-editor {
+.commercegears-datafeed-editor {
     display: flex;
     align-items: stretch;
     border: 1px solid #adadad;
     border-radius: 1px;
     background: #fff;
 }
-.softaware-datafeed-editor:focus-within {
+.commercegears-datafeed-editor:focus-within {
     border-color: #007bdb;
     box-shadow: 0 0 0 1px #007bdb;
 }
-.softaware-datafeed-editor-gutter,
-.softaware-datafeed-editor-gutter pre,
-.softaware-datafeed-editor-highlight,
-.softaware-datafeed-editor-highlight code,
-.softaware-datafeed-code .softaware-datafeed-editor .softaware-datafeed-editor-input {
+.commercegears-datafeed-editor-gutter,
+.commercegears-datafeed-editor-gutter pre,
+.commercegears-datafeed-editor-highlight,
+.commercegears-datafeed-editor-highlight code,
+.commercegears-datafeed-code .commercegears-datafeed-editor .commercegears-datafeed-editor-input {
     font-family: Menlo, Consolas, "Liberation Mono", monospace;
     font-size: 1.25rem;
     font-weight: 400;
@@ -322,7 +322,7 @@ textarea.softaware-datafeed-code,
     letter-spacing: normal;
     tab-size: 4;
 }
-.softaware-datafeed-editor-gutter {
+.commercegears-datafeed-editor-gutter {
     flex: 0 0 auto;
     box-sizing: border-box;
     overflow: hidden;
@@ -332,7 +332,7 @@ textarea.softaware-datafeed-code,
     text-align: right;
     user-select: none;
 }
-.softaware-datafeed-editor-gutter pre {
+.commercegears-datafeed-editor-gutter pre {
     margin: 0;
     padding: 0 .8rem 4rem 1rem;
     min-width: 3ch;
@@ -341,12 +341,12 @@ textarea.softaware-datafeed-code,
     color: inherit;
     white-space: pre;
 }
-.softaware-datafeed-editor-body {
+.commercegears-datafeed-editor-body {
     position: relative;
     flex: 1 1 auto;
     min-width: 0;
 }
-.softaware-datafeed-editor-highlight {
+.commercegears-datafeed-editor-highlight {
     position: absolute;
     top: 0;
     left: 0;
@@ -360,14 +360,14 @@ textarea.softaware-datafeed-code,
     white-space: pre;
     pointer-events: none;
 }
-.softaware-datafeed-editor-highlight code {
+.commercegears-datafeed-editor-highlight code {
     padding: 0;
     border: 0;
     background: none;
     color: inherit;
     white-space: inherit;
 }
-.softaware-datafeed-code .softaware-datafeed-editor .softaware-datafeed-editor-input {
+.commercegears-datafeed-code .commercegears-datafeed-editor .commercegears-datafeed-editor-input {
     position: relative;
     display: block;
     box-sizing: border-box;
@@ -386,17 +386,17 @@ textarea.softaware-datafeed-code,
     overflow-wrap: normal;
     resize: vertical;
 }
-.softaware-datafeed-code .softaware-datafeed-editor .softaware-datafeed-editor-input::selection {
+.commercegears-datafeed-code .commercegears-datafeed-editor .commercegears-datafeed-editor-input::selection {
     background: rgba(0, 105, 218, .25);
     color: transparent;
 }
-.softaware-datafeed-code .softaware-datafeed-editor .softaware-datafeed-editor-input::placeholder {
+.commercegears-datafeed-code .commercegears-datafeed-editor .commercegears-datafeed-editor-input::placeholder {
     color: #8a8a8a;
 }
-.softaware-datafeed-code .softaware-datafeed-editor.is-plain .softaware-datafeed-editor-input {
+.commercegears-datafeed-code .commercegears-datafeed-editor.is-plain .commercegears-datafeed-editor-input {
     color: #24292f;
 }
-.softaware-datafeed-editor-marker {
+.commercegears-datafeed-editor-marker {
     position: absolute;
     left: 0;
     right: 0;
@@ -405,7 +405,7 @@ textarea.softaware-datafeed-code,
     border-left: 3px solid #cf222e;
     pointer-events: none;
 }
-.softaware-datafeed-editor-status {
+.commercegears-datafeed-editor-status {
     display: flex;
     flex-wrap: wrap;
     gap: .5rem 2rem;
@@ -440,30 +440,30 @@ textarea.softaware-datafeed-code,
 .sw-hl-json-punct { color: #57606a; }
 
 /* Highlighting colours: dark (preview output) */
-.softaware-datafeed-output .sw-hl-xml-tag { color: #7ee787; }
-.softaware-datafeed-output .sw-hl-xml-attr,
-.softaware-datafeed-output .sw-hl-xml-entity,
-.softaware-datafeed-output .sw-hl-json-key { color: #ffa657; }
-.softaware-datafeed-output .sw-hl-xml-string,
-.softaware-datafeed-output .sw-hl-json-string,
-.softaware-datafeed-output .sw-hl-csv-string { color: #a5d6ff; }
-.softaware-datafeed-output .sw-hl-xml-punct,
-.softaware-datafeed-output .sw-hl-json-punct,
-.softaware-datafeed-output .sw-hl-xml-comment,
-.softaware-datafeed-output .sw-hl-xml-cdata,
-.softaware-datafeed-output .sw-hl-xml-decl { color: #8b949e; }
-.softaware-datafeed-output .sw-hl-json-number { color: #79c0ff; }
-.softaware-datafeed-output .sw-hl-csv-header { color: #f0f6fc; font-weight: 700; }
-.softaware-datafeed-output .sw-hl-csv-delim { color: #ff7b72; font-weight: 700; }
+.commercegears-datafeed-output .sw-hl-xml-tag { color: #7ee787; }
+.commercegears-datafeed-output .sw-hl-xml-attr,
+.commercegears-datafeed-output .sw-hl-xml-entity,
+.commercegears-datafeed-output .sw-hl-json-key { color: #ffa657; }
+.commercegears-datafeed-output .sw-hl-xml-string,
+.commercegears-datafeed-output .sw-hl-json-string,
+.commercegears-datafeed-output .sw-hl-csv-string { color: #a5d6ff; }
+.commercegears-datafeed-output .sw-hl-xml-punct,
+.commercegears-datafeed-output .sw-hl-json-punct,
+.commercegears-datafeed-output .sw-hl-xml-comment,
+.commercegears-datafeed-output .sw-hl-xml-cdata,
+.commercegears-datafeed-output .sw-hl-xml-decl { color: #8b949e; }
+.commercegears-datafeed-output .sw-hl-json-number { color: #79c0ff; }
+.commercegears-datafeed-output .sw-hl-csv-header { color: #f0f6fc; font-weight: 700; }
+.commercegears-datafeed-output .sw-hl-csv-delim { color: #ff7b72; font-weight: 700; }
 
 /* Preview output: line numbers and the line named in a validation error */
-.softaware-datafeed-output {
+.commercegears-datafeed-output {
     counter-reset: swline;
 }
-.softaware-datafeed-output .sw-hl-line {
+.commercegears-datafeed-output .sw-hl-line {
     counter-increment: swline;
 }
-.softaware-datafeed-output .sw-hl-line::before {
+.commercegears-datafeed-output .sw-hl-line::before {
     content: counter(swline);
     display: inline-block;
     width: 4ch;
@@ -472,28 +472,28 @@ textarea.softaware-datafeed-code,
     text-align: right;
     user-select: none;
 }
-.softaware-datafeed-output .sw-hl-line.is-error {
+.commercegears-datafeed-output .sw-hl-line.is-error {
     display: inline-block;
     min-width: 100%;
     background: rgba(248, 81, 73, .3);
 }
-.softaware-datafeed-output:focus {
+.commercegears-datafeed-output:focus {
     outline: 2px solid #68a8e0;
     outline-offset: 1px;
 }
-.softaware-datafeed-preview-bar {
+.commercegears-datafeed-preview-bar {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem 1.5rem;
     align-items: center;
     margin: 0 0 2rem;
 }
-.softaware-datafeed-preview-slide .modal-inner-wrap {
+.commercegears-datafeed-preview-slide .modal-inner-wrap {
     max-width: 120rem;
 }
-.softaware-datafeed-preview-slide .softaware-datafeed-output {
+.commercegears-datafeed-preview-slide .commercegears-datafeed-output {
     max-height: none;
 }
-.softaware-datafeed-editor-status > span:empty {
+.commercegears-datafeed-editor-status > span:empty {
     display: none;
 }

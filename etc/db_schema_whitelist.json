@@ -75,7 +75,8 @@
         },
         "constraint": {
             "PRIMARY": true,
-            "COMMERCEGEARS_DATAFEED_LOG_FEED_ID_COMMERCEGEARS_DATAFEED_FEED_FEED_ID": true
+            "COMMERCEGEARS_DATAFEED_LOG_FEED_ID_COMMERCEGEARS_DATAFEED_FEED_FEED_ID": true,
+            "FK_48BB18F96A5D2B730C1374FFC8CC6AB3": true
         }
     },
     "commercegears_datafeed_taxonomy": {

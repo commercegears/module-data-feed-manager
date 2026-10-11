@@ -12,7 +12,7 @@ use Magento\Ui\Component\Control\Container;
 use Softaware\DataFeed\Model\Preset\PresetProvider;
 
 /**
- * "Add Feed" split button: blank feed or one of the ready templates.
+ * "Add Feed" split button: blank feed (main part) or one of the ready templates.
  */
 class AddButton implements ButtonProviderInterface
 {
@@ -37,6 +37,8 @@ class AddButton implements ButtonProviderInterface
             'id' => 'softaware-datafeed-add-blank',
             'label' => __('Blank feed'),
             'onclick' => sprintf("setLocation('%s')", $this->urlBuilder->getUrl('*/*/new')),
+            // The main part of the button clicks the default option (Magento_Ui split button script).
+            'default' => true,
         ];
         return [
             'id' => 'add_new_feed',
@@ -45,8 +47,9 @@ class AddButton implements ButtonProviderInterface
             'button_class' => '',
             'class_name' => Container::SPLIT_BUTTON,
             'options' => $options,
-            // The main button reads on_click (options read onclick); without it Magento links it to the base URL.
-            'on_click' => sprintf("setLocation('%s')", $this->urlBuilder->getUrl('*/*/new', ['preset' => 'google_shopping'])),
+            // The split button never attaches on_click to its main part (the handler targets an element that does
+            // not exist), so the main part opens the default option above. Empty, so no handler is rendered at all.
+            'on_click' => '',
             'sort_order' => 10,
         ];
     }

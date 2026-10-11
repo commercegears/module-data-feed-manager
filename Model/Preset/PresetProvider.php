@@ -137,7 +137,9 @@ class PresetProvider
             $this->column('product_type', '{{ product.category_path }}'),
             $this->column('color', '{{ product.color }}'),
             $this->column('size', '{{ product.size }}'),
-            $this->column('quantity_to_sell_on_facebook', '{{ product.qty | round }}'),
+            // Only a known stock quantity: bundles, grouped, downloadable and unmanaged stock have none (0 would
+            // stop Meta selling an in-stock product).
+            $this->column('quantity_to_sell_on_facebook', '{% if product.qty > 0 %}{{ product.qty | round }}{% endif %}'),
         ];
     }
 

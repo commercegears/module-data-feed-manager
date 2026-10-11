@@ -88,6 +88,32 @@ class FileLocator
         return $this->getAbsoluteDirectory($feed) . $feed->getFilename();
     }
 
+    /**
+     * Location of the feed file relative to the Magento root (e.g. var/export/feed.csv), for display in the admin
+     * without revealing the server's directory layout.
+     */
+    public function getRelativePath(FeedInterface $feed): string
+    {
+        return $this->normalisePath($feed->getPath()) . $feed->getFilename();
+    }
+
+    /**
+     * An absolute path below the Magento root as a path relative to it; other paths are reduced to the file name.
+     */
+    public function toDisplayPath(string $absolute): string
+    {
+        $root = rtrim($this->directoryList->getRoot(), '/') . '/';
+        return str_starts_with($absolute, $root) ? substr($absolute, strlen($root)) : basename($absolute);
+    }
+
+    /**
+     * Removes the Magento root directory from a message (e.g. a file system error), so it shows relative paths.
+     */
+    public function hideRoot(string $message): string
+    {
+        return str_replace(rtrim($this->directoryList->getRoot(), '/') . '/', '', $message);
+    }
+
     public function getAbsoluteDirectory(FeedInterface $feed): string
     {
         return rtrim($this->directoryList->getRoot(), '/') . '/' . $this->normalisePath($feed->getPath());

@@ -35,8 +35,8 @@ class Preview
     }
 
     /**
-     * @return array{output: string, items: int, total: int, errors: string[], valid: bool, validation: string|null,
-     *     format: string, delimiter: string, truncated: bool}
+     * @return array{output: string, items: int, total: int, configurable: int, mode: string, last_items: int|null,
+     *     errors: string[], valid: bool, validation: string|null, format: string, delimiter: string, truncated: bool}
      * @throws LocalizedException
      */
     public function render(FeedInterface $feed, int $limit): array
@@ -46,6 +46,10 @@ class Preview
         $session = $this->generator->createSession($feed);
         $renderer = $session->renderer;
         $total = $this->productProvider->count($feed, $session->store);
+        // The match count is of catalogue products; in the variant modes the feed has one item per variant.
+        $configurable = $feed->getParentChildMode() === FeedInterface::MODE_PARENT
+            ? 0
+            : $this->productProvider->countConfigurable($feed, $session->store);
 
         $output = $renderer->renderHeader();
         $items = 0;
@@ -106,6 +110,9 @@ class Preview
             'output' => (string)preg_replace('/^\xEF\xBB\xBF/', '', $display),
             'items' => $items,
             'total' => $total,
+            'configurable' => $configurable,
+            'mode' => $feed->getParentChildMode(),
+            'last_items' => $this->lastItems($feed),
             'errors' => $errors,
             'valid' => $validation === null,
             'validation' => $validation,
@@ -113,5 +120,18 @@ class Preview
             'delimiter' => $feed->isDelimited() ? $delimiter : '',
             'truncated' => $truncated,
         ];
+    }
+
+    /**
+     * Items in the last successfully generated file of a saved feed, or null.
+     */
+    private function lastItems(FeedInterface $feed): ?int
+    {
+        if (!$feed->getId() || $feed->getData(FeedInterface::GENERATED_ITEMS) === null
+            || (string)$feed->getData(FeedInterface::GENERATED_STATUS) === 'error'
+        ) {
+            return null;
+        }
+        return (int)$feed->getData(FeedInterface::GENERATED_ITEMS);
     }
 }

@@ -51,6 +51,15 @@ class PreviewCommand extends Command
         $output->write($result['output'], false, OutputInterface::OUTPUT_RAW);
         $output->writeln('');
         $output->writeln(sprintf('<info>%d items shown, %d products match the filters.</info>', $result['items'], $result['total']));
+        if ($result['configurable'] > 0) {
+            $output->writeln(sprintf(
+                '<info>%d of them are configurable products: their variants are separate items in the feed.</info>',
+                $result['configurable']
+            ));
+        }
+        if ($result['last_items'] !== null) {
+            $output->writeln(sprintf('<info>The last generated file has %d items.</info>', $result['last_items']));
+        }
         foreach ($result['errors'] as $error) {
             $output->writeln('<comment>' . $error . '</comment>');
         }

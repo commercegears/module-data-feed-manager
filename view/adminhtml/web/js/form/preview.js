@@ -91,6 +91,16 @@ define([
             }));
             summary = $t('%1 items shown, %2 products match the filters.')
                 .replace('%1', response.items).replace('%2', response.total);
+            // Products are counted once; in the variant modes each variant of a configurable is its own item.
+            if (response.configurable > 0) {
+                summary += ' ' + (response.mode === 'both'
+                    ? $t('%1 of them are configurable products: the feed has an item for each of them and for each of their variants, so it has more items than matching products.')
+                    : $t('%1 of them are configurable products: the feed has an item for each of their variants instead, so it has more items than matching products.')
+                ).replace('%1', response.configurable);
+            }
+            if (response.last_items !== null && response.last_items !== undefined) {
+                summary += ' ' + $t('The last generated file has %1 items.').replace('%1', response.last_items);
+            }
             if (response.truncated) {
                 summary += ' ' + $t('The preview stopped early: most products produced no item.');
             }
@@ -99,7 +109,7 @@ define([
             this.outputLine(response.outputLine || 0);
             if (response.valid) {
                 this.messageType('success');
-                this.message($t('Valid: the preview parses without errors.'));
+                this.message($t('Valid file format: the preview parses without errors. Channel rules (for example required attributes) are not checked.'));
             } else {
                 this.messageType('error');
                 this.message(response.validation);

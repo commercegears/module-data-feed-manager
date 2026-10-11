@@ -14,7 +14,7 @@ use Softaware\DataFeed\Model\FeedFactory;
 use Softaware\DataFeed\Model\Generator\FileLocator;
 
 /**
- * File name with a link to the public URL once the file exists.
+ * Public URL of the feed (linked once the file exists), or its location below the Magento root when not public.
  */
 class FeedFile extends Column
 {
@@ -39,17 +39,19 @@ class FeedFile extends Column
         $name = $this->getData('name');
         foreach ($dataSource['data']['items'] ?? [] as $index => $item) {
             $feed = $this->feedFactory->create()->setData($item);
-            $path = $this->fileLocator->normalisePath((string)($item['path'] ?? ''));
-            $label = $this->escaper->escapeHtml($path . ($item['filename'] ?? ''));
             $url = $this->fileLocator->getPublicUrl($feed);
-            if ($url && is_file($this->fileLocator->getAbsolutePath($feed))) {
-                $html = '<a href="' . $this->escaper->escapeUrl($url) . '" target="_blank" rel="noopener">'
-                    . $label . '</a>';
+            $exists = is_file($this->fileLocator->getAbsolutePath($feed));
+            if ($url) {
+                // Public feeds show their URL (what the channel needs), linked once the file exists.
+                $label = $this->escaper->escapeHtml($url);
+                $html = $exists
+                    ? '<a href="' . $this->escaper->escapeUrl($url) . '" target="_blank" rel="noopener">'
+                        . $label . '</a>'
+                    : $label . '<br/><small>' . $this->escaper->escapeHtml(__('not generated yet')) . '</small>';
             } else {
-                $html = $label;
-                if (!$url) {
-                    $html .= '<br/><small>' . $this->escaper->escapeHtml(__('not public')) . '</small>';
-                }
+                // Private feeds show the location relative to the Magento root.
+                $html = $this->escaper->escapeHtml($this->fileLocator->getRelativePath($feed))
+                    . '<br/><small>' . $this->escaper->escapeHtml(__('not public')) . '</small>';
             }
             $dataSource['data']['items'][$index][$name] = $html;
         }

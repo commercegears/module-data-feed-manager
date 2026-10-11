@@ -185,8 +185,11 @@ class FeedFormDataProvider extends AbstractDataProvider
                 : $this->escaper->escapeHtml($url) . ' <em>(' . $this->escaper->escapeHtml(__('not generated yet')) . ')</em>';
             $rows[] = [__('Feed URL'), $link];
         } else {
-            $rows[] = [__('File'), $this->escaper->escapeHtml($this->fileLocator->getAbsolutePath($feed))
-                . ' <em>(' . $this->escaper->escapeHtml(__('not public')) . ')</em>'];
+            // Relative to the Magento root: the server's directory layout is not shown in the admin.
+            $rows[] = [__('File'), $this->escaper->escapeHtml($this->fileLocator->getRelativePath($feed))
+                . ' <em>(' . $this->escaper->escapeHtml(
+                    $exists ? __('not public') : __('not public, not generated yet')
+                ) . ')</em>'];
         }
         if (!empty($data[FeedInterface::GENERATED_AT])) {
             $status = (string)($data[FeedInterface::GENERATED_STATUS] ?? '');

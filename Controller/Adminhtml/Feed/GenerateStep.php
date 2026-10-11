@@ -57,7 +57,10 @@ class GenerateStep extends Action implements HttpPostActionInterface
                 return $result->setData(['ok' => true, 'progress' => $job->getProgress()]);
             }
             $outcome = $this->generator->finish($job);
-            return $result->setData(['ok' => true, 'progress' => $job->getProgress(), 'result' => $outcome->toArray()]);
+            // The browser gets the public URL, not the server path of the file.
+            $data = $outcome->toArray();
+            unset($data['file_path']);
+            return $result->setData(['ok' => true, 'progress' => $job->getProgress(), 'result' => $data]);
         } catch (\Throwable $e) {
             if ($job !== null && $action !== 'start') {
                 $this->generator->abort($job, $e);

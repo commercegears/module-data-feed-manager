@@ -51,13 +51,14 @@ Store view, currency and schedule are set per feed; these settings apply to all 
 | General > Enabled | When set to No, no feeds are generated (cron, admin or command line). Existing feed files stay in place. Default: Yes. |
 | Generation > Batch Size | Products loaded at a time, 10 to 5000. Default: 250. Lower it if generation runs out of memory. |
 | Generation > Preview Items | Items rendered by the feed preview, 1 to 20. Default: 5. |
-| Generation > Keep Generation Log For (Days) | Older log entries are deleted daily. Default: 30; 0 keeps the log for ever. |
+| Generation > Keep Generation Log For (Days) | Older log entries are deleted daily, 0 to 3650. Default: 30; 0 keeps the log for ever. |
 | Product Data > Brand Attribute | The product attribute read by `{{ product.brand }}`, which the Google Shopping (g:brand), Meta, Pinterest and Microsoft templates send as the brand. A variant without a value uses its parent's; the store name is used only when there is no brand at all. Default: Automatic (the attribute `brand` if your store has one, otherwise `manufacturer`). |
 
 ## 4. Creating a feed
 
 Go to **Softaware > Data Feed Manager > Feeds** and open the **Add Feed** split button. Choose **From template:
 Google Shopping**, Meta catalogue, Pinterest catalogue, Microsoft/Bing Shopping or generic JSON, or **Blank feed**.
+The main part of the button opens a blank feed.
 The feed form has tabs on the left.
 
 ### General
@@ -167,7 +168,12 @@ highlighted (XML, JSON, or CSV/TXT with the delimiters marked) and has line numb
 The **Preview** tab of the form shows the same with **Preview First Items**.
 
 - How many items: the Preview Items setting (default 5, at most 20). The summary also says how many products match
-  the filters.
+  the filters. Products are counted once: when configurable products are exported as their variants, the summary
+  says how many of the matching products are configurable, and the feed has more items than matching products. For
+  a saved feed it also gives the item count of the last generated file.
+- "Valid file format" means the output parses (XML, JSON, CSV/TXT columns). It does not check a channel's own
+  rules: for example Google assigns a category itself when `g:google_product_category` is missing, and a product
+  without categories has no `product_type`.
 - A template error names its line; **Show line N in the template** opens the Content tab with the cursor on it.
 - Items that fail (for example invalid XML) are listed with the SKU and the line of the item's output; a
   validation error of the whole output marks that line in the output.
@@ -193,11 +199,14 @@ validated (streamed XML parse, JSON decode) and only then replaces the old file,
 it is not published and the previous file stays. Two runs of the same feed cannot overlap.
 
 The grid shows each feed's file link, schedule, next run, last generated time, result, items and size, and has a
-keyword search. Mass actions: enable, disable and delete. Row actions: Edit, Generate Now, View Log, Duplicate and
-Delete.
+keyword search. Public feeds show their URL in the File column; feeds below `var/` show their location relative to
+the Magento root. Mass actions: enable, disable and delete. Row actions: Edit, Generate Now, View Log, Duplicate and
+Delete; Generate Now, Duplicate and Delete ask for confirmation first.
 
 **Softaware > Data Feed Manager > Generation Log** lists every run: feed, start time, started by (cron, admin or CLI),
-status, seconds, items, errors, file size and messages.
+status, seconds, items, errors, file size and messages. A run that never finished (for example the server
+restarted, or the browser tab was closed during Generate Now) is marked as an error, counted as one error, by the
+daily log clean-up (03:17) once it is more than 75 minutes old.
 
 ## 6. Google category mapping
 

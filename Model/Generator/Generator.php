@@ -61,7 +61,9 @@ class Generator implements FeedGeneratorInterface
             }
         } catch (\Throwable $e) {
             $this->abort($job, $e);
-            throw $e instanceof LocalizedException ? $e : new LocalizedException(__($e->getMessage()), $e);
+            throw $e instanceof LocalizedException
+                ? $e
+                : new LocalizedException(__($this->fileLocator->hideRoot($e->getMessage())), $e);
         }
         return $this->finish($job);
     }
@@ -108,7 +110,10 @@ class Generator implements FeedGeneratorInterface
             $this->jobStorage->save($job);
         } catch (\Throwable $e) {
             $this->abort($job, $e);
-            throw new LocalizedException(__('The feed could not be started: %1', $e->getMessage()), $e);
+            throw new LocalizedException(
+                __('The feed could not be started: %1', $this->fileLocator->hideRoot($e->getMessage())),
+                $e
+            );
         }
         return $job;
     }
@@ -130,7 +135,10 @@ class Generator implements FeedGeneratorInterface
         if ($batch['processed'] > 0) {
             $handle = fopen($job->partFile, 'ab');
             if ($handle === false) {
-                throw new LocalizedException(__('The partial feed file %1 cannot be written.', $job->partFile));
+                throw new LocalizedException(__(
+                    'The partial feed file %1 cannot be written.',
+                    $this->fileLocator->toDisplayPath($job->partFile)
+                ));
             }
             try {
                 foreach ($batch['items'] as $product) {
@@ -203,10 +211,15 @@ class Generator implements FeedGeneratorInterface
             }
         } catch (\Throwable $e) {
             $this->abort($job, $e);
-            throw new LocalizedException(__('The feed could not be completed: %1', $e->getMessage()), $e);
+            throw new LocalizedException(
+                __('The feed could not be completed: %1', $this->fileLocator->hideRoot($e->getMessage())),
+                $e
+            );
         }
 
         $duration = microtime(true) - $job->startedAt;
+        // An unpublished (invalid) file counts as an error itself, so a failed run never shows 0 errors.
+        $errorCount = $job->errors + ($status === Log::STATUS_ERROR ? 1 : 0);
         $summary = $status === Log::STATUS_ERROR
             ? (string)($messages[0] ?? __('Generation failed.'))
             : (string)__('%1 items, %2 errors.', $job->items, $job->errors);
@@ -222,7 +235,7 @@ class Generator implements FeedGeneratorInterface
             'finished_at' => gmdate('Y-m-d H:i:s'),
             'duration' => round($duration, 2),
             'items' => $job->items,
-            'error_count' => $job->errors,
+            'error_count' => $errorCount,
             'file_size' => $size ?: null,
             'messages' => $messages ? json_encode($messages, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) : null,
         ]);
@@ -234,7 +247,7 @@ class Generator implements FeedGeneratorInterface
             $job->logId,
             $status,
             $job->items,
-            $job->errors,
+            $errorCount,
             $messages,
             $size,
             $status === Log::STATUS_ERROR ? null : $this->fileLocator->getPublicUrl($feed),
@@ -248,7 +261,7 @@ class Generator implements FeedGeneratorInterface
      */
     public function abort(Job $job, \Throwable $error): void
     {
-        $message = $error->getMessage();
+        $message = $this->fileLocator->hideRoot($error->getMessage());
         if (!$error instanceof LocalizedException) {
             $this->logger->error('Softaware_DataFeed: generation of feed ' . $job->feedId . ' failed', ['exception' => $error]);
         }
@@ -318,7 +331,10 @@ class Generator implements FeedGeneratorInterface
         $this->file->createDirectory($directory, 0775);
         if (!@rename($source, $target)) {
             if (!@copy($source, $target . '.tmp') || !@rename($target . '.tmp', $target)) {
-                throw new LocalizedException(__('The feed file could not be written to %1.', $target));
+                throw new LocalizedException(__(
+                    'The feed file could not be written to %1.',
+                    $this->fileLocator->toDisplayPath($target)
+                ));
             }
             @unlink($source);
         }

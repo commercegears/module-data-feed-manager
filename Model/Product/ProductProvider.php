@@ -55,6 +55,16 @@ class ProductProvider
     }
 
     /**
+     * Matching configurable products: in the variant modes each of their variants becomes a feed item of its own.
+     */
+    public function countConfigurable(FeedInterface $feed, StoreContext $store): int
+    {
+        return (int)$this->createFilteredCollection($feed, $store, ['name'])
+            ->addAttributeToFilter('type_id', 'configurable')
+            ->getSize();
+    }
+
+    /**
      * @return array{items: ProductContext[], last_id: int, processed: int}
      * @throws LocalizedException
      */

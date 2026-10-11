@@ -53,6 +53,15 @@ class FeedActions extends Column
                 $item[$name]['generate'] = [
                     'href' => $this->urlBuilder->getUrl('softaware_datafeed/feed/generate', ['id' => $id]),
                     'label' => __('Generate Now'),
+                    // Replaces the published file: ask first, then post the request.
+                    'post' => true,
+                    'confirm' => [
+                        'title' => __('Generate Feed'),
+                        'message' => __(
+                            'Generate the feed "%1" now? The new file replaces the current one when it is valid.',
+                            $this->escaper->escapeHtml((string)($item['name'] ?? ''))
+                        ),
+                    ],
                 ];
             }
             if ($canLog) {

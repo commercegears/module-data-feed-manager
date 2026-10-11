@@ -35,7 +35,12 @@ class Log extends AbstractDb
     {
         return (int)$this->getConnection()->update(
             $this->getMainTable(),
-            ['status' => 'error', 'messages' => json_encode(['Generation did not finish (process stopped or page closed).'])],
+            [
+                'status' => 'error',
+                // The run that did not finish is the error; items already counted as errors stay counted.
+                'error_count' => new \Magento\Framework\DB\Sql\Expression('error_count + 1'),
+                'messages' => json_encode(['Generation did not finish (process stopped or page closed).']),
+            ],
             ['started_at < ?' => $utcDateTime, 'status = ?' => 'running']
         );
     }

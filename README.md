@@ -11,9 +11,10 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
 ## Features
 
 - **Feeds** (Softaware > Data Feed Manager > Feeds): name, store view, format, file name and directory, currency,
-  enabled switch, schedule, product filters, delivery. Grid with file link, last result, item count and size;
-  mass enable, disable and delete; duplicate.
-- **Ready templates** ("Add Feed" split button): Google Shopping (RSS 2.0 XML with the `g:` namespace),
+  enabled switch, schedule, product filters, delivery. Grid with the feed's public URL (or, for feeds below `var/`,
+  its location relative to the Magento root), last result, item count and size; mass enable, disable and delete;
+  duplicate. Generate Now, Duplicate and Delete in the grid ask for confirmation and are sent as POST requests.
+- **Ready templates** ("Add Feed" split button; its main part opens a blank feed): Google Shopping (RSS 2.0 XML with the `g:` namespace),
   Meta catalogue (CSV), Pinterest catalogue (CSV), Microsoft/Bing Shopping (tab-delimited TXT), generic JSON.
 - **Template editor** for XML/JSON with syntax highlighting (template tags, filters, strings, comments, XML tags and
   attributes, JSON keys), line numbers and the cursor position; Tab indents, Shift+Tab outdents, Esc then Tab leaves
@@ -56,7 +57,10 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
   - CLI: see below
   - **preview**: the **Preview** button (page header), **Preview Output** (Content tab) and the Preview tab render
     the feed for the first matching products (store view, product filters and conditions applied) from the unsaved
-    form values, highlighted with line numbers, and validate it. Nothing is saved or written. Template errors name
+    form values, highlighted with line numbers, and check that the output is well-formed (not the channel's own
+    rules, such as required attributes). The summary counts matching products, says how many are configurable
+    (their variants are separate feed items) and gives the item count of the last generated file. Nothing is saved
+    or written. Template errors name
     the line, with a button that puts the cursor on it; output errors mark the line in the output. The work is
     bounded: at most 20 items, 500 products read and about 10 seconds
   - **generation log** (Softaware > Data Feed Manager > Generation Log): start time, trigger, status, duration, items,

@@ -8,6 +8,7 @@ namespace Softaware\DataFeed\Controller\Adminhtml\Feed;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -15,8 +16,9 @@ use Softaware\DataFeed\Api\FeedRepositoryInterface;
 
 /**
  * Progress page: the browser runs the generation batch by batch (see GenerateStep).
+ * POST from the grid's confirmed row action; GET from the form button and after "Save & Generate Now".
  */
-class Generate extends Action implements HttpGetActionInterface
+class Generate extends Action implements HttpGetActionInterface, HttpPostActionInterface
 {
     public const ADMIN_RESOURCE = 'Softaware_DataFeed::feed_generate';
 

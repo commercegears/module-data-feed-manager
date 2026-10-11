@@ -375,3 +375,5 @@ Generation,Generation
 "Tab indents, Shift+Tab outdents. Press Esc, then Tab, to leave the field.","Tab indents, Shift+Tab outdents. Press Esc, then Tab, to leave the field."
 "Tab now moves to the next field.","Tab now moves to the next field."
 "Very large template: highlighting is switched off.","Very large template: highlighting is switched off."
+"Duplicate Feed","Duplicate Feed"
+"Create a copy of the feed ""%1""? The copy is saved disabled.","Create a copy of the feed ""%1""? The copy is saved disabled."

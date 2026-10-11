@@ -64,7 +64,17 @@ class FeedActions extends Column
             $item[$name]['duplicate'] = [
                 'href' => $this->urlBuilder->getUrl('softaware_datafeed/feed/duplicate', ['id' => $id]),
                 'label' => __('Duplicate'),
+                // The grid only posts actions that have a confirm (or callback); without one it opens the
+                // link with GET, which the POST-only controller answers with a 404.
                 'post' => true,
+                'confirm' => [
+                    'title' => __('Duplicate Feed'),
+                    // The confirm modal renders its content as HTML: the feed name must be escaped.
+                    'message' => __(
+                        'Create a copy of the feed "%1"? The copy is saved disabled.',
+                        $this->escaper->escapeHtml((string)($item['name'] ?? ''))
+                    ),
+                ],
             ];
             if ($canDelete) {
                 $item[$name]['delete'] = [

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.3 (2026-10-11)
+
+### Fixed
+
+- "Duplicate" in the feeds grid opened a 404 page: the link was sent with GET to a POST-only action.
+  The action now asks for confirmation and posts the request.
+
 ## 1.5.2 (2026-10-10)
 
 ### Fixed

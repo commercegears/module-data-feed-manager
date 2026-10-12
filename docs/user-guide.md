@@ -25,7 +25,7 @@ SFTP, FTP or FTPS.
 ## 2. Installation
 
 Install with Composer. The access keys come from your account; see
-https://commercegears.com/shop/composer-access/ for the details.
+https://commercegears.com/composer-access/ for the details.
 
 ```bash
 composer config repositories.commercegears composer https://repo.commercegears.com

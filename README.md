@@ -126,7 +126,7 @@ the format. Partial files and job state are kept in `var/commercegears_datafeed/
 
 ## Compatibility
 
-- Magento Open Source / Adobe Commerce 2.4.7 and later (developed and tested on 2.4.9), PHP 8.2 to 8.5
+- Magento Open Source / Adobe Commerce 2.4.6 and later (developed and tested on 2.4.9), PHP 8.2 to 8.5 (Magento 2.4.6: PHP 8.2)
 - Works with the legacy stock tables (single source / default stock). With MSI multi-source setups, stock values
   come from the default stock index.
 - Admin only; no storefront output, so it is theme independent (Luma, Hyvä and others).

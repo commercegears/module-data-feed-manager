@@ -16,8 +16,8 @@ SFTP, FTP or FTPS.
 
 | | |
 | --- | --- |
-| Magento | Magento Open Source or Adobe Commerce 2.4.7 to 2.4.9 |
-| PHP | 8.2 to 8.5 (with the FTP extension for FTP or FTPS upload) |
+| Magento | Magento Open Source or Adobe Commerce 2.4.6 to 2.4.9 |
+| PHP | 8.2 to 8.5 (with the FTP extension for FTP or FTPS upload; Magento 2.4.6: PHP 8.2) |
 | Inventory | Default stock; with Multi-Source Inventory, stock values come from the default stock |
 | Themes | Not involved: the module works in the admin, by cron and on the command line |
 | Other | `commercegears/module-core` (installed automatically) |

@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.2 (2026-10-12)
+- Improvement: compatible with Magento 2.4.6 (PHP 8.2).
+
 ## 2.0.1 (2026-10-12)
 - Improvement: user guide screenshots and links updated for the CommerceGears name
 

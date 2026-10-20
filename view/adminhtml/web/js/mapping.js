@@ -13,7 +13,11 @@ define(['jquery', 'jquery/ui-modules/widgets/autocomplete'], function ($) {
                 minLength: 2,
                 delay: 200,
                 // Own class: the admin theme has no styles for jQuery UI menus (the list was transparent).
-                classes: {'ui-autocomplete': 'commercegears-datafeed-suggest'}
+                classes: {'ui-autocomplete': 'commercegears-datafeed-suggest'},
+                // Long category paths wrap instead of widening the list beyond the field.
+                open: function () {
+                    $(this).autocomplete('widget').css('max-width', $(this).outerWidth() + 'px');
+                }
             });
         });
 

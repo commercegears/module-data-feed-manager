@@ -207,6 +207,7 @@ textarea.commercegears-datafeed-code,
     line-height: 1.4;
     margin: 0;
     padding: .6rem 1.2rem;
+    white-space: normal;
 }
 .commercegears-datafeed-suggest .ui-menu-item-wrapper.ui-state-active {
     background: #e5f7fe;

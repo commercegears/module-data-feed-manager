@@ -187,6 +187,41 @@ textarea.commercegears-datafeed-code,
     overflow-y: auto;
     z-index: 1000;
 }
+/* Google category suggestions: the admin theme does not style jQuery UI menus. */
+.commercegears-datafeed-suggest {
+    background: #fff;
+    border: 1px solid #adadad;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .18);
+    list-style: none;
+    margin: 0;
+    padding: .4rem 0;
+}
+.commercegears-datafeed-suggest .ui-menu-item {
+    margin: 0;
+}
+.commercegears-datafeed-suggest .ui-menu-item-wrapper {
+    border: 0;
+    color: #303030;
+    cursor: pointer;
+    display: block;
+    line-height: 1.4;
+    margin: 0;
+    padding: .6rem 1.2rem;
+}
+.commercegears-datafeed-suggest .ui-menu-item-wrapper.ui-state-active {
+    background: #e5f7fe;
+    color: #303030;
+}
+.ui-helper-hidden-accessible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
 
 /* Wider editors */
 .admin__field.commercegears-datafeed-columns > .admin__field-control,

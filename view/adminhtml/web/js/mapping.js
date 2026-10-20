@@ -11,7 +11,9 @@ define(['jquery', 'jquery/ui-modules/widgets/autocomplete'], function ($) {
             $(this).autocomplete({
                 source: config.searchUrl,
                 minLength: 2,
-                delay: 200
+                delay: 200,
+                // Own class: the admin theme has no styles for jQuery UI menus (the list was transparent).
+                classes: {'ui-autocomplete': 'commercegears-datafeed-suggest'}
             });
         });
 

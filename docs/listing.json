@@ -31,7 +31,7 @@
         {
             "label": "Feeds",
             "title": "All feeds at a glance",
-            "text": "File link, schedule, next run, last result, items and size for every feed. Generate, duplicate, enable or disable feeds from the grid.",
+            "text": "File link, schedule, next run and last result for every feed, with items and file size under Columns. Generate, duplicate, enable or disable feeds from the grid.",
             "image": "docs/images/feed-grid.png"
         },
         {

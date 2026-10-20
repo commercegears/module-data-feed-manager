@@ -198,10 +198,11 @@ Each run writes to a temporary file. Items that fail their check are skipped and
 validated (streamed XML parse, JSON decode) and only then replaces the old file, in one step. If the file is invalid,
 it is not published and the previous file stays. Two runs of the same feed cannot overlap.
 
-The grid shows each feed's file link, schedule, next run, last generated time, result, items and size, and has a
-keyword search. Public feeds show their URL in the File column; feeds below `var/` show their location relative to
+The grid shows each feed's file link, schedule, next run, last generated time and result (add the Items and Size
+columns under **Columns**), and has a keyword search. Public feeds show their URL in the File column; feeds below `var/` show their location relative to
 the Magento root. Mass actions: enable, disable and delete. Row actions: Edit, Generate Now, View Log, Duplicate and
-Delete; Generate Now, Duplicate and Delete ask for confirmation first.
+Delete; Generate Now, Duplicate and Delete ask for confirmation first. Deleting a feed keeps its generated file: the
+message names the file, so you can delete it yourself if channels should no longer read it.
 
 **CommerceGears > Data Feed Manager > Generation Log** lists every run: feed, start time, started by (cron, admin or CLI),
 status, seconds, items, errors, file size and messages. A run that never finished (for example the server

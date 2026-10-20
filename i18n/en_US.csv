@@ -382,3 +382,5 @@ Generation,Generation
 "Generate Feed","Generate Feed"
 "Generate the feed ""%1"" now? The new file replaces the current one when it is valid.","Generate the feed ""%1"" now? The new file replaces the current one when it is valid."
 "not public, not generated yet","not public, not generated yet"
+"Its file %1 was not deleted. Delete it yourself if channels should no longer read it.","Its file %1 was not deleted. Delete it yourself if channels should no longer read it."
+"Their files were not deleted: %1. Delete them yourself if channels should no longer read them.","Their files were not deleted: %1. Delete them yourself if channels should no longer read them."

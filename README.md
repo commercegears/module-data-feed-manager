@@ -12,8 +12,9 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
 
 - **Feeds** (CommerceGears > Data Feed Manager > Feeds): name, store view, format, file name and directory, currency,
   enabled switch, schedule, product filters, delivery. Grid with the feed's public URL (or, for feeds below `var/`,
-  its location relative to the Magento root), last result, item count and size; mass enable, disable and delete;
-  duplicate. Generate Now, Duplicate and Delete in the grid ask for confirmation and are sent as POST requests.
+  its location relative to the Magento root), schedule, next run and last result (Items and Size under Columns); mass
+  enable, disable and delete; duplicate. Generate Now, Duplicate and Delete in the grid ask for confirmation and are
+  sent as POST requests. Deleting a feed keeps its generated file and says so in the message.
 - **Ready templates** ("Add Feed" split button; its main part opens a blank feed): Google Shopping (RSS 2.0 XML with the `g:` namespace),
   Meta catalogue (CSV), Pinterest catalogue (CSV), Microsoft/Bing Shopping (tab-delimited TXT), generic JSON.
 - **Template editor** for XML/JSON with syntax highlighting (template tags, filters, strings, comments, XML tags and

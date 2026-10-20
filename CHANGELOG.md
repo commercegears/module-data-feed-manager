@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.3 (2026-10-20)
+- Fix: Google category suggestions on the mapping page have a readable list (it had no background).
+- Improvement: deleting a feed says that its generated file is still there and names it.
+
 ## 2.0.2 (2026-10-12)
 - Improvement: compatible with Magento 2.4.6 (PHP 8.2).
 

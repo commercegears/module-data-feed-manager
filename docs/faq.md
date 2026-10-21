@@ -57,3 +57,7 @@ theme.
 **Can I generate feeds from the command line?**
 Yes: `bin/magento commercegears:feed:generate <id>` (or `--all`), `commercegears:feed:list`, `commercegears:feed:preview <id>`
 and `commercegears:feed:taxonomy-import` for another taxonomy language.
+
+**Is Data Feed Manager free?**
+Yes. Data Feed Manager is free to download from commercegears.com and is installed with Composer like our other modules.
+It needs `commercegears/module-core`, which Composer installs automatically.
